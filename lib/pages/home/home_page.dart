@@ -88,7 +88,9 @@ class HomePage extends StatelessWidget {
                       {
                         "icon": "assets/icon_harga_udang.png",
                         "label": "Harga Udang",
-                        "onTap": () {},
+                        "onTap": () {
+                          Navigator.pushNamed(context, '/harga-udang');
+                        },
                       },
                       {
                         "icon": "assets/icon_belajar.png",
@@ -256,62 +258,64 @@ class HomePage extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFFF),
-      body: SingleChildScrollView(
-        child: Stack(
-          children: [
-            Image.asset("assets/bg_top_home.png"),
-            Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.1,
-                  ),
-                  Container(
-                    padding: EdgeInsets.symmetric(horizontal: 30),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Selamat Datang,",
-                          style: primaryTextStyle.copyWith(
-                            fontWeight: medium,
-                            fontSize: 18,
-                          ),
-                        ),
-                        Text(
-                          "Marsya",
-                          style: primaryTextStyle.copyWith(
-                            fontWeight: bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.04,
-                        ),
-                        dateSuhu(),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.04,
-                        ),
-                        Text(
-                          "Layanan Kami",
-                          style: primaryTextStyle.copyWith(
-                            fontWeight: bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        layananKami(),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.04,
-                        ),
-                      ],
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: Stack(
+            children: [
+              Image.asset("assets/bg_top_home.png"),
+              Container(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
                     ),
-                  ),
-                  dashboard(),
-                ],
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 30),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "Selamat Datang,",
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: medium,
+                              fontSize: 18,
+                            ),
+                          ),
+                          Text(
+                            "Marsya",
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 18,
+                            ),
+                          ),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.04,
+                          ),
+                          dateSuhu(),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.04,
+                          ),
+                          Text(
+                            "Layanan Kami",
+                            style: primaryTextStyle.copyWith(
+                              fontWeight: bold,
+                              fontSize: 16,
+                            ),
+                          ),
+                          layananKami(),
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.04,
+                          ),
+                        ],
+                      ),
+                    ),
+                    dashboard(),
+                  ],
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

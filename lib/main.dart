@@ -1,4 +1,5 @@
 import 'package:smart_fishery/pages/feature/belajar_page.dart';
+import 'package:smart_fishery/pages/feature/harga_udang.dart';
 import 'package:smart_fishery/pages/home/home_page.dart';
 import 'package:smart_fishery/pages/feature/konsultasi_page.dart';
 import 'package:smart_fishery/pages/sign_in_page.dart';
@@ -21,7 +22,8 @@ class MainApp extends StatelessWidget {
         '/sign-in': (context) => const SignInPage(),
         '/home': (context) => const HomePage(),
         '/konsultasi': (context) => const KonsultasiPage(),
-        '/belajar': (context) => const BelajarPage(),
+        '/belajar': (context) => BelajarPage(),
+        '/harga-udang': (context) => HargaUdangPage(),
       },
     );
   }

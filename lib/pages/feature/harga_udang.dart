@@ -1,13 +1,14 @@
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/widget/harga_udang_card.dart';
 import 'package:smart_fishery/widget/video_card.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 import '../../theme.dart';
 
-class BelajarPage extends StatelessWidget {
-  BelajarPage({super.key});
+class HargaUdangPage extends StatelessWidget {
+  HargaUdangPage({super.key});
 
   final List<String> entries = <String>['A', 'B', 'C'];
   final List<int> colorCodes = <int>[600, 500, 100];
@@ -41,7 +42,7 @@ class BelajarPage extends StatelessWidget {
                 decoration: InputDecoration.collapsed(
                   filled: true,
                   fillColor: Colors.transparent,
-                  hintText: "What are you craving?",
+                  hintText: "Cari lokasi yang ingin kamu ketahui",
                   hintStyle: primaryTextStyle.copyWith(
                     color: Colors.grey[500],
                   ),
@@ -62,7 +63,7 @@ class BelajarPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Belajar Budidaya",
+          "Harga Udang",
           style: primaryTextStyle.copyWith(fontWeight: bold),
         ),
         backgroundColor: whiteColor,
@@ -84,8 +85,8 @@ class BelajarPage extends StatelessWidget {
               // margin: EdgeInsets.symmetric(horizontal: 20),
               child: ListView.separated(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  itemCount: entries.length,
-                  itemBuilder: (context, index) => VideoCard(),
+                  itemCount: 15,
+                  itemBuilder: (context, index) => HargaUdangCard(),
                   separatorBuilder: (BuildContext context, int index) =>
                       const SizedBox(
                         height: 15,

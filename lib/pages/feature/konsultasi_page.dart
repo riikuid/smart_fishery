@@ -54,7 +54,7 @@ class KonsultasiPage extends StatelessWidget {
                   "Phone Number",
                   style: primaryTextStyle.copyWith(
                     fontWeight: bold,
-                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
                     color: bannerTextColor,
                   ),
                 ),
@@ -62,7 +62,7 @@ class KonsultasiPage extends StatelessWidget {
                   "+62 876-456-999",
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
                     color: bannerTextColor,
                   ),
                 )
@@ -119,7 +119,7 @@ class KonsultasiPage extends StatelessWidget {
                   "E-mail Address",
                   style: primaryTextStyle.copyWith(
                     fontWeight: bold,
-                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
                     color: bannerTextColor,
                   ),
                 ),
@@ -127,7 +127,7 @@ class KonsultasiPage extends StatelessWidget {
                   "abaditambak@outlook.com",
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: MediaQuery.of(context).size.width * 0.04,
+                    fontSize: MediaQuery.of(context).size.width * 0.035,
                     color: bannerTextColor,
                   ),
                 )
