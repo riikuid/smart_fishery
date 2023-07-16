@@ -1,5 +1,3 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 
@@ -78,12 +76,16 @@ class HomePage extends StatelessWidget {
                       {
                         "icon": "assets/icon_monitoring.png",
                         "label": "Monitoring",
-                        "onTap": () {},
+                        "onTap": () {
+                          Navigator.pushNamed(context, '/monitoring');
+                        },
                       },
                       {
                         "icon": "assets/icon_kolam.png",
                         "label": "Kolam",
-                        "onTap": () {},
+                        "onTap": () {
+                          Navigator.pushNamed(context, '/sign-in');
+                        },
                       },
                       {
                         "icon": "assets/icon_harga_udang.png",

@@ -11,6 +11,7 @@ Color cardColor = Color(0xFFECEDEF);
 Color blackColor = Color(0xFF2E2E2E);
 Color whiteColor = Colors.white;
 Color bannerColor = Color(0xFFC8EAE8);
+Color greenColor = Color(0xFF1B9C85);
 
 Color backgroundColor1 = Color(0xffF5F5F5); //sudah
 Color backgroundColor2 = Color(0xffF7F6FF);

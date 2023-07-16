@@ -1,17 +1,11 @@
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_fishery/widget/harga_udang_card.dart';
-import 'package:smart_fishery/widget/video_card.dart';
-import 'package:responsive_grid_list/responsive_grid_list.dart';
+import 'package:smart_fishery/pages/feature/monitoring/buat_tambak_page.dart';
+import 'package:smart_fishery/theme.dart';
+import 'package:smart_fishery/widget/pilih_tambak_card.dart';
 
-import '../../theme.dart';
+class PilihTambakPage extends StatelessWidget {
+  const PilihTambakPage({super.key});
 
-class HargaUdangPage extends StatelessWidget {
-  HargaUdangPage({super.key});
-
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
   @override
   Widget build(BuildContext context) {
     Widget searchbar() {
@@ -42,7 +36,7 @@ class HargaUdangPage extends StatelessWidget {
                 decoration: InputDecoration.collapsed(
                   filled: true,
                   fillColor: Colors.transparent,
-                  hintText: "Cari lokasi yang ingin kamu ketahui",
+                  hintText: "Cari nama tambak anda",
                   hintStyle: primaryTextStyle.copyWith(
                     color: Colors.grey[500],
                   ),
@@ -63,7 +57,7 @@ class HargaUdangPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Harga Udang",
+          "Pilih Tambak",
           style: primaryTextStyle.copyWith(fontWeight: bold),
         ),
         backgroundColor: whiteColor,
@@ -77,6 +71,19 @@ class HargaUdangPage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => BuatTambakPage()),
+          );
+        },
+        backgroundColor: Color(0xFF1B9C85),
+        child: const Icon(
+          Icons.add,
+          size: 24.0,
+        ),
+      ),
       body: Column(
         children: [
           searchbar(),
@@ -85,8 +92,8 @@ class HargaUdangPage extends StatelessWidget {
               // margin: EdgeInsets.symmetric(horizontal: 20),
               child: ListView.separated(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  itemCount: 15,
-                  itemBuilder: (context, index) => HargaUdangCard(),
+                  itemCount: 8,
+                  itemBuilder: (context, index) => PilihTambakCard(),
                   separatorBuilder: (BuildContext context, int index) =>
                       const SizedBox(
                         height: 15,
