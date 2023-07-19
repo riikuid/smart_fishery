@@ -12,6 +12,12 @@ dependencies:
     sdk: flutter
   google_fonts: ^4.0.4
   responsive_grid_list: ^1.3.2
+  common:
+    path: common
+  dependencies:
+    path: dependencies
+  fitur_lihat_detail:
+    path: fitur/fitur_lihat_detail
 
 dev_dependencies:
   flutter_test:

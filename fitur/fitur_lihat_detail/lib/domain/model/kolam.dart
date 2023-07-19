@@ -1,7 +1,7 @@
-import 'package:fitur_lihat_detail_panen/domain/model/kualitas_air.dart';
-import 'package:fitur_lihat_detail_panen/domain/model/panen.dart';
-import 'package:fitur_lihat_detail_panen/domain/model/penyakit.dart';
-import 'package:fitur_lihat_detail_panen/domain/model/sampling.dart';
+import 'package:fitur_lihat_detail/domain/model/kualitas_air.dart';
+import 'package:fitur_lihat_detail/domain/model/panen.dart';
+import 'package:fitur_lihat_detail/domain/model/penyakit.dart';
+import 'package:fitur_lihat_detail/domain/model/sampling.dart';
 
 
 class Kolam{

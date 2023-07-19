@@ -1,3 +1,4 @@
+import 'package:common/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 
@@ -16,7 +17,7 @@ class MonitoringKolamCard extends StatelessWidget {
               Text(
                 "30.08",
                 style: primaryTextStyle.copyWith(
-                  color: Color(0xFF0079FF),
+                  color: const Color(0xFF0079FF),
                   fontWeight: semibold,
                 ),
               ),
@@ -34,7 +35,7 @@ class MonitoringKolamCard extends StatelessWidget {
               Text(
                 "2.54",
                 style: primaryTextStyle.copyWith(
-                  color: Color(0xFFC82C2C),
+                  color: const Color(0xFFC82C2C),
                   fontWeight: semibold,
                 ),
               ),
@@ -50,7 +51,7 @@ class MonitoringKolamCard extends StatelessWidget {
               Text(
                 "15.25",
                 style: primaryTextStyle.copyWith(
-                  color: Color(0xFF0079FF),
+                  color: const Color(0xFF0079FF),
                   fontWeight: semibold,
                 ),
               ),
@@ -66,7 +67,7 @@ class MonitoringKolamCard extends StatelessWidget {
               Text(
                 "3.43",
                 style: primaryTextStyle.copyWith(
-                  color: Color(0xFFC82C2C),
+                  color: const Color(0xFFC82C2C),
                   fontWeight: semibold,
                 ),
               ),
@@ -82,7 +83,7 @@ class MonitoringKolamCard extends StatelessWidget {
               Text(
                 "30.08",
                 style: primaryTextStyle.copyWith(
-                  color: Color(0xFF0079FF),
+                  color: const Color(0xFF0079FF),
                   fontWeight: semibold,
                 ),
               ),
@@ -105,15 +106,20 @@ class MonitoringKolamCard extends StatelessWidget {
               fontWeight: semibold,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).pushNamed(
+                Routes.lihatDetailRoute,
+                arguments: -1
+              );
+            },
             child: Container(
               width: double.infinity,
               height: 40,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Color(0xFF1B9C85),
                 borderRadius: BorderRadius.all(
                   Radius.circular(8.0),
@@ -134,50 +140,58 @@ class MonitoringKolamCard extends StatelessWidget {
       );
     }
 
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 20),
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: whiteColor,
-        borderRadius: BorderRadius.all(
-          Radius.circular(12.0),
+    return InkWell(
+      onTap: (){
+        Navigator.of(context).pushNamed(
+          Routes.lihatDetailRoute,
+          arguments: -1
+        );
+      },
+      child: Container(
+        margin: const EdgeInsets.symmetric(horizontal: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: whiteColor,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(12.0),
+          ),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x19000000),
+              blurRadius: 6,
+              offset: Offset(0, 1),
+            ),
+          ],
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Color(0x19000000),
-            blurRadius: 6,
-            offset: Offset(0, 1),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Kolam A1",
-            style: primaryTextStyle.copyWith(
-              fontSize: 16,
-              fontWeight: semibold,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Kolam A1",
+              style: primaryTextStyle.copyWith(
+                fontSize: 16,
+                fontWeight: semibold,
+              ),
             ),
-          ),
-          Text(
-            "Update Terakhir - 29 Februari (19:24)",
-            style: secondaryTextStyle.copyWith(
-              fontSize: 12,
-              fontWeight: medium,
+            Text(
+              "Update Terakhir - 29 Februari (19:24)",
+              style: secondaryTextStyle.copyWith(
+                fontSize: 12,
+                fontWeight: medium,
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 5,
-          ),
-          Divider(),
-          const SizedBox(
-            height: 5,
-          ),
-          // content(),
-          nothing(),
-        ],
+            const SizedBox(
+              height: 5,
+            ),
+            const Divider(),
+            const SizedBox(
+              height: 5,
+            ),
+            content(),
+            // nothing(),
+          ],
+        ),
       ),
     );
   }
