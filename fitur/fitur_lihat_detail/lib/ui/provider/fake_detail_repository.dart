@@ -1,0 +1,44 @@
+import 'package:common/response/response.dart';
+import 'package:fitur_lihat_detail_panen/domain/model/kolam.dart';
+import 'package:fitur_lihat_detail_panen/domain/model/kualitas_air.dart';
+import 'package:fitur_lihat_detail_panen/domain/model/panen.dart';
+import 'package:fitur_lihat_detail_panen/domain/model/penyakit.dart';
+import 'package:fitur_lihat_detail_panen/domain/model/sampling.dart';
+import 'package:fitur_lihat_detail_panen/domain/repository/i_panen_repository.dart';
+
+
+class FakeDetailRepository implements IPanenRepository{
+  @override
+  Future<Response> getKolam(int id) async {
+    await Future.delayed(const Duration(milliseconds: 2000));
+    return ApiResponseSuccess(
+      data: _fakeKolam
+    );
+  }
+
+  final _fakeKolam = Kolam(
+    listKualitasAir: [
+      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
+      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
+      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
+      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
+      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
+    ],
+    listPanen: [
+      Panen(tanggal: "11 November 2011", berat: 24, size: 3, jenis: "Udang"),
+      Panen(tanggal: "11 November 2011", berat: 24, size: 3, jenis: "Udang"),
+    ],
+    listPenyakit: [
+      Penyakit(nama: "Cacar air", tanggal: "1 Januari 2001"),
+      Penyakit(nama: "Cacar air", tanggal: "1 Januari 2001"),
+      Penyakit(nama: "Cacar air", tanggal: "1 Januari 2001"),
+      Penyakit(nama: "Cacar air", tanggal: "1 Januari 2001"),
+      Penyakit(nama: "Cacar air", tanggal: "1 Januari 2001"),
+    ],
+    listSampling: [
+      Sampling(tanggal: "2 Februari 2022", mbw: 24.1),
+      Sampling(tanggal: "2 Februari 2022", mbw: 24.1),
+      Sampling(tanggal: "2 Februari 2022", mbw: 24.1),
+    ],
+  );
+}
