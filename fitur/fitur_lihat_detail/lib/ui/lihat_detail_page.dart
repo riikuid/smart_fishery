@@ -1,5 +1,6 @@
 import 'package:fitur_lihat_detail/ui/pages/kualitas_air/kualitas_air_page.dart';
 import 'package:fitur_lihat_detail/ui/pages/panen/panen_page.dart';
+import 'package:fitur_lihat_detail/ui/pages/sampling/sampling_page.dart';
 import 'package:flutter/material.dart';
 
 class LihatDetailPage extends StatefulWidget{
@@ -41,11 +42,11 @@ class _LihatDetailPageState extends State<LihatDetailPage> {
             ],
           ),
         ),
-        body: TabBarView(
+        body: const TabBarView(
             children: [
-              const PanenPage(),
               KualitasAirPage(),
-              const PanenPage(),
+              PanenPage(),
+              SamplingPage(),
               KualitasAirPage(),
             ]
         ),

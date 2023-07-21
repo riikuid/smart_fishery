@@ -112,6 +112,10 @@ class KualitasAirTable extends StatelessWidget{
             },
           )
       );
+
+      tableBody.add(
+        Divider()
+      );
     }
 
     return tableBody;
