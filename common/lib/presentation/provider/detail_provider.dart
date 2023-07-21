@@ -1,6 +1,6 @@
+import 'package:common/domain/repository/i_panen_repository.dart';
 import 'package:common/response/response.dart';
-import 'package:fitur_lihat_detail/domain/model/kolam.dart';
-import 'package:fitur_lihat_detail/domain/repository/i_panen_repository.dart';
+import 'package:common/domain/model/kolam.dart';
 import 'package:flutter/material.dart';
 
 class DetailProvider extends ChangeNotifier{

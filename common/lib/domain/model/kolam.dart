@@ -1,8 +1,10 @@
-import 'package:fitur_lihat_detail/domain/model/kualitas_air.dart';
-import 'package:fitur_lihat_detail/domain/model/panen.dart';
-import 'package:fitur_lihat_detail/domain/model/penyakit.dart';
-import 'package:fitur_lihat_detail/domain/model/sampling.dart';
 
+
+
+import 'package:common/domain/model/kualitas_air.dart';
+import 'package:common/domain/model/panen.dart';
+import 'package:common/domain/model/penyakit.dart';
+import 'package:common/domain/model/sampling.dart';
 
 class Kolam{
   List<KualitasAir> listKualitasAir;

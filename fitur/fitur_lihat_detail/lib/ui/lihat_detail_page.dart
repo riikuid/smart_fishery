@@ -36,7 +36,7 @@ class _LihatDetailPageState extends State<LihatDetailPage> {
                 text: "Sampling",
               ),
               Tab(
-                text: "Panen",
+                text: "Penyakit",
               )
             ],
           ),

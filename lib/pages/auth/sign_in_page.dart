@@ -46,7 +46,7 @@ class SignInPage extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Container(
@@ -152,9 +152,9 @@ class SignInPage extends StatelessWidget {
           Navigator.popAndPushNamed(context, "/verif");
         },
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          margin: EdgeInsets.all(20),
-          decoration: BoxDecoration(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          margin: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(
             color: Color(0xFF45A9A5),
             borderRadius: BorderRadius.all(
               Radius.circular(8.0),
