@@ -18,6 +18,8 @@ dependencies:
     path: dependencies
   fitur_lihat_detail:
     path: fitur/fitur_lihat_detail
+  fitur_input_kualitas_air:
+    path: fitur/fitur_input_kualitas_air
 
 dev_dependencies:
   flutter_test:

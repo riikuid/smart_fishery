@@ -7,7 +7,7 @@ import 'package:common/response/response.dart';
 import 'package:common/domain/model/kolam.dart';
 
 
-class FakeDetailRepository implements IPanenRepository{
+class FakeLihatDetailRepository implements ILihatDetailRepository{
   @override
   Future<Response> getKolam(int id) async {
     await Future.delayed(const Duration(milliseconds: 2000));

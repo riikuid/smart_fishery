@@ -1,4 +1,6 @@
+import 'package:common/presentation/provider/lihat_detail_provider.dart';
 import 'package:common/routes/routes.dart';
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 
@@ -7,6 +9,7 @@ class MonitoringKolamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<LihatDetailProvider>(context , listen : false);
     content() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -112,7 +115,7 @@ class MonitoringKolamCard extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.of(context).pushNamed(
-                Routes.lihatDetailRoute,
+                Routes.lihatDetailKolamRoute,
                 arguments: -1
               );
             },
@@ -142,9 +145,11 @@ class MonitoringKolamCard extends StatelessWidget {
 
     return InkWell(
       onTap: (){
+        const idKolam = -1;
+        provider.refreshData(idKolam);
         Navigator.of(context).pushNamed(
-          Routes.lihatDetailRoute,
-          arguments: -1
+          Routes.lihatDetailKolamRoute,
+          arguments: idKolam
         );
       },
       child: Container(

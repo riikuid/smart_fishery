@@ -1,5 +1,5 @@
 import 'package:common/response/response.dart';
 
-abstract class IPanenRepository{
+abstract class ILihatDetailRepository{
   Future<Response> getKolam(int id);
 }

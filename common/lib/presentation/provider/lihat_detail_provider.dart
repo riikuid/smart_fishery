@@ -3,9 +3,9 @@ import 'package:common/response/response.dart';
 import 'package:common/domain/model/kolam.dart';
 import 'package:flutter/material.dart';
 
-class DetailProvider extends ChangeNotifier{
-  final IPanenRepository repository;
-  DetailProvider({
+class LihatDetailProvider extends ChangeNotifier{
+  final ILihatDetailRepository repository;
+  LihatDetailProvider({
     required this.repository
   });
 
