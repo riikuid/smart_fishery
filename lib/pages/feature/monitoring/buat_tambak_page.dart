@@ -28,8 +28,56 @@ class BuatTambakPage extends StatelessWidget {
         ),
       ),
 
-      body: Column(
-        children: [],
+      body: Container(
+        padding: const EdgeInsets.only(
+          top: 20,
+          right: 20,
+          left: 20,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              children: [
+                Text(
+                  "Nama Tambak",
+                  style: primaryTextStyle.copyWith(
+                    fontSize: 14,
+                    fontWeight: semibold,
+                  ),
+                ),
+                Text(
+                  " *",
+                  style: primaryTextStyle.copyWith(
+                    color: alertColor,
+                    fontSize: 14,
+                    fontWeight: semibold,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            TextFormField(
+              style: primaryTextStyle.copyWith(),
+              decoration: InputDecoration(
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 1,
+                    color: Colors.blueGrey.withOpacity(0.5),
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    width: 2,
+                    color: greenColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
       bottomNavigationBar: Container(
         padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
