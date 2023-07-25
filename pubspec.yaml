@@ -20,6 +20,8 @@ dependencies:
     path: fitur/fitur_lihat_detail
   fitur_input_kualitas_air:
     path: fitur/fitur_input_kualitas_air
+  fitur_input_panen:
+    path: fitur/fitur_input_panen
 
 dev_dependencies:
   flutter_test:

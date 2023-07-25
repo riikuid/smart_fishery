@@ -1,3 +1,4 @@
+import 'package:common/themes.dart';
 import 'package:flutter/material.dart';
 
 class SubmitButton extends StatelessWidget{
@@ -11,14 +12,29 @@ class SubmitButton extends StatelessWidget{
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: FilledButton(
-        onPressed: onPressed,
-        style: const ButtonStyle(
-            padding: MaterialStatePropertyAll(
-                EdgeInsets.symmetric(vertical: 24)
-            )
+      child: Padding(
+        padding: const EdgeInsets.all(24.0),
+        child: FilledButton(
+          onPressed: onPressed,
+          style: ButtonStyle(
+              padding: const MaterialStatePropertyAll(
+                  EdgeInsets.symmetric(vertical: 15),
+              ),
+            shape: MaterialStatePropertyAll(
+              RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12)
+              ),
+            ),
+            backgroundColor: MaterialStatePropertyAll(greenColor),
+          ),
+          child: Text(
+            "Submit",
+            style: primaryTextStyle.copyWith(
+              fontWeight: semibold,
+              color: whiteColor,
+            ),
+          ),
         ),
-        child: const Text("Submit"),
       ),
     );
   }

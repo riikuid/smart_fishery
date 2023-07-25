@@ -1,13 +1,28 @@
+import 'package:common/themes.dart';
 import 'package:flutter/material.dart';
 
-const inputFieldLabelHeaderStyle = TextStyle(
-    fontWeight: FontWeight.bold,
-    fontSize: 14
+final inputFieldLabelHeaderStyle = primaryTextStyle.copyWith(
+  fontWeight: semibold,
+  fontSize: 12,
 );
 
 final inputFieldBorder = OutlineInputBorder(
     borderRadius: BorderRadius.circular(12),
     borderSide: BorderSide.none
+);
+
+final enabledInputFieldBorder =  OutlineInputBorder(
+  borderSide: BorderSide(
+    width: 1,
+    color: Colors.blueGrey.withOpacity(0.5),
+  ),
+);
+
+final focusedInputFieldBorder = OutlineInputBorder(
+  borderSide: BorderSide(
+    width: 2,
+    color: greenColor,
+  ),
 );
 
 const inputFieldColor = Colors.black12;

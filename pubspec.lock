@@ -102,6 +102,13 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  fitur_input_panen:
+    dependency: "direct main"
+    description:
+      path: "fitur/fitur_input_panen"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   fitur_lihat_detail:
     dependency: "direct main"
     description:

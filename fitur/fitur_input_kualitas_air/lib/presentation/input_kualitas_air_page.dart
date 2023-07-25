@@ -1,4 +1,5 @@
 import 'package:common/presentation/input_field/date_field.dart';
+import 'package:common/presentation/input_field/input_field_app_bar.dart';
 import 'package:common/presentation/input_field/normal_text_field.dart';
 import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/presentation/input_field/submit_button.dart';
@@ -19,16 +20,13 @@ class _InputKualitasAirPageState extends State<InputKualitasAirPage> {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => InputKualitasAirProvider(),
-      child: Scaffold(
-        appBar: AppBar(
-          leading: const Icon(Icons.arrow_back),
-          title: const Text("Input Kualitas Air"),
-          centerTitle: true,
-        ),
-        body: Consumer<InputKualitasAirProvider>(
-          builder: (context , provider , child) {
-            this.provider = provider;
-            return Padding(
+      child: Consumer<InputKualitasAirProvider>(
+        builder: (context , provider , child) {
+          this.provider = provider;
+          return Scaffold(
+            appBar: InputFieldAppBar(title: "Input Kualitas Air"),
+            bottomNavigationBar: SubmitButton(onPressed: provider.submitData),
+            body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Center(
                 child: SingleChildScrollView(
@@ -41,7 +39,6 @@ class _InputKualitasAirPageState extends State<InputKualitasAirPage> {
                       ),
 
                       const SizedBox(height: verticalFormSpacingHeight,),
-
                       Row(
                         children: [
                           Expanded(
@@ -109,17 +106,13 @@ class _InputKualitasAirPageState extends State<InputKualitasAirPage> {
                       ),
                       
                       const SizedBox(height: 32,),
-                      
-                      SubmitButton(onPressed: provider.submitData),
-
-                      const SizedBox(height: 32,),
                     ],
                   ),
                 ),
               ),
-            );
-          }
-        ),
+            ),
+          );
+        }
       ),
     );
   }

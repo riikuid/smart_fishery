@@ -19,7 +19,7 @@ class DateField extends StatelessWidget{
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Tanggal",
           style: inputFieldLabelHeaderStyle,
         ),
@@ -38,9 +38,8 @@ class DateField extends StatelessWidget{
             child: InputDecorator(
               isEmpty: choosenDate.isEmpty,
               decoration: InputDecoration(
-                fillColor: inputFieldColor,
-                filled: true,
-                border: inputFieldBorder,
+                enabledBorder: enabledInputFieldBorder,
+                focusedBorder: focusedInputFieldBorder,
                 contentPadding: inputFieldContentPadding,
                 errorText: errorMessage,
                 suffixIcon: const Icon(Icons.date_range),

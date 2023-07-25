@@ -24,60 +24,72 @@ class _LihatDetailPageState extends State<LihatDetailPage> {
 
     return DefaultTabController(
       length: 4,
-      child: Scaffold(
-        appBar: AppBar(
-          bottom: TabBar(
-            onTap: (int index){
-              setState(() {
-                _currentIndex = index;
-              });
-            },
-            tabs: const [
-              Tab(
-                text: "Kualitas Air",
-              ),
-              Tab(
-                text: "Panen",
-              ),
-              Tab(
-                text: "Sampling",
-              ),
-              Tab(
-                text: "Penyakit",
-              )
-            ],
-          ),
-        ),
-        body: const TabBarView(
-            children: [
-              KualitasAirPage(),
-              PanenPage(),
-              SamplingPage(),
-              KualitasAirPage(),
-            ]
-        ),
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.all(24.0),
-          child: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () {
-              String? nextRoute;
-              if (_currentIndex == Routes.detailKualitasAirPageIndex){
-                nextRoute = Routes.inputKualitasAirRoute;
-              }
-
-              if (nextRoute != null){
-                Navigator.of(context).pushNamed(
-                  nextRoute
-                ).then((result){
-                  if (result != null){
-                    provider.refreshData(idKolam);
-                  }
-                });
-              }
+      child: Builder(
+        builder: (context) {
+          final tabController = DefaultTabController.of(context);
+          tabController.addListener(() {
+            if (!tabController.indexIsChanging){
+              _currentIndex = tabController.index;
             }
-          ),
-        ),
+            else {
+              _currentIndex = -1;
+            }
+          });
+
+          return Scaffold(
+            appBar: AppBar(
+              bottom: const TabBar(
+                tabs: [
+                  Tab(
+                    text: "Kualitas Air",
+                  ),
+                  Tab(
+                    text: "Panen",
+                  ),
+                  Tab(
+                    text: "Sampling",
+                  ),
+                  Tab(
+                    text: "Penyakit",
+                  )
+                ],
+              ),
+            ),
+            body: const TabBarView(
+                children: [
+                  KualitasAirPage(),
+                  PanenPage(),
+                  SamplingPage(),
+                  KualitasAirPage(),
+                ]
+            ),
+            floatingActionButton: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: FloatingActionButton(
+                child: const Icon(Icons.add),
+                onPressed: () {
+                  String? nextRoute;
+                  if (_currentIndex == Routes.detailKualitasAirPageIndex){
+                    nextRoute = Routes.inputKualitasAirRoute;
+                  }
+                  else if (_currentIndex == Routes.detailPanenPageIndex){
+                    nextRoute = Routes.inputPanenRoute;
+                  }
+
+                  if (nextRoute != null){
+                    Navigator.of(context).pushNamed(
+                      nextRoute
+                    ).then((result){
+                      if (result != null){
+                        provider.refreshData(idKolam);
+                      }
+                    });
+                  }
+                }
+              ),
+            ),
+          );
+        }
       ),
     );
   }

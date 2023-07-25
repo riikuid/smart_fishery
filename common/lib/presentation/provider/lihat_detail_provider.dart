@@ -12,7 +12,9 @@ class LihatDetailProvider extends ChangeNotifier{
   late Future<Response> detailResponse;
 
   void refreshData(int idKolam){
+    debugPrint("Id Kolam sebelum : $idKolam");
     detailResponse = repository.getKolam(idKolam);
+    debugPrint("Id Kolam sesudah : $idKolam");
     notifyListeners();
   }
 

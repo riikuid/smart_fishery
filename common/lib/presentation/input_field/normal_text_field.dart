@@ -31,9 +31,8 @@ class NormalTextField extends StatelessWidget {
           keyboardType: keyboardType,
           decoration: InputDecoration(
             errorText: errorMessage,
-            border: inputFieldBorder,
-            filled: true,
-            fillColor: inputFieldColor,
+            enabledBorder: enabledInputFieldBorder,
+            focusedBorder: focusedInputFieldBorder,
           ),
         ),
       ],
