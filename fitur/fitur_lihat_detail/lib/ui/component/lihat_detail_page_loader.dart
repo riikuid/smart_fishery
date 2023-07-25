@@ -2,8 +2,6 @@ import 'package:common/response/response.dart';
 import 'package:flutter/material.dart';
 
 class LihatDetailPageLoader<T> extends StatelessWidget{
-  final void Function() onRefresh;
-
   // masalahnya kenapa disini gak pake consumer,
   // karena untuk dapetin future response, kita butuh providernya
   // sedangkan method dari providernya beda-beda
@@ -15,7 +13,6 @@ class LihatDetailPageLoader<T> extends StatelessWidget{
 
   const LihatDetailPageLoader({
     super.key,
-    required this.onRefresh,
     required this.buildBody,
     required this.futureResponse,
   });

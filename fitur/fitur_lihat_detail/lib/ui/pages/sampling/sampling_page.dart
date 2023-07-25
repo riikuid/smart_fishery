@@ -13,11 +13,6 @@ class SamplingPage extends StatelessWidget{
     return Consumer<LihatDetailProvider>(
         builder: (context , provider , child){
           return LihatDetailPageLoader<List<Sampling>>(
-            onRefresh: (){
-              provider.refreshData(
-                ModalRoute.of(context)?.settings.arguments as int
-              );
-            },
             buildBody: (listSampling){
               return SamplingTable(listSampling: listSampling);
             },

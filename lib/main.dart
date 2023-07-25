@@ -26,30 +26,21 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-            create: (context) => LihatDetailProvider(
-                repository: FakeLihatDetailRepository()
-            )
-        )
-      ],
-      child: MaterialApp(
-        routes: {
-          '/': (context) => const SplashPage(),
-          '/sign-in': (context) => const SignInPage(),
-          '/verif': (context) => const VerificationPage(),
-          '/home': (context) => const HomePage(),
-          '/konsultasi': (context) => const KonsultasiPage(),
-          '/belajar': (context) => BelajarPage(),
-          '/harga-udang': (context) => const HargaUdangPage(),
-          '/monitoring': (context) => const MonitoringPage(),
-          '/pilih-tambak': (context) => const PilihTambakPage(),
-          Routes.lihatDetailKolamRoute : (context) => const LihatDetailPage(),
-          Routes.inputKualitasAirRoute : (context) => const InputKualitasAirPage(),
-          Routes.inputPanenRoute : (context) => InputPanenPage(),
-        },
-      ),
+    return MaterialApp(
+      routes: {
+        '/': (context) => const SplashPage(),
+        '/sign-in': (context) => const SignInPage(),
+        '/verif': (context) => const VerificationPage(),
+        '/home': (context) => const HomePage(),
+        '/konsultasi': (context) => const KonsultasiPage(),
+        '/belajar': (context) => BelajarPage(),
+        '/harga-udang': (context) => const HargaUdangPage(),
+        '/monitoring': (context) => const MonitoringPage(),
+        '/pilih-tambak': (context) => const PilihTambakPage(),
+        Routes.lihatDetailKolamRoute : (context) => const LihatDetailPage(),
+        Routes.inputKualitasAirRoute : (context) => const InputKualitasAirPage(),
+        Routes.inputPanenRoute : (context) => InputPanenPage(),
+      },
     );
   }
 }

@@ -16,11 +16,6 @@ class KualitasAirPage extends StatelessWidget{
     return Consumer<LihatDetailProvider>(
       builder: (context , provider , child) {
         return LihatDetailPageLoader(
-            onRefresh: (){
-              provider.refreshData(
-                ModalRoute.of(context)?.settings.arguments as int
-              );
-            },
             buildBody: (List<KualitasAir> listKualitasAir) =>
               KualitasAirTable(listKualitasAir: listKualitasAir),
             futureResponse: provider.listOfKualitasAir,

@@ -13,11 +13,6 @@ class PanenPage extends StatelessWidget{
     return Consumer<LihatDetailProvider>(
       builder: (context , provider , child) {
         return LihatDetailPageLoader<List<Panen>>(
-            onRefresh: (){
-              provider.refreshData(
-                ModalRoute.of(context)?.settings.arguments as int
-              );
-            },
             buildBody: (listPanen) =>
               PanenTable(listPanen: listPanen),
             futureResponse: provider.listOfPanen,

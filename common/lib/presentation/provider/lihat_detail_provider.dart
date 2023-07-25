@@ -5,16 +5,17 @@ import 'package:flutter/material.dart';
 
 class LihatDetailProvider extends ChangeNotifier{
   final ILihatDetailRepository repository;
+  final int idKolam;
+
   LihatDetailProvider({
-    required this.repository
-  });
+    required this.repository,
+    required this.idKolam
+  }) : detailResponse = repository.getKolam(idKolam);
 
-  late Future<Response> detailResponse;
+  Future<Response> detailResponse;
 
-  void refreshData(int idKolam){
-    debugPrint("Id Kolam sebelum : $idKolam");
+  void refreshData(){
     detailResponse = repository.getKolam(idKolam);
-    debugPrint("Id Kolam sesudah : $idKolam");
     notifyListeners();
   }
 
