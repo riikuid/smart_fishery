@@ -2,8 +2,8 @@ import 'package:common/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 
-class MonitoringKolamCard extends StatelessWidget {
-  const MonitoringKolamCard({super.key});
+class KolamCard extends StatelessWidget {
+  const KolamCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,84 +12,49 @@ class MonitoringKolamCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "30.08",
-                style: primaryTextStyle.copyWith(
-                  color: const Color(0xFF0079FF),
-                  fontWeight: semibold,
-                ),
-              ),
-              Text(
-                "Suhu",
+                "Umur",
                 style: primaryTextStyle.copyWith(
                   fontSize: 12,
                 ),
               ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
               Text(
-                "2.54",
+                "19 Hari",
                 style: primaryTextStyle.copyWith(
-                  color: const Color(0xFFC82C2C),
                   fontWeight: semibold,
                 ),
-              ),
-              Text(
-                "Do",
-                style: primaryTextStyle.copyWith(fontSize: 12),
               ),
             ],
           ),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "15.25",
-                style: primaryTextStyle.copyWith(
-                  color: const Color(0xFF0079FF),
-                  fontWeight: semibold,
-                ),
+                "Tebaran",
+                style: primaryTextStyle.copyWith(fontSize: 12),
               ),
               Text(
-                "Sal",
-                style: primaryTextStyle.copyWith(fontSize: 12),
+                "10 ekor",
+                style: primaryTextStyle.copyWith(
+                  fontWeight: semibold,
+                ),
               ),
             ],
           ),
           Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "3.43",
-                style: primaryTextStyle.copyWith(
-                  color: const Color(0xFFC82C2C),
-                  fontWeight: semibold,
-                ),
-              ),
-              Text(
-                "pH",
+                "Luas",
                 style: primaryTextStyle.copyWith(fontSize: 12),
               ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
               Text(
-                "30.08",
+                "20 m\u00B2",
                 style: primaryTextStyle.copyWith(
-                  color: const Color(0xFF0079FF),
                   fontWeight: semibold,
                 ),
-              ),
-              Text(
-                "Kecerahan",
-                style: primaryTextStyle.copyWith(fontSize: 12),
               ),
             ],
           ),
@@ -131,7 +96,7 @@ class MonitoringKolamCard extends StatelessWidget {
               ),
             ),
             Text(
-              "Update Terakhir - 29 Februari (19:24)",
+              "Tanggal Tebar - 27 Jan 2023",
               style: secondaryTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: medium,

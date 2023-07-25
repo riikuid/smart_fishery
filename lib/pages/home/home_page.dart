@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
                         "icon": "assets/icon_kolam.png",
                         "label": "Kolam",
                         "onTap": () {
-                          Navigator.pushNamed(context, '/sign-in');
+                          Navigator.pushNamed(context, '/kolam');
                         },
                       },
                       {

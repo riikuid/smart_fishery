@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 import 'package:smart_fishery/pages/feature/kolam/buat_kolam_page.dart';
-import 'package:smart_fishery/widget/monitoring_kolam_card.dart';
+import 'package:smart_fishery/widget/kolam_card.dart';
 
-class MonitoringPage extends StatelessWidget {
-  const MonitoringPage({super.key});
+class KolamPage extends StatelessWidget {
+  const KolamPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class MonitoringPage extends StatelessWidget {
       return Container(
         width: double.infinity,
         padding: const EdgeInsets.only(top: 10, bottom: 20),
-        color: Color(0xFF1B9C85),
+        color: greenColor,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -77,7 +77,7 @@ class MonitoringPage extends StatelessWidget {
         elevation: 0,
         centerTitle: true,
         title: Text(
-          "Monitoring",
+          "Kolam",
           style: primaryTextStyle.copyWith(
             fontWeight: bold,
             color: whiteColor,
@@ -116,7 +116,7 @@ class MonitoringPage extends StatelessWidget {
               child: ListView.separated(
                   padding: const EdgeInsets.symmetric(vertical: 8),
                   itemCount: 15,
-                  itemBuilder: (context, index) => MonitoringKolamCard(),
+                  itemBuilder: (context, index) => KolamCard(),
                   separatorBuilder: (BuildContext context, int index) =>
                       const SizedBox(
                         height: 15,
