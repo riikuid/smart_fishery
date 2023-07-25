@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/pages/feature/kolam/buat_kolam.dart';
 import 'package:smart_fishery/widget/monitoring_kolam_card.dart';
 
 class MonitoringPage extends StatelessWidget {
@@ -93,7 +94,19 @@ class MonitoringPage extends StatelessWidget {
           ),
         ),
       ),
-
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => BuatKolam()),
+          );
+        },
+        backgroundColor: Color(0xFF1B9C85),
+        child: const Icon(
+          Icons.add,
+          size: 24.0,
+        ),
+      ),
       body: Column(
         children: [
           pilihTambak(),

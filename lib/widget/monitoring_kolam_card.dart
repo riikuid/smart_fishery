@@ -9,7 +9,7 @@ class MonitoringKolamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<LihatDetailProvider>(context , listen : false);
+    final provider = Provider.of<LihatDetailProvider>(context, listen: false);
     content() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,10 +114,8 @@ class MonitoringKolamCard extends StatelessWidget {
           ),
           InkWell(
             onTap: () {
-              Navigator.of(context).pushNamed(
-                Routes.lihatDetailKolamRoute,
-                arguments: -1
-              );
+              Navigator.of(context)
+                  .pushNamed(Routes.lihatDetailKolamRoute, arguments: -1);
             },
             child: Container(
               width: double.infinity,
@@ -144,13 +142,11 @@ class MonitoringKolamCard extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: (){
+      onTap: () {
         const idKolam = -1;
         provider.refreshData(idKolam);
-        Navigator.of(context).pushNamed(
-          Routes.lihatDetailKolamRoute,
-          arguments: idKolam
-        );
+        Navigator.of(context)
+            .pushNamed(Routes.lihatDetailKolamRoute, arguments: idKolam);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -193,8 +189,8 @@ class MonitoringKolamCard extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            content(),
-            // nothing(),
+            // content(),
+            nothing(),
           ],
         ),
       ),
