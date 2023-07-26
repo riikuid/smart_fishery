@@ -25,6 +25,13 @@ final focusedInputFieldBorder = OutlineInputBorder(
   ),
 );
 
+final errorInputFieldBorder = OutlineInputBorder(
+  borderSide: BorderSide(
+    width: 2,
+    color: Colors.red
+  )
+);
+
 const inputFieldColor = Colors.black12;
 
 const inputFieldContentPadding = EdgeInsets.symmetric(

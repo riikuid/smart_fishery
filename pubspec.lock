@@ -117,6 +117,20 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
+  fitur_input_penyakit:
+    dependency: "direct main"
+    description:
+      path: "fitur/fitur_input_penyakit"
+      relative: true
+    source: path
+    version: "1.0.0+1"
+  fitur_input_sampling:
+    dependency: "direct main"
+    description:
+      path: "fitur/fitur_input_sampling"
+      relative: true
+    source: path
+    version: "1.0.0+1"
   fitur_lihat_detail:
     dependency: "direct main"
     description:

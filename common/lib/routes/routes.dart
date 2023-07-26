@@ -3,6 +3,7 @@ abstract class Routes{
   static const lihatPanenRoute = "/lihatPanenRoute";
   static const inputKualitasAirRoute = "/inputKualitasAirRoute";
   static const inputPanenRoute = "/inputPanenRoute";
+  static const inputSamplingRoute = "/inputSamplingRoute";
   static const detailKualitasAirPageIndex = 0;
   static const detailPanenPageIndex = 1;
   static const detailSamplingPageIndex = 2;

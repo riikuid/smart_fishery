@@ -40,6 +40,8 @@ class DateField extends StatelessWidget{
               decoration: InputDecoration(
                 enabledBorder: enabledInputFieldBorder,
                 focusedBorder: focusedInputFieldBorder,
+                focusedErrorBorder: errorInputFieldBorder,
+                errorBorder: errorInputFieldBorder,
                 contentPadding: inputFieldContentPadding,
                 errorText: errorMessage,
                 suffixIcon: const Icon(Icons.date_range),
