@@ -44,7 +44,7 @@ class PilihTambakCard extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    "3 Kolam | 27 Januari",
+                    "27 Januari",
                     style: secondaryTextStyle.copyWith(
                       fontWeight: medium,
                       fontSize: 12,
