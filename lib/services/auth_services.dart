@@ -4,7 +4,7 @@ import 'package:smart_fishery/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
 class AuthService {
-  String baseUrl = 'https://dashboard.servismo.me/api/auth';
+  String baseUrl = 'http://api.smartfishery.me/api/auth';
 
   Future<UserModel> register({
     String? fullName,

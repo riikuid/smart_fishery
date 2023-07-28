@@ -63,17 +63,12 @@ class _SignInPageState extends State<SignInPage> {
               Radius.circular(8.0),
             ),
           ),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.popAndPushNamed(context, "/home");
-            },
-            child: Text(
-              "Sign In",
-              textAlign: TextAlign.center,
-              style: primaryTextStyle.copyWith(
-                color: whiteColor,
-                fontWeight: semibold,
-              ),
+          child: Text(
+            "Sign In",
+            textAlign: TextAlign.center,
+            style: primaryTextStyle.copyWith(
+              color: whiteColor,
+              fontWeight: semibold,
             ),
           ),
         ),

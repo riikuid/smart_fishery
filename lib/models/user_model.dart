@@ -1,7 +1,7 @@
 class UserModel {
-  late int id;
+  late String id;
   late String fullName;
-  late String noHp;
+  late int noHp;
   late String token;
 
   UserModel({
