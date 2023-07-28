@@ -1,13 +1,16 @@
 // ignore_for_file: unused_import
 
+import 'package:dependencies/intl.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/models/harga_udang_model.dart';
 
 import '../theme.dart';
 
 class HargaUdangCard extends StatelessWidget {
-  const HargaUdangCard({super.key});
+  final HargaUdangModel hargaUdang;
+  const HargaUdangCard(this.hargaUdang);
 
   @override
   Widget build(BuildContext context) {
@@ -54,14 +57,14 @@ class HargaUdangCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Surabaya",
+                    hargaUdang.kota,
                     style: primaryTextStyle.copyWith(
                       fontWeight: bold,
                       fontSize: 16,
                     ),
                   ),
                   Text(
-                    "Jawa Timur",
+                    hargaUdang.provinsi,
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
                       fontSize: 14,
@@ -79,7 +82,11 @@ class HargaUdangCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "Rp. 16.000",
+                  NumberFormat.currency(
+                    locale: 'id', // sesuaikan dengan locale yang diinginkan
+                    symbol: 'Rp. ',
+                    decimalDigits: 0, // jumlah digit dibelakang koma
+                  ).format(hargaUdang.harga),
                   style: primaryTextStyle.copyWith(
                     fontWeight: bold,
                     color: Color(0xFF1B9C85),
@@ -87,7 +94,7 @@ class HargaUdangCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "Size 100",
+                  hargaUdang.size.toString(),
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: 14,

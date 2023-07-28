@@ -1,4 +1,8 @@
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/models/user_model.dart';
+import 'package:smart_fishery/provider/auth_provider.dart';
+import 'package:smart_fishery/provider/harga_udang_provider.dart';
 import 'package:smart_fishery/widget/harga_udang_card.dart';
 
 import '../../theme.dart';
@@ -13,6 +17,17 @@ class HargaUdangPage extends StatefulWidget {
 class _HargaUdangPageState extends State<HargaUdangPage> {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+    // HargaUdangProvider hargaUdangProvider =
+    //     Provider.of<HargaUdangProvider>(context);
+
+    loadHargaUdang() async {
+      await Provider.of<HargaUdangProvider>(context, listen: false)
+          .getListHargaUdangs(user.token);
+      setState(() {});
+    }
+
     Widget searchbar() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -79,18 +94,61 @@ class _HargaUdangPageState extends State<HargaUdangPage> {
       body: Column(
         children: [
           searchbar(),
-          Expanded(
-            child: Container(
-              // margin: EdgeInsets.symmetric(horizontal: 20),
-              child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  itemCount: 15,
-                  itemBuilder: (context, index) => HargaUdangCard(),
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(
-                        height: 15,
-                      )),
-            ),
+          FutureBuilder(
+            future: Provider.of<HargaUdangProvider>(context, listen: false)
+                .getListHargaUdangs(user.token),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Expanded(
+                  child: Center(
+                    child: Text('Failed to load transaction list'),
+                  ),
+                );
+              } else {
+                return Consumer<HargaUdangProvider>(
+                    builder: (context, hargaUdangProvider, _) {
+                  if (hargaUdangProvider.hargaUdangs.isEmpty) {
+                    return Expanded(
+                      child: Center(
+                        child: Text('No Service List Found'),
+                      ),
+                    );
+                  } else {
+                    return Expanded(
+                      child: RefreshIndicator(
+                        onRefresh: () {
+                          return Future.delayed(Duration(seconds: 1), () {
+                            setState(() {
+                              loadHargaUdang();
+                            });
+                          });
+                        },
+                        color: primaryColor,
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(top: 1),
+                          physics: BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics(),
+                          ),
+                          itemCount: hargaUdangProvider.hargaUdangs.length,
+                          itemBuilder: (context, index) {
+                            final hargaUdang = hargaUdangProvider
+                                .hargaUdangs.reversed
+                                .toList()[index];
+                            return HargaUdangCard(hargaUdang);
+                          },
+                        ),
+                      ),
+                    );
+                  }
+                });
+              }
+            },
           )
         ],
       ),

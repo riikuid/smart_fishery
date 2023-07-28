@@ -3,7 +3,7 @@ import 'package:http/http.dart' as http;
 import 'package:smart_fishery/models/harga_udang_model.dart';
 
 class HargaUdangService {
-  String baseUrl = 'https://dashboard.servismo.me/api/auth';
+  String baseUrl = 'http://api.smartfishery.me/api/auth';
 
   Future<List<HargaUdangModel>> getListHargaUdang(String token) async {
     var url = '$baseUrl/list/udang';
