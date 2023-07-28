@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/pages/feature/tambak/buat_tambak_page.dart';
 import 'package:smart_fishery/theme.dart';
-import 'package:smart_fishery/widget/pilih_tambak_card.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/pilih_tambak_card.dart';
 
 class PilihTambakPage extends StatelessWidget {
   const PilihTambakPage({super.key});

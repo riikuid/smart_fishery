@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme.dart';
+import '../../../../theme.dart';
 
 class PilihTambakCard extends StatelessWidget {
   const PilihTambakCard({super.key});

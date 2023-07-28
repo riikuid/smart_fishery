@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 import 'package:smart_fishery/pages/feature/kolam/buat_kolam_page.dart';
-import 'package:smart_fishery/widget/monitoring_kolam_card.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/monitoring_kolam_card.dart';
 
 class MonitoringPage extends StatelessWidget {
   const MonitoringPage({super.key});
