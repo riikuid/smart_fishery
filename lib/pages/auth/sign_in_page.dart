@@ -16,11 +16,8 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   bool isLoading = false;
 
-  TextEditingController fullNameController = TextEditingController(text: "");
   TextEditingController noHpController = TextEditingController(text: "");
   TextEditingController passwordController = TextEditingController(text: "");
-  TextEditingController konfirmasiPasswordController =
-      TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
