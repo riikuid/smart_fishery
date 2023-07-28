@@ -17,6 +17,7 @@ import 'package:smart_fishery/pages/auth/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/pages/splash_page.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
+import 'package:smart_fishery/provider/harga_udang_provider.dart';
 
 // void main() {
 //   runApp(const MainApp());
@@ -36,7 +37,10 @@ class MainApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (context) => AuthProvider(),
-        )
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HargaUdangProvider(),
+        ),
       ],
       child: MaterialApp(
         routes: {

@@ -3,9 +3,14 @@ import 'package:smart_fishery/widget/harga_udang_card.dart';
 
 import '../../theme.dart';
 
-class HargaUdangPage extends StatelessWidget {
+class HargaUdangPage extends StatefulWidget {
   const HargaUdangPage({super.key});
 
+  @override
+  State<HargaUdangPage> createState() => _HargaUdangPageState();
+}
+
+class _HargaUdangPageState extends State<HargaUdangPage> {
   @override
   Widget build(BuildContext context) {
     Widget searchbar() {
