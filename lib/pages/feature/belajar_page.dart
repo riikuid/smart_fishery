@@ -1,16 +1,34 @@
+import 'package:dependencies/provider.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/models/user_model.dart';
+import 'package:smart_fishery/provider/auth_provider.dart';
+import 'package:smart_fishery/provider/belajar_provider.dart';
 import 'package:smart_fishery/widget/video_card.dart';
 
 import '../../theme.dart';
 
-class BelajarPage extends StatelessWidget {
+class BelajarPage extends StatefulWidget {
   BelajarPage({super.key});
 
-  final List<String> entries = <String>['A', 'B', 'C'];
-  final List<int> colorCodes = <int>[600, 500, 100];
+  @override
+  State<BelajarPage> createState() => _BelajarPageState();
+}
+
+class _BelajarPageState extends State<BelajarPage> {
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+    // HargaUdangProvider hargaUdangProvider =
+    //     Provider.of<HargaUdangProvider>(context);
+
+    loadBelajar() async {
+      await Provider.of<BelajarProvider>(context, listen: false)
+          .getListBudidayaBelajars(user.token);
+      setState(() {});
+    }
+
     Widget searchbar() {
       return Container(
         margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
@@ -77,18 +95,60 @@ class BelajarPage extends StatelessWidget {
       body: Column(
         children: [
           searchbar(),
-          Expanded(
-            child: Container(
-              // margin: EdgeInsets.symmetric(horizontal: 20),
-              child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  itemCount: entries.length,
-                  itemBuilder: (context, index) => VideoCard(),
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(
-                        height: 15,
-                      )),
-            ),
+          FutureBuilder(
+            future: Provider.of<BelajarProvider>(context, listen: false)
+                .getListBudidayaBelajars(user.token),
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return Expanded(
+                  child: Center(
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return Expanded(
+                  child: Center(
+                    child: Text('Failed to load event'),
+                  ),
+                );
+              } else {
+                return Consumer<BelajarProvider>(
+                    builder: (context, belajarProvider, _) {
+                  if (belajarProvider.belajars.isEmpty) {
+                    return Expanded(
+                      child: Center(
+                        child: Text('No Event List Found'),
+                      ),
+                    );
+                  } else {
+                    return Expanded(
+                      child: RefreshIndicator(
+                        onRefresh: () {
+                          return Future.delayed(Duration(seconds: 1), () {
+                            setState(() {
+                              loadBelajar();
+                            });
+                          });
+                        },
+                        color: primaryColor,
+                        child: ListView.builder(
+                          padding: EdgeInsets.only(top: 1),
+                          physics: BouncingScrollPhysics(
+                            parent: AlwaysScrollableScrollPhysics(),
+                          ),
+                          itemCount: belajarProvider.belajars.length,
+                          itemBuilder: (context, index) {
+                            final belajar = belajarProvider.belajars.reversed
+                                .toList()[index];
+                            return BelajarCard(belajar);
+                          },
+                        ),
+                      ),
+                    );
+                  }
+                });
+              }
+            },
           )
         ],
       ),

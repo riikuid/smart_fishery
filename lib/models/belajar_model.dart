@@ -1,11 +1,11 @@
-class VideoModel {
-  late int id;
+class BelajarModel {
+  late String id;
   late String title;
   late String description;
   late String linkYt;
   late String thumbnailYt;
 
-  VideoModel({
+  BelajarModel({
     required this.id,
     required this.title,
     required this.description,
@@ -13,7 +13,7 @@ class VideoModel {
     required this.thumbnailYt,
   });
 
-  VideoModel.fromJson(Map<String, dynamic> json) {
+  BelajarModel.fromJson(Map<String, dynamic> json) {
     id = json['id_event'];
     title = json['title'];
     description = json['description'];

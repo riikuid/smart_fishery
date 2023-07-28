@@ -17,7 +17,7 @@ class HargaUdangCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(vertical: 10),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.all(
@@ -59,15 +59,15 @@ class HargaUdangCard extends StatelessWidget {
                   Text(
                     hargaUdang.kota,
                     style: primaryTextStyle.copyWith(
-                      fontWeight: bold,
-                      fontSize: 16,
+                      fontWeight: semibold,
+                      fontSize: 12,
                     ),
                   ),
                   Text(
                     hargaUdang.provinsi,
                     style: primaryTextStyle.copyWith(
                       fontWeight: medium,
-                      fontSize: 14,
+                      fontSize: 12,
                     ),
                   ),
                 ],
@@ -80,6 +80,7 @@ class HargaUdangCard extends StatelessWidget {
             // width: double.infinity,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.end,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
                   NumberFormat.currency(
@@ -90,14 +91,14 @@ class HargaUdangCard extends StatelessWidget {
                   style: primaryTextStyle.copyWith(
                     fontWeight: bold,
                     color: Color(0xFF1B9C85),
-                    fontSize: 16,
+                    fontSize: 12,
                   ),
                 ),
                 Text(
-                  hargaUdang.size.toString(),
+                  'Size ${hargaUdang.size.toString()}',
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
-                    fontSize: 14,
+                    fontSize: 12,
                   ),
                 ),
               ],

@@ -78,7 +78,10 @@ class _HargaUdangPageState extends State<HargaUdangPage> {
         centerTitle: true,
         title: Text(
           "Harga Udang",
-          style: primaryTextStyle.copyWith(fontWeight: bold),
+          style: primaryTextStyle.copyWith(
+            fontWeight: semibold,
+            fontSize: 16,
+          ),
         ),
         backgroundColor: whiteColor,
         leading: InkWell(

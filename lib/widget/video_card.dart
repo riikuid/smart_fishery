@@ -1,14 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/models/belajar_model.dart';
 
-class VideoCard extends StatelessWidget {
-  const VideoCard({super.key});
+class BelajarCard extends StatelessWidget {
+  final BelajarModel belajar;
+  const BelajarCard(this.belajar);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.only(bottom: 15),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
       decoration: BoxDecoration(
         color: whiteColor,
         borderRadius: BorderRadius.all(
@@ -28,6 +33,12 @@ class VideoCard extends StatelessWidget {
           Container(
             height: MediaQuery.of(context).size.height * 0.17,
             decoration: BoxDecoration(
+              image: DecorationImage(
+                image: NetworkImage(
+                  belajar.thumbnailYt,
+                ),
+                fit: BoxFit.cover,
+              ),
               color: Colors.grey,
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(12),
@@ -44,7 +55,7 @@ class VideoCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Budidaya Tambak Udang dan Tambak Lele",
+                  belajar.title,
                   style: primaryTextStyle.copyWith(
                     fontWeight: bold,
                     fontSize: 16,
@@ -54,7 +65,7 @@ class VideoCard extends StatelessWidget {
                   height: 3,
                 ),
                 Text(
-                  "lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum",
+                  belajar.description,
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: 12,
@@ -64,16 +75,6 @@ class VideoCard extends StatelessWidget {
                 ),
                 SizedBox(
                   height: 3,
-                ),
-                Text(
-                  "Sabtu, 23 Januari 2023",
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: bold,
-                    fontSize: 12,
-                    color: Color(0xFF1B9C85),
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
