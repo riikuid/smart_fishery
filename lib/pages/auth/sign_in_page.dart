@@ -1,7 +1,10 @@
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/provider/auth_provider.dart';
 import 'package:smart_fishery/widget/auth_password_form.dart';
+import 'package:smart_fishery/widget/loading_button.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -11,6 +14,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  bool isLoading = false;
+
   TextEditingController fullNameController = TextEditingController(text: "");
   TextEditingController noHpController = TextEditingController(text: "");
   TextEditingController passwordController = TextEditingController(text: "");
@@ -19,6 +24,62 @@ class _SignInPageState extends State<SignInPage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    handleSignIn() async {
+      setState(() {
+        isLoading = true;
+      });
+      if (await authProvider.login(
+        noHp: noHpController.text,
+        password: passwordController.text,
+      )) {
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Failed to login',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
+    Widget signInButton() {
+      return GestureDetector(
+        onTap: handleSignIn,
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          margin: const EdgeInsets.all(20),
+          height: 50,
+          decoration: const BoxDecoration(
+            color: Color(0xFF45A9A5),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8.0),
+            ),
+          ),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/home");
+            },
+            child: Text(
+              "Sign In",
+              textAlign: TextAlign.center,
+              style: primaryTextStyle.copyWith(
+                color: whiteColor,
+                fontWeight: semibold,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: backgroundColor2,
       body: SizedBox(
@@ -158,12 +219,17 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(
                           width: 5,
                         ),
-                        Text(
-                          "Sign Up",
-                          style: secondaryTextStyle.copyWith(
-                            fontWeight: semibold,
-                            fontSize: 12,
-                            color: greenColor,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.popAndPushNamed(context, "/sign-up");
+                          },
+                          child: Text(
+                            "Sign Up",
+                            style: secondaryTextStyle.copyWith(
+                              fontWeight: semibold,
+                              fontSize: 12,
+                              color: greenColor,
+                            ),
                           ),
                         ),
                       ],
@@ -175,34 +241,7 @@ class _SignInPageState extends State<SignInPage> {
           ),
         ),
       ),
-      bottomNavigationBar: GestureDetector(
-        onTap: () {
-          Navigator.popAndPushNamed(context, "/verif");
-        },
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          margin: const EdgeInsets.all(20),
-          decoration: const BoxDecoration(
-            color: Color(0xFF45A9A5),
-            borderRadius: BorderRadius.all(
-              Radius.circular(8.0),
-            ),
-          ),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.popAndPushNamed(context, "/home");
-            },
-            child: Text(
-              "Sign Up",
-              textAlign: TextAlign.center,
-              style: primaryTextStyle.copyWith(
-                color: whiteColor,
-                fontWeight: semibold,
-              ),
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: isLoading ? LoadingButton() : signInButton(),
     );
   }
 }

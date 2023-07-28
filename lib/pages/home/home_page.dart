@@ -1,11 +1,17 @@
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/models/user_model.dart';
+import 'package:smart_fishery/provider/auth_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    UserModel user = authProvider.user;
+
     Widget dateSuhu() {
       return Container(
         width: double.infinity,
@@ -285,7 +291,7 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "Marsya",
+                            user.fullName,
                             style: primaryTextStyle.copyWith(
                               fontWeight: bold,
                               fontSize: 18,

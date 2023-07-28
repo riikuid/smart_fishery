@@ -28,6 +28,7 @@ dependencies:
     path: fitur/fitur_input_sampling
   fitur_input_penyakit:
     path: fitur/fitur_input_penyakit
+  http: ^1.1.0
 
 dev_dependencies:
   flutter_test:

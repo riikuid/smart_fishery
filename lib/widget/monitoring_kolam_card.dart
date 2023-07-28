@@ -97,6 +97,96 @@ class MonitoringKolamCard extends StatelessWidget {
       );
     }
 
+    nullHandle() {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "-",
+                style: primaryTextStyle.copyWith(
+                  color: secondaryTextColor,
+                  fontWeight: semibold,
+                ),
+              ),
+              Text(
+                "Suhu",
+                style: primaryTextStyle.copyWith(
+                  fontSize: 12,
+                ),
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "-",
+                style: primaryTextStyle.copyWith(
+                  color: secondaryTextColor,
+                  fontWeight: semibold,
+                ),
+              ),
+              Text(
+                "Do",
+                style: primaryTextStyle.copyWith(fontSize: 12),
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "-",
+                style: primaryTextStyle.copyWith(
+                  color: secondaryTextColor,
+                  fontWeight: semibold,
+                ),
+              ),
+              Text(
+                "Sal",
+                style: primaryTextStyle.copyWith(fontSize: 12),
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "-",
+                style: primaryTextStyle.copyWith(
+                  color: secondaryTextColor,
+                  fontWeight: semibold,
+                ),
+              ),
+              Text(
+                "pH",
+                style: primaryTextStyle.copyWith(fontSize: 12),
+              ),
+            ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Text(
+                "-",
+                style: primaryTextStyle.copyWith(
+                  color: secondaryTextColor,
+                  fontWeight: semibold,
+                ),
+              ),
+              Text(
+                "Kecerahan",
+                style: primaryTextStyle.copyWith(fontSize: 12),
+              ),
+            ],
+          ),
+        ],
+      );
+    }
+
     return InkWell(
       onTap: () {
         const idKolam = -1;
@@ -144,8 +234,8 @@ class MonitoringKolamCard extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            content(),
-            // nothing(),
+            // content(),
+            nullHandle(),
           ],
         ),
       ),

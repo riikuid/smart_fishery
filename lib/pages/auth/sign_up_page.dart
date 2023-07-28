@@ -20,6 +20,38 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    Widget signUpButton() {
+      return GestureDetector(
+        onTap: () {
+          Navigator.popAndPushNamed(context, "/home");
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+          margin: const EdgeInsets.all(20),
+          height: 50,
+          decoration: const BoxDecoration(
+            color: Color(0xFF45A9A5),
+            borderRadius: BorderRadius.all(
+              Radius.circular(8.0),
+            ),
+          ),
+          child: GestureDetector(
+            onTap: () {
+              Navigator.popAndPushNamed(context, "/home");
+            },
+            child: Text(
+              "Sign Up",
+              textAlign: TextAlign.center,
+              style: primaryTextStyle.copyWith(
+                color: whiteColor,
+                fontWeight: semibold,
+              ),
+            ),
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: backgroundColor2,
       body: SizedBox(
@@ -198,32 +230,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
       ),
-      bottomNavigationBar: GestureDetector(
-        onTap: () {
-          Navigator.popAndPushNamed(context, "/verif");
-        },
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-          margin: const EdgeInsets.all(20),
-          decoration: const BoxDecoration(
-            color: Color(0xFF45A9A5),
-            borderRadius: BorderRadius.all(
-              Radius.circular(8.0),
-            ),
-          ),
-          child: GestureDetector(
-            onTap: () {},
-            child: Text(
-              "Sign Up",
-              textAlign: TextAlign.center,
-              style: primaryTextStyle.copyWith(
-                color: whiteColor,
-                fontWeight: semibold,
-              ),
-            ),
-          ),
-        ),
-      ),
+      bottomNavigationBar: signUpButton(),
     );
   }
 }
