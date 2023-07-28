@@ -4,6 +4,7 @@ import 'package:fitur_input_panen/presentation/input_panen_page.dart';
 import 'package:fitur_input_sampling/presentation/input_sampling_page.dart';
 import 'package:fitur_lihat_detail/ui/lihat_detail_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:smart_fishery/pages/auth/sign_in_page.dart';
 import 'package:smart_fishery/pages/auth/verification_page.dart';
 import 'package:smart_fishery/pages/feature/belajar_page.dart';
 import 'package:smart_fishery/pages/feature/harga_udang_page.dart';
@@ -12,7 +13,7 @@ import 'package:smart_fishery/pages/feature/monitoring_page.dart';
 import 'package:smart_fishery/pages/home/home_page.dart';
 import 'package:smart_fishery/pages/feature/konsultasi_page.dart';
 import 'package:smart_fishery/pages/feature/monitoring/pilih_tambak_page.dart';
-import 'package:smart_fishery/pages/auth/sign_in_page.dart';
+import 'package:smart_fishery/pages/auth/sign_up_page.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/pages/splash_page.dart';
 
@@ -33,6 +34,7 @@ class MainApp extends StatelessWidget {
     return MaterialApp(
       routes: {
         '/': (context) => const SplashPage(),
+        '/sign-up': (context) => const SignUpPage(),
         '/sign-in': (context) => const SignInPage(),
         '/verif': (context) => const VerificationPage(),
         '/home': (context) => const HomePage(),

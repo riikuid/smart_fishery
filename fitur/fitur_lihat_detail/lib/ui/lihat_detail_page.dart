@@ -8,9 +8,8 @@ import 'package:fitur_lihat_detail/ui/provider/fake_lihat_detail_repository.dart
 import 'package:fitur_lihat_detail/ui/provider/lihat_detail_provider.dart';
 import 'package:flutter/material.dart';
 
-class LihatDetailPage extends StatefulWidget{
+class LihatDetailPage extends StatefulWidget {
   const LihatDetailPage({super.key});
-
 
   @override
   State<LihatDetailPage> createState() => _LihatDetailPageState();
@@ -26,51 +25,54 @@ class _LihatDetailPageState extends State<LihatDetailPage> {
     return ChangeNotifierProvider(
       create: (context) => LihatDetailProvider(
         repository: FakeLihatDetailRepository(),
-        idKolam: idKolam!
-        ,
+        idKolam: idKolam!,
       ),
       child: DefaultTabController(
         length: 4,
-        child: Builder(
-          builder: (context) {
-            final provider = Provider.of<LihatDetailProvider>(context , listen : false);
-            final tabController = DefaultTabController.of(context);
+        child: Builder(builder: (context) {
+          final provider =
+              Provider.of<LihatDetailProvider>(context, listen: false);
+          final tabController = DefaultTabController.of(context);
 
-            return Scaffold(
-              appBar: AppBar(
-                centerTitle: true,
-                title: const Text("Kolam A1"),
-                backgroundColor: greenColor,
-                bottom: const TabBar(
-                  isScrollable: true,
-                  indicatorColor: Colors.white,
-                  tabs: [
-                    Tab(
-                      text: "Kualitas Air",
-                    ),
-                    Tab(
-                      text: "Panen",
-                    ),
-                    Tab(
-                      text: "Sampling",
-                    ),
-                    Tab(
-                      text: "Penyakit",
-                    )
-                  ],
+          return Scaffold(
+            appBar: AppBar(
+              centerTitle: true,
+              title: Text(
+                "Kolam A1",
+                style: primaryTextStyle.copyWith(
+                  fontWeight: semibold,
+                  color: whiteColor,
                 ),
               ),
-              body: const TabBarView(
-                  children: [
-                    KualitasAirPage(),
-                    PanenPage(),
-                    SamplingPage(),
-                    SizedBox(),
-                  ]
+              backgroundColor: greenColor,
+              bottom: const TabBar(
+                isScrollable: true,
+                indicatorColor: Colors.white,
+                tabs: [
+                  Tab(
+                    text: "Kualitas Air",
+                  ),
+                  Tab(
+                    text: "Panen",
+                  ),
+                  Tab(
+                    text: "Sampling",
+                  ),
+                  Tab(
+                    text: "Penyakit",
+                  )
+                ],
               ),
-              floatingActionButton: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: FloatingActionButton(
+            ),
+            body: const TabBarView(children: [
+              KualitasAirPage(),
+              PanenPage(),
+              SamplingPage(),
+              SizedBox(),
+            ]),
+            floatingActionButton: Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: FloatingActionButton(
                   backgroundColor: greenColor,
                   child: const Icon(Icons.add),
                   onPressed: () {
@@ -79,30 +81,27 @@ class _LihatDetailPageState extends State<LihatDetailPage> {
                       String? nextRoute;
                       if (currentIndex == Routes.detailKualitasAirPageIndex) {
                         nextRoute = Routes.inputKualitasAirRoute;
-                      }
-                      else if (currentIndex == Routes.detailPanenPageIndex) {
+                      } else if (currentIndex == Routes.detailPanenPageIndex) {
                         nextRoute = Routes.inputPanenRoute;
-                      }
-                      else if (currentIndex == Routes.detailSamplingPageIndex){
+                      } else if (currentIndex ==
+                          Routes.detailSamplingPageIndex) {
                         nextRoute = Routes.inputSamplingRoute;
                       }
 
                       if (nextRoute != null) {
-                        Navigator.of(context).pushNamed(
-                            nextRoute
-                        ).then((result) {
+                        Navigator.of(context)
+                            .pushNamed(nextRoute)
+                            .then((result) {
                           if (result != null) {
                             provider.refreshData();
                           }
                         });
                       }
                     }
-                  }
-                ),
-              ),
-            );
-          }
-        ),
+                  }),
+            ),
+          );
+        }),
       ),
     );
   }

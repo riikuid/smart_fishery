@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
 
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/widget/auth_form.dart';
 import 'package:smart_fishery/widget/auth_password_form.dart';
 
-class SignInPage extends StatefulWidget {
-  const SignInPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignInPageState();
+  State<SignUpPage> createState() => _SignUpPageState();
 }
 
-class _SignInPageState extends State<SignInPage> {
+class _SignUpPageState extends State<SignUpPage> {
   TextEditingController fullNameController = TextEditingController(text: "");
   TextEditingController noHpController = TextEditingController(text: "");
   TextEditingController passwordController = TextEditingController(text: "");
@@ -49,7 +50,7 @@ class _SignInPageState extends State<SignInPage> {
                       height: 100,
                       color: whiteColor,
                     ),
-                    Text("Sign In Now!",
+                    Text("Sign Up Now!",
                         style: primaryTextStyle.copyWith(
                           color: whiteColor,
                           fontSize: 16,
@@ -65,6 +66,14 @@ class _SignInPageState extends State<SignInPage> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    AuthForm(
+                      "Full Name",
+                      fullNameController,
+                      TextInputType.name,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Text(
                       "Mobile Number",
                       style: secondaryTextStyle.copyWith(
@@ -146,10 +155,19 @@ class _SignInPageState extends State<SignInPage> {
                     const SizedBox(
                       height: 20,
                     ),
+                    PasswordForm(
+                      "Re-enter Password",
+                      "Re-enter your password",
+                      konfirmasiPasswordController,
+                      TextInputType.name,
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
                     Row(
                       children: [
                         Text(
-                          'Don\'t have an account?',
+                          "Already have an account?",
                           style: secondaryTextStyle.copyWith(
                             fontWeight: medium,
                             fontSize: 12,
@@ -158,12 +176,17 @@ class _SignInPageState extends State<SignInPage> {
                         const SizedBox(
                           width: 5,
                         ),
-                        Text(
-                          "Sign Up",
-                          style: secondaryTextStyle.copyWith(
-                            fontWeight: semibold,
-                            fontSize: 12,
-                            color: greenColor,
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.popAndPushNamed(context, "/sign-in");
+                          },
+                          child: Text(
+                            "Sign In",
+                            style: secondaryTextStyle.copyWith(
+                              fontWeight: semibold,
+                              fontSize: 12,
+                              color: greenColor,
+                            ),
                           ),
                         ),
                       ],
@@ -189,9 +212,7 @@ class _SignInPageState extends State<SignInPage> {
             ),
           ),
           child: GestureDetector(
-            onTap: () {
-              Navigator.popAndPushNamed(context, "/home");
-            },
+            onTap: () {},
             child: Text(
               "Sign Up",
               textAlign: TextAlign.center,
