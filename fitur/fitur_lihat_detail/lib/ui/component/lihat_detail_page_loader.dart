@@ -1,4 +1,4 @@
-import 'package:common/response/response.dart';
+import 'package:common/response/api_response.dart';
 import 'package:flutter/material.dart';
 
 class LihatDetailPageLoader<T> extends StatelessWidget{
@@ -7,7 +7,7 @@ class LihatDetailPageLoader<T> extends StatelessWidget{
   // sedangkan method dari providernya beda-beda
   // jadi karena itu consumernya harus ditaruh diluar class ini
   // agar methodnya bisa dibeda-bedain
-  final Future<Response> futureResponse;
+  final Future<ApiResponse> futureResponse;
   final Widget Function(T) buildBody;
 
 

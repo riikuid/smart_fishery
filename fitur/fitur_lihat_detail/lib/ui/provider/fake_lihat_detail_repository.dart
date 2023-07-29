@@ -3,13 +3,13 @@ import 'package:common/domain/model/panen.dart';
 import 'package:common/domain/model/penyakit.dart';
 import 'package:common/domain/model/sampling.dart';
 import 'package:common/domain/repository/i_panen_repository.dart';
-import 'package:common/response/response.dart';
+import 'package:common/response/api_response.dart';
 import 'package:common/domain/model/kolam.dart';
 
 
 class FakeLihatDetailRepository implements ILihatDetailRepository{
   @override
-  Future<Response> getKolam(int id) async {
+  Future<ApiResponse> getKolam(int id) async {
     await Future.delayed(const Duration(milliseconds: 2000));
     return ApiResponseSuccess(
       data: _fakeKolam

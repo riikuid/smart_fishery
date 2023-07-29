@@ -1,22 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
 
 import '../../../../theme.dart';
 
-class PilihTambakCard extends StatelessWidget {
-  const PilihTambakCard({super.key});
+class TambakCard extends StatelessWidget {
+  final Tambak tambak;
+  const TambakCard({
+    super.key,
+    required this.tambak,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       margin: const EdgeInsets.symmetric(horizontal: 20),
       decoration: BoxDecoration(
         color: whiteColor,
-        borderRadius: BorderRadius.all(
+        borderRadius: const BorderRadius.all(
           Radius.circular(12.0),
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(
             color: Color(0x19000000),
             blurRadius: 6,
@@ -31,20 +36,20 @@ class PilihTambakCard extends StatelessWidget {
         children: [
           Expanded(
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               // width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Tambak Sidoarjo",
+                    tambak.name,
                     style: primaryTextStyle.copyWith(
                       fontWeight: semibold,
                       fontSize: 14,
                     ),
                   ),
                   Text(
-                    "27 Januari",
+                    tambak.createdAt,
                     style: secondaryTextStyle.copyWith(
                       fontWeight: medium,
                       fontSize: 12,

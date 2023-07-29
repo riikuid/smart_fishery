@@ -1,6 +1,11 @@
+import 'package:common/presentation/error_handler/error_warning.dart';
+import 'package:common/response/api_response.dart';
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
-import 'package:smart_fishery/pages/feature/kolam/buat_kolam_page.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/data/repository/monitoring_repository_impl.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/search_tambak_card.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/provider/monitoring_provider.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/monitoring_kolam_card.dart';
 
 class MonitoringPage extends StatelessWidget {
@@ -8,122 +13,77 @@ class MonitoringPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget pilihTambak() {
-      return Container(
-        width: double.infinity,
-        padding: const EdgeInsets.only(top: 10, bottom: 20),
-        color: Color(0xFF1B9C85),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            InkWell(
-              onTap: () {
-                Navigator.pushNamed(context, '/pilih-tambak');
-              },
-              child: Container(
-                width: double.infinity,
-                margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                padding: const EdgeInsets.symmetric(
-                  vertical: 8.0,
-                  horizontal: 12.0,
-                ),
-                decoration: BoxDecoration(
+    return ChangeNotifierProvider(
+      create: (context) => MonitoringProvider(
+        repository: MonitoringRepositoryImpl(),
+      ),
+      child: Consumer<MonitoringProvider>(
+        builder: (context , provider , child) {
+          return Scaffold(
+            backgroundColor: backgroundColor2,
+            appBar: AppBar(
+              elevation: 0,
+              centerTitle: true,
+              title: Text(
+                "Monitoring",
+                style: primaryTextStyle.copyWith(
+                  fontWeight: FontWeight.bold,
                   color: whiteColor,
-                  borderRadius: const BorderRadius.all(
-                    Radius.circular(5.0),
-                  ),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          "Nama Tambak",
-                          style: secondaryTextStyle.copyWith(
-                            fontSize: 11,
-                            fontWeight: medium,
-                          ),
-                        ),
-                        Text(
-                          "Tambak Sidoarjo",
-                          style: primaryTextStyle.copyWith(
-                            fontSize: 14,
-                            fontWeight: semibold,
-                          ),
-                        )
-                      ],
-                    ),
-                    const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      size: 30.0,
-                      color: Color(0xff999999),
-                    ),
-                  ],
                 ),
               ),
+              backgroundColor: const Color(0xFF1B9C85),
+              leading: const BackButton(),
             ),
-          ],
-        ),
-      );
-    }
-
-    return Scaffold(
-      // backgroundColor: Color(0xFFECE1E1),
-      backgroundColor: backgroundColor2,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          "Monitoring",
-          style: primaryTextStyle.copyWith(
-            fontWeight: bold,
-            color: whiteColor,
-          ),
-        ),
-        backgroundColor: Color(0xFF1B9C85),
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: Icon(
-            Icons.arrow_back,
-            color: whiteColor,
-          ),
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => BuatKolamPage()),
+            body : FutureBuilder(
+              future: provider.getTambak(),
+              builder: (context , snapshot) {
+                if (snapshot.hasData) {
+                  final apiResponse = snapshot.data!;
+                  if (apiResponse is ApiResponseSuccess) {
+                    return Column(
+                        children: [
+                          SearchTambakCard(
+                            choosenTambak: apiResponse.data[
+                              provider.choosenTambakIndex
+                            ],
+                            listOfTambak: apiResponse.data,
+                          ),
+                          Expanded(
+                            child: ListView.separated(
+                                padding: const EdgeInsets.symmetric(vertical: 8),
+                                itemCount: 15,
+                                itemBuilder: (context,
+                                    index) => const MonitoringKolamCard(),
+                                separatorBuilder: (BuildContext context,
+                                    int index) =>
+                                const SizedBox(
+                                  height: 15,
+                                )),
+                          )
+                        ],
+                      );
+                  }
+                  else if (apiResponse is ApiResponseFailed){
+                    return Center(
+                      child: ErrorWarning(
+                        onRefresh: provider.onRefresh,
+                        errorMessage: apiResponse.errorMessage,
+                      ),
+                    );
+                  }
+                  else {
+                    throw Exception("Unknown Exception Occurs");
+                  }
+                }
+                else {
+                  return const Center(
+                      child: CircularProgressIndicator(),
+                  );
+                }
+              }
+            ),
           );
-        },
-        backgroundColor: Color(0xFF1B9C85),
-        child: const Icon(
-          Icons.add,
-          size: 24.0,
-        ),
-      ),
-      body: Column(
-        children: [
-          pilihTambak(),
-          Expanded(
-            child: Container(
-              // margin: EdgeInsets.symmetric(horizontal: 20),
-              child: ListView.separated(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  itemCount: 15,
-                  itemBuilder: (context, index) => MonitoringKolamCard(),
-                  separatorBuilder: (BuildContext context, int index) =>
-                      const SizedBox(
-                        height: 15,
-                      )),
-            ),
-          )
-        ],
+        }
       ),
     );
   }

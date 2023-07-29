@@ -1,5 +1,5 @@
 import 'package:common/domain/repository/i_panen_repository.dart';
-import 'package:common/response/response.dart';
+import 'package:common/response/api_response.dart';
 import 'package:common/domain/model/kolam.dart';
 import 'package:flutter/material.dart';
 
@@ -12,14 +12,14 @@ class LihatDetailProvider extends ChangeNotifier{
     required this.idKolam
   }) : detailResponse = repository.getKolam(idKolam);
 
-  Future<Response> detailResponse;
+  Future<ApiResponse> detailResponse;
 
   void refreshData(){
     detailResponse = repository.getKolam(idKolam);
     notifyListeners();
   }
 
-  Future<Response> get listOfPanen async {
+  Future<ApiResponse> get listOfPanen async {
     final apiResponse = await detailResponse;
     if (apiResponse is ApiResponseSuccess<Kolam>){
       return ApiResponseSuccess(
@@ -30,7 +30,7 @@ class LihatDetailProvider extends ChangeNotifier{
       return apiResponse;
     }
   }
-    Future<Response> get listOfKualitasAir async {
+    Future<ApiResponse> get listOfKualitasAir async {
     final apiResponse = await detailResponse;
     if (apiResponse is ApiResponseSuccess<Kolam>){
       return ApiResponseSuccess(
@@ -41,7 +41,7 @@ class LihatDetailProvider extends ChangeNotifier{
       return apiResponse;
     }
   }
-    Future<Response> get listOfPenyakit async {
+    Future<ApiResponse> get listOfPenyakit async {
     final apiResponse = await detailResponse;
     if (apiResponse is ApiResponseSuccess<Kolam>){
       return ApiResponseSuccess(
@@ -52,7 +52,7 @@ class LihatDetailProvider extends ChangeNotifier{
       return apiResponse;
     }
   }
-    Future<Response> get listOfSampling async {
+    Future<ApiResponse> get listOfSampling async {
     final apiResponse = await detailResponse;
     if (apiResponse is ApiResponseSuccess<Kolam>){
       return ApiResponseSuccess(

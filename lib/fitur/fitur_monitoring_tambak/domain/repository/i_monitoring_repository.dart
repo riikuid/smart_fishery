@@ -1,7 +1,5 @@
-import 'package:common/response/response.dart';
+import 'package:common/response/api_response.dart';
 
 abstract class IMonitoringRepository{
-  Future<Response> getTambak(
-    String token,
-  );
+  Future<ApiResponse> getTambak();
 }

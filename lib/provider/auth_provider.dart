@@ -1,8 +1,11 @@
+import 'package:common/data/repository/token_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/models/user_model.dart';
 import 'package:smart_fishery/services/auth_services.dart';
 
 class AuthProvider with ChangeNotifier {
+  final tokenManager = TokenRepositoryImpl();
+
   UserModel? _user;
   UserModel get user => _user!;
 
@@ -39,6 +42,8 @@ class AuthProvider with ChangeNotifier {
         password: password,
       );
       _user = user;
+      tokenManager.putToken(user.token);
+
       return true;
     } catch (e) {
       print(e);

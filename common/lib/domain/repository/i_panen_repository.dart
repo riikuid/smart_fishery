@@ -1,5 +1,5 @@
-import 'package:common/response/response.dart';
+import 'package:common/response/api_response.dart';
 
 abstract class ILihatDetailRepository{
-  Future<Response> getKolam(int id);
+  Future<ApiResponse> getKolam(int id);
 }
