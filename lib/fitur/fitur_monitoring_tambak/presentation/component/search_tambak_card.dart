@@ -5,10 +5,12 @@ import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.
 class SearchTambakCard extends StatelessWidget {
   final List<Tambak> listOfTambak;
   final Tambak choosenTambak;
+  final void Function(int) onTambakChoosen;
   const SearchTambakCard({
     super.key,
     required this.choosenTambak,
     required this.listOfTambak,
+    required this.onTambakChoosen,
   });
 
   @override
@@ -21,12 +23,13 @@ class SearchTambakCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () {
-              Navigator.pushNamed(
+            onTap: () async {
+              final indexResult = await Navigator.pushNamed(
                 context,
                 '/pilih-tambak',
-                arguments: listOfTambak,
-              );
+                arguments: [listOfTambak],
+              ) as int;
+              onTambakChoosen(indexResult);
             },
             child: Container(
               width: double.infinity,

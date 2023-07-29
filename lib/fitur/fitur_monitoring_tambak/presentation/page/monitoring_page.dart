@@ -4,9 +4,10 @@ import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/data/repository/monitoring_repository_impl.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/list_view_kolam.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/search_tambak_card.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/provider/monitoring_provider.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/monitoring_kolam_card.dart';
 
 class MonitoringPage extends StatelessWidget {
   const MonitoringPage({super.key});
@@ -35,7 +36,7 @@ class MonitoringPage extends StatelessWidget {
               leading: const BackButton(),
             ),
             body : FutureBuilder(
-              future: provider.getTambak(),
+              future: provider.tambakResponse,
               builder: (context , snapshot) {
                 if (snapshot.hasData) {
                   final apiResponse = snapshot.data!;
@@ -46,19 +47,40 @@ class MonitoringPage extends StatelessWidget {
                             choosenTambak: apiResponse.data[
                               provider.choosenTambakIndex
                             ],
+                            onTambakChoosen: provider.setChoosenTambakIndex,
                             listOfTambak: apiResponse.data,
                           ),
                           Expanded(
-                            child: ListView.separated(
-                                padding: const EdgeInsets.symmetric(vertical: 8),
-                                itemCount: 15,
-                                itemBuilder: (context,
-                                    index) => const MonitoringKolamCard(),
-                                separatorBuilder: (BuildContext context,
-                                    int index) =>
-                                const SizedBox(
-                                  height: 15,
-                                )),
+                            child: FutureBuilder(
+                              future: provider.kolamResponse,
+                              builder: (context , snapshot) {
+                                if (snapshot.hasData) {
+                                  final apiResponse = snapshot.data!;
+                                  if (apiResponse is ApiResponseSuccess) {
+                                    final List<Kolam> listKolam = apiResponse.data;
+                                    return ListViewKolam(
+                                      listKolam: listKolam,
+                                    );
+                                  }
+                                  else if (apiResponse is ApiResponseFailed) {
+                                    return Center(
+                                      child: ErrorWarning(
+                                        onRefresh: provider.onRefreshKolam,
+                                        errorMessage: apiResponse.errorMessage,
+                                      ),
+                                    );
+                                  }
+                                  else {
+                                    throw Exception("Enggak Mungkin!! T_T");
+                                  }
+                                }
+                                else {
+                                  return const Center(
+                                    child: CircularProgressIndicator(),
+                                  );
+                                }
+                              }
+                            ),
                           )
                         ],
                       );
@@ -66,7 +88,7 @@ class MonitoringPage extends StatelessWidget {
                   else if (apiResponse is ApiResponseFailed){
                     return Center(
                       child: ErrorWarning(
-                        onRefresh: provider.onRefresh,
+                        onRefresh: provider.onRefreshTambak,
                         errorMessage: apiResponse.errorMessage,
                       ),
                     );

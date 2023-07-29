@@ -7,18 +7,11 @@ class MonitoringProvider extends ChangeNotifier{
   final IMonitoringRepository _repository;
   MonitoringProvider({
     required IMonitoringRepository repository
-  }) : _repository = repository;
+  }) : _repository = repository , tambakResponse = repository.getTambak();
 
-  late List<Tambak> listOfTambak;
-  Future<ApiResponse> getTambak() async {
-    final response = await _repository.getTambak();
-    if (response is ApiResponseSuccess){
-      listOfTambak = response.data;
-    }
-    return response;
-  }
-
-  void onRefresh(){
+  Future<ApiResponse> tambakResponse;
+  void onRefreshTambak(){
+    tambakResponse = _repository.getTambak();
     notifyListeners();
   }
 
@@ -26,5 +19,29 @@ class MonitoringProvider extends ChangeNotifier{
   int get choosenTambakIndex => _choosenTambakIndex;
   void setChoosenTambakIndex(int newIndex){
     _choosenTambakIndex = newIndex;
+    notifyListeners();
+  }
+
+  Future<ApiResponse>? _kolamResponse;
+  Future<ApiResponse> get kolamResponse async {
+    if (_kolamResponse == null) {
+      await onRefreshKolam();
+    }
+    return _kolamResponse!;
+  }
+
+  Future<void> onRefreshKolam() async {
+    final finishedTambakResponse = await tambakResponse;
+    if (finishedTambakResponse is ApiResponseSuccess){
+      final Tambak choosenTambak = finishedTambakResponse.data[_choosenTambakIndex];
+      debugPrint('masuk sini : ${choosenTambak.id}');
+      _kolamResponse = _repository.getKolam(
+          choosenTambak.id
+      );
+      notifyListeners();
+    }
+    else {
+      throw Exception("Unknown Exception");
+    }
   }
 }

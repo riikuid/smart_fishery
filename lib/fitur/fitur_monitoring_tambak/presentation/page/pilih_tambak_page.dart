@@ -9,7 +9,8 @@ class PilihTambakPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final listOfTambak = ModalRoute.of(context)?.settings.arguments as List<Tambak>;
+    final arguments = ModalRoute.of(context)?.settings.arguments as List<dynamic>;
+    final List<Tambak> listOfTambak = arguments[0];
 
     return Scaffold(
       // backgroundColor: Color(0xFFECE1E1),
@@ -54,6 +55,9 @@ class PilihTambakPage extends StatelessWidget {
                 itemCount: listOfTambak.length,
                 itemBuilder: (context, index) => TambakCard(
                   tambak: listOfTambak[index],
+                  onTap: (){
+                    Navigator.pop(context , index);
+                  },
                 ),
                 separatorBuilder: (BuildContext context, int index) =>
                   const SizedBox(

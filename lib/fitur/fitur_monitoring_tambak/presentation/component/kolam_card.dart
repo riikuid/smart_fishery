@@ -1,9 +1,14 @@
 import 'package:common/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
 
-class MonitoringKolamCard extends StatelessWidget {
-  const MonitoringKolamCard({super.key});
+class KolamCard extends StatelessWidget {
+  final Kolam kolam;
+  const KolamCard({
+    super.key,
+    required this.kolam,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -214,14 +219,14 @@ class MonitoringKolamCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Kolam A1",
+              kolam.namaKolam,
               style: primaryTextStyle.copyWith(
                 fontSize: 16,
                 fontWeight: semibold,
               ),
             ),
             Text(
-              "Update Terakhir - 29 Februari (19:24)",
+              "Update Terakhir - ${kolam.updateTerakhir}",
               style: secondaryTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: medium,
