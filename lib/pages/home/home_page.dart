@@ -1,3 +1,4 @@
+import 'package:dependencies/intl.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
@@ -33,7 +34,7 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Sunday, 20 February 2023",
+              DateFormat('EEEE, dd MMMM yyyy', "id_ID").format(DateTime.now()),
               style: primaryTextStyle.copyWith(
                 fontWeight: bold,
                 fontSize: 14,

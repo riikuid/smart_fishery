@@ -52,6 +52,12 @@ TextStyle yellowTextStyle = GoogleFonts.poppins(
   color: primaryColor,
 );
 
+TextStyle titleTableTextStyle = GoogleFonts.poppins(
+  color: primaryTextColor,
+  fontWeight: regular,
+  fontSize: 14,
+);
+
 TextStyle alertTextStyle = GoogleFonts.poppins(color: alertColor);
 
 FontWeight light = FontWeight.w300;

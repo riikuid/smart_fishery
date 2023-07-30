@@ -64,4 +64,15 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
+
+  Future<void> logout({String? token}) async {
+    try {
+      await AuthService().logout(
+        token: token,
+      );
+      _user = null;
+    } catch (e) {
+      print(e);
+    }
+  }
 }
