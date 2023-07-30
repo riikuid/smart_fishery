@@ -52,7 +52,8 @@ class PilihTambakPage extends StatelessWidget {
         children: [
           searchbar(),
           Expanded(
-            child: ListView.separated(
+            child: listOfTambak.isNotEmpty ?
+            ListView.separated(
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 itemCount: listOfTambak.length,
                 itemBuilder: (context, index) => TambakCard(
@@ -65,7 +66,10 @@ class PilihTambakPage extends StatelessWidget {
                   const SizedBox(
                     height: 15,
                   ),
-            ),
+            ) :
+            const Center(
+              child: Text("Belum ada tambak"),
+            )
           )
         ],
       ),

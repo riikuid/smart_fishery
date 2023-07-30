@@ -52,7 +52,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
           onTap: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back,
             color: Color(0xFF1B9C85),
           ),
@@ -329,11 +329,11 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
         ),
       ),
       bottomNavigationBar: Container(
-        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-        margin: EdgeInsets.all(20),
+        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        margin: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: greenColor,
-          borderRadius: BorderRadius.all(
+          borderRadius: const BorderRadius.all(
             Radius.circular(12.0),
           ),
         ),

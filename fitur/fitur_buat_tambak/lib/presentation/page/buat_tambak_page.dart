@@ -1,5 +1,7 @@
+import 'package:common/presentation/input_field/submit_button.dart';
 import 'package:common/themes.dart';
 import 'package:dependencies/provider.dart';
+import 'package:fitur_buat_tambak/data/repository/buat_tambak_repository_impl.dart';
 import 'package:fitur_buat_tambak/presentation/provider/buat_tambak_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -22,7 +24,9 @@ class _BuatTambakPageState extends State<BuatTambakPage> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => BuatTambakProvider(),
+      create: (context) => BuatTambakProvider(
+        repository: BuatTambakRepositoryImpl(),
+      ),
       child: Consumer<BuatTambakProvider>(
         builder: (context , provider , child) {
           return Scaffold(
@@ -40,7 +44,7 @@ class _BuatTambakPageState extends State<BuatTambakPage> {
                 onTap: () {
                   Navigator.pop(context);
                 },
-                child: Icon(
+                child: const Icon(
                   Icons.arrow_back,
                   color: Color(0xFF1B9C85),
                 ),
@@ -99,29 +103,11 @@ class _BuatTambakPageState extends State<BuatTambakPage> {
                 ],
               ),
             ),
-            bottomNavigationBar: InkWell(
-              onTap: () async {
-
-              },
-              child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15, vertical: 15),
-                margin: EdgeInsets.all(20),
-                decoration: BoxDecoration(
-                  color: greenColor,
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(12.0),
-                  ),
-                ),
-                child: Text(
-                  "Buat Tambak",
-                  textAlign: TextAlign.center,
-                  style: primaryTextStyle.copyWith(
-                    color: whiteColor,
-                    fontWeight: semibold,
-                  ),
-                ),
-              ),
-            ),
+            bottomNavigationBar: SubmitButton(
+              onPressed: (){
+                provider.submitData(textEditingController.text);
+              }
+            )
           );
         }
       ),

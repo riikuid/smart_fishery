@@ -44,7 +44,7 @@ class MonitoringPage extends StatelessWidget {
                     return Column(
                         children: [
                           SearchTambakCard(
-                            choosenTambak: apiResponse.data.isNotEmpty() ?
+                            choosenTambak: apiResponse.data.isNotEmpty ?
                               apiResponse.data[provider.choosenTambakIndex] :
                               null,
                             onTambakChoosen: provider.setChoosenTambakIndex,
@@ -58,9 +58,16 @@ class MonitoringPage extends StatelessWidget {
                                   final apiResponse = snapshot.data!;
                                   if (apiResponse is ApiResponseSuccess) {
                                     final List<Kolam> listKolam = apiResponse.data;
-                                    return ListViewKolam(
-                                      listKolam: listKolam,
-                                    );
+                                    if (listKolam.isNotEmpty) {
+                                      return ListViewKolam(
+                                        listKolam: listKolam,
+                                      );
+                                    }
+                                    else{
+                                      return const Center(
+                                        child: Text("Tidak ada data"),
+                                      );
+                                    }
                                   }
                                   else if (apiResponse is ApiResponseFailed) {
                                     return Center(

@@ -1,5 +1,6 @@
 import 'package:common/response/api_response.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/repository/i_monitoring_repository.dart';
 
@@ -33,11 +34,19 @@ class MonitoringProvider extends ChangeNotifier{
   Future<void> onRefreshKolam() async {
     final finishedTambakResponse = await tambakResponse;
     if (finishedTambakResponse is ApiResponseSuccess){
-      final Tambak choosenTambak = finishedTambakResponse.data[_choosenTambakIndex];
-      debugPrint('masuk sini : ${choosenTambak.id}');
-      _kolamResponse = _repository.getKolam(
-          choosenTambak.id
-      );
+      if (finishedTambakResponse.data.isNotEmpty) {
+        final Tambak choosenTambak = finishedTambakResponse
+            .data[_choosenTambakIndex];
+        debugPrint('masuk sini : ${choosenTambak.id}');
+        _kolamResponse = _repository.getKolam(
+            choosenTambak.id
+        );
+      }
+      else{
+        _kolamResponse = Future.value(
+          ApiResponseSuccess(data: <Kolam>[])
+        );
+      }
       notifyListeners();
     }
     else {
