@@ -6,23 +6,50 @@ import 'package:common/domain/repository/i_panen_repository.dart';
 import 'package:common/response/api_response.dart';
 import 'package:common/domain/model/kolam.dart';
 
-
-class FakeLihatDetailRepository implements ILihatDetailRepository{
+class FakeLihatDetailRepository implements ILihatDetailRepository {
   @override
   Future<ApiResponse> getKolam(int id) async {
     await Future.delayed(const Duration(milliseconds: 2000));
-    return ApiResponseSuccess(
-      data: _fakeKolam
-    );
+    return ApiResponseSuccess(data: _fakeKolam);
   }
 
   final _fakeKolam = Kolam(
     listKualitasAir: [
-      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
-      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
-      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
-      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
-      KualitasAir(tanggal: "12 Desember 2012", suhu: 34.5, dO: 12.5, sal: 26.7, ph: 8, orp: 95.1),
+      KualitasAir(
+          tanggal: "Sabtu, 12 Desember 2012",
+          suhu: 34.5,
+          dO: 12.5,
+          sal: 26.7,
+          ph: 8,
+          kecerahan: 95.1),
+      KualitasAir(
+          tanggal: "Sabtu, 12 Desember 2012",
+          suhu: 34.5,
+          dO: 12.5,
+          sal: 26.7,
+          ph: 8,
+          kecerahan: 95.1),
+      KualitasAir(
+          tanggal: "Sabtu, 12 Desember 2012",
+          suhu: 34.5,
+          dO: 12.5,
+          sal: 26.7,
+          ph: 8,
+          kecerahan: 95.1),
+      KualitasAir(
+          tanggal: "Sabtu, 12 Desember 2012",
+          suhu: 34.5,
+          dO: 12.5,
+          sal: 26.7,
+          ph: 8,
+          kecerahan: 95.1),
+      KualitasAir(
+          tanggal: "Sabtu, 12 Desember 2012",
+          suhu: 34.5,
+          dO: 12.5,
+          sal: 26.7,
+          ph: 8,
+          kecerahan: 95.1),
     ],
     listPanen: [
       Panen(tanggal: "11 November 2011", berat: 24, size: 3, jenis: "Udang"),

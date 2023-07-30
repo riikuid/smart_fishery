@@ -1,4 +1,5 @@
-abstract class ITokenRepository{
+abstract class ITokenRepository {
   Future<void> putToken(String token);
-  Future<String> getToken();
+  Future<String?> getToken();
+  Future<bool> clearToken();
 }
