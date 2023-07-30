@@ -44,9 +44,9 @@ class MonitoringPage extends StatelessWidget {
                     return Column(
                         children: [
                           SearchTambakCard(
-                            choosenTambak: apiResponse.data[
-                              provider.choosenTambakIndex
-                            ],
+                            choosenTambak: apiResponse.data.isNotEmpty() ?
+                              apiResponse.data[provider.choosenTambakIndex] :
+                              null,
                             onTambakChoosen: provider.setChoosenTambakIndex,
                             listOfTambak: apiResponse.data,
                           ),

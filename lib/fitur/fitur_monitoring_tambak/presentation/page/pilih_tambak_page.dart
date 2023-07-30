@@ -1,6 +1,6 @@
+import 'package:common/routes/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
-import 'package:smart_fishery/pages/feature/tambak/buat_tambak_page.dart';
 import 'package:smart_fishery/theme.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/tambak_card.dart';
 
@@ -34,11 +34,13 @@ class PilihTambakPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
+        onPressed: () async {
+          final isCreatingTambakSuccess = Navigator.pushNamed(
             context,
-            MaterialPageRoute(builder: (context) => const BuatTambakPage()),
+            Routes.buatTambakRoute,
           );
+
+
         },
         backgroundColor: const Color(0xFF1B9C85),
         child: const Icon(

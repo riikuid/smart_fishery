@@ -1,5 +1,6 @@
 import 'package:common/routes/routes.dart';
 import 'package:dependencies/provider.dart';
+import 'package:fitur_buat_tambak/presentation/page/buat_tambak_page.dart';
 import 'package:fitur_input_kualitas_air/presentation/input_kualitas_air_page.dart';
 import 'package:fitur_input_panen/presentation/input_panen_page.dart';
 import 'package:fitur_input_sampling/presentation/input_sampling_page.dart';
@@ -58,6 +59,7 @@ class MainApp extends StatelessWidget {
           '/monitoring': (context) => const MonitoringPage(),
           '/kolam': (context) => const KolamPage(),
           '/pilih-tambak': (context) => const PilihTambakPage(),
+          Routes.buatTambakRoute: (context) => BuatTambakPage(),
           Routes.lihatDetailKolamRoute: (context) => const LihatDetailPage(),
           Routes.inputKualitasAirRoute: (context) =>
               const InputKualitasAirPage(),

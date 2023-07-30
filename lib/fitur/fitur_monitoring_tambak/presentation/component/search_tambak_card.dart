@@ -4,7 +4,7 @@ import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.
 
 class SearchTambakCard extends StatelessWidget {
   final List<Tambak> listOfTambak;
-  final Tambak choosenTambak;
+  final Tambak? choosenTambak;
   final void Function(int) onTambakChoosen;
   const SearchTambakCard({
     super.key,
@@ -59,7 +59,7 @@ class SearchTambakCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        choosenTambak.name,
+                        choosenTambak?.name ?? "-",
                         style: primaryTextStyle.copyWith(
                           fontSize: 14,
                           fontWeight: semibold,
