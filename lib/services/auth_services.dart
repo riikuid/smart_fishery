@@ -25,7 +25,7 @@ class AuthService {
 
     print(response.body);
 
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       var data = jsonDecode(response.body)['data'];
       UserModel user = UserModel.fromJson(data);
       if (data['refresh_token'] != null) {
