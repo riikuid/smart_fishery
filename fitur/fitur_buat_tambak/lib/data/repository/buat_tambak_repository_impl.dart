@@ -12,7 +12,7 @@ class BuatTambakRepositoryImpl implements IBuatTambakRepository{
     try {
       final response = await apiClient.buatTambak(
         namaTambak: namaTambak,
-        token: await tokenManager.getToken(),
+        token: (await tokenManager.getToken())!,
       );
 
       if (response.statusCode == 201){
