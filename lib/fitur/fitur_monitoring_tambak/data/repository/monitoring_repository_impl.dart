@@ -18,6 +18,7 @@ class MonitoringRepositoryImpl implements IMonitoringRepository{
       final response = await apiClient.getTambak(
           await tokenManager.getToken()
       );
+      debugPrint("hahahhaha : ${response.statusCode}");
 
       if (response.statusCode == 200){
         final jsonResponse = jsonDecode(response.body);
@@ -31,7 +32,7 @@ class MonitoringRepositoryImpl implements IMonitoringRepository{
         );
       } else {
         return ApiResponseFailed(
-          errorMessage: "Gagal tersambung ke server",
+          errorMessage: response.body,
           errorCode: response.statusCode,
         );
       }

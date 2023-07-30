@@ -2,7 +2,7 @@ import 'package:common/themes.dart';
 import 'package:flutter/material.dart';
 
 class SubmitButton extends StatelessWidget{
-  final void Function() onPressed;
+  final void Function()? onPressed;
   const SubmitButton({
     super.key,
     required this.onPressed,

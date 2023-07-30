@@ -18,7 +18,9 @@ class InputSamplingPage extends StatelessWidget {
         builder: (context , provider , child) {
           return Scaffold(
             appBar: InputFieldAppBar(title: "Input Sampling"),
-            bottomNavigationBar: SubmitButton(onPressed: provider.submit),
+            bottomNavigationBar: SubmitButton(
+              onPressed: provider.submit,
+            ),
             body: Center(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.all(24),

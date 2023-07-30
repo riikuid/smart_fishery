@@ -1,6 +1,10 @@
+import 'package:common/presentation/error_handler/error_warning.dart';
+import 'package:common/response/api_response.dart';
 import 'package:common/routes/routes.dart';
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/provider/monitoring_provider.dart';
 import 'package:smart_fishery/theme.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/tambak_card.dart';
 
@@ -9,69 +13,103 @@ class PilihTambakPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final arguments = ModalRoute.of(context)?.settings.arguments as List<dynamic>;
-    final List<Tambak> listOfTambak = arguments[0];
+    final provider = ModalRoute.of(context)?.settings.arguments as MonitoringProvider;
 
-    return Scaffold(
-      // backgroundColor: Color(0xFFECE1E1),
-      backgroundColor: whiteColor,
-      appBar: AppBar(
-        elevation: 0,
-        centerTitle: true,
-        title: Text(
-          "Pilih Tambak",
-          style: primaryTextStyle.copyWith(fontWeight: bold),
-        ),
+    return ChangeNotifierProvider.value(
+      value: provider,
+      child: Scaffold(
+        // backgroundColor: Color(0xFFECE1E1),
         backgroundColor: whiteColor,
-        leading: InkWell(
-          onTap: () {
-            Navigator.pop(context);
-          },
-          child: const Icon(
-            Icons.arrow_back,
-            color: Color(0xFF1B9C85),
+        appBar: AppBar(
+          elevation: 0,
+          centerTitle: true,
+          title: Text(
+            "Pilih Tambak",
+            style: primaryTextStyle.copyWith(fontWeight: bold),
+          ),
+          backgroundColor: whiteColor,
+          leading: InkWell(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            child: const Icon(
+              Icons.arrow_back,
+              color: Color(0xFF1B9C85),
+            ),
           ),
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          final isCreatingTambakSuccess = Navigator.pushNamed(
-            context,
-            Routes.buatTambakRoute,
-          );
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            final isCreatingTambakSuccess = await Navigator.pushNamed(
+              context,
+              Routes.buatTambakRoute,
+            );
 
-
-        },
-        backgroundColor: const Color(0xFF1B9C85),
-        child: const Icon(
-          Icons.add,
-          size: 24.0,
+            if (isCreatingTambakSuccess != null){
+              provider.onRefreshTambak();
+            }
+          },
+          backgroundColor: const Color(0xFF1B9C85),
+          child: const Icon(
+            Icons.add,
+            size: 24.0,
+          ),
         ),
-      ),
-      body: Column(
-        children: [
-          searchbar(),
-          Expanded(
-            child: listOfTambak.isNotEmpty ?
-            ListView.separated(
-                padding: const EdgeInsets.symmetric(vertical: 8),
-                itemCount: listOfTambak.length,
-                itemBuilder: (context, index) => TambakCard(
-                  tambak: listOfTambak[index],
-                  onTap: (){
-                    Navigator.pop(context , index);
-                  },
-                ),
-                separatorBuilder: (BuildContext context, int index) =>
-                  const SizedBox(
-                    height: 15,
-                  ),
-            ) :
-            const Center(
-              child: Text("Belum ada tambak"),
+        body: Column(
+          children: [
+            searchbar(),
+            Expanded(
+              child: Consumer<MonitoringProvider>(
+                builder: (context , provider , child) {
+                  return FutureBuilder(
+                    future: provider.tambakResponse,
+                    builder: (context , snapshot) {
+                      if (snapshot.hasData) {
+                        final apiResponse = snapshot.data!;
+
+                        if (apiResponse is ApiResponseSuccess) {
+                          final List<Tambak> listOfTambak = apiResponse.data;
+
+                          return listOfTambak.isNotEmpty ?
+                          ListView.separated(
+                            padding: const EdgeInsets.symmetric(vertical: 8),
+                            itemCount: listOfTambak.length,
+                            itemBuilder: (context, index) =>
+                                TambakCard(
+                                  tambak: listOfTambak[index],
+                                  onTap: () {
+                                    provider.setChoosenTambak(listOfTambak[index]);
+                                    Navigator.pop(context);
+                                  },
+                                ),
+                            separatorBuilder: (BuildContext context,
+                                int index) =>
+                            const SizedBox(
+                              height: 15,
+                            ),
+                          ) :
+                          const Center(
+                            child: Text("Belum ada tambak"),
+                          );
+                        }
+                        else {
+                          return ErrorWarning(
+                            onRefresh: provider.onRefreshTambak
+                          );
+                        }
+                      }
+                      else {
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      }
+                    }
+                  );
+                }
+              ),
             )
-          )
-        ],
+          ],
+        ),
       ),
     );
   }

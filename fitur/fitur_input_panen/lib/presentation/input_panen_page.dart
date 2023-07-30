@@ -28,7 +28,9 @@ class _InputPanenPageState extends State<InputPanenPage> {
 
           return Scaffold(
             appBar: InputFieldAppBar(title: "Input Panen"),
-            bottomNavigationBar: SubmitButton(onPressed: provider.submitData),
+            bottomNavigationBar: SubmitButton(
+              onPressed: provider.submitData,
+            ),
             body: Center(
               child: SingleChildScrollView(
                 child: Padding(

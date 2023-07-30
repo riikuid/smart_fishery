@@ -8,18 +8,21 @@ class MonitoringProvider extends ChangeNotifier{
   final IMonitoringRepository _repository;
   MonitoringProvider({
     required IMonitoringRepository repository
-  }) : _repository = repository , tambakResponse = repository.getTambak();
+  }) : _repository = repository ,
+      tambakResponse = repository.getTambak();
 
   Future<ApiResponse> tambakResponse;
   void onRefreshTambak(){
     tambakResponse = _repository.getTambak();
+    onRefreshKolam();
     notifyListeners();
   }
 
-  int _choosenTambakIndex = 0;
-  int get choosenTambakIndex => _choosenTambakIndex;
-  void setChoosenTambakIndex(int newIndex){
-    _choosenTambakIndex = newIndex;
+  Tambak? _choosenTambak;
+  Tambak? get choosenTambak => _choosenTambak;
+  void setChoosenTambak(Tambak newChoosenTambak){
+    _choosenTambak = newChoosenTambak;
+    onRefreshKolam();
     notifyListeners();
   }
 
@@ -35,11 +38,10 @@ class MonitoringProvider extends ChangeNotifier{
     final finishedTambakResponse = await tambakResponse;
     if (finishedTambakResponse is ApiResponseSuccess){
       if (finishedTambakResponse.data.isNotEmpty) {
-        final Tambak choosenTambak = finishedTambakResponse
-            .data[_choosenTambakIndex];
-        debugPrint('masuk sini : ${choosenTambak.id}');
+        _choosenTambak ??= finishedTambakResponse.data.first;
+        debugPrint('choosen tambak id : ${choosenTambak!.id}');
         _kolamResponse = _repository.getKolam(
-            choosenTambak.id
+            choosenTambak!.id
         );
       }
       else{

@@ -1,20 +1,25 @@
 import 'package:common/themes.dart';
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/provider/monitoring_provider.dart';
 
 class SearchTambakCard extends StatelessWidget {
   final List<Tambak> listOfTambak;
   final Tambak? choosenTambak;
-  final void Function(int) onTambakChoosen;
   const SearchTambakCard({
     super.key,
     required this.choosenTambak,
     required this.listOfTambak,
-    required this.onTambakChoosen,
   });
 
   @override
   Widget build(BuildContext context) {
+    final monitoringProvider = Provider.of<MonitoringProvider>(
+      context,
+      listen : false
+    );
+
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.only(top: 10, bottom: 20),
@@ -23,13 +28,12 @@ class SearchTambakCard extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           InkWell(
-            onTap: () async {
-              final indexResult = await Navigator.pushNamed(
+            onTap: () {
+              Navigator.pushNamed(
                 context,
                 '/pilih-tambak',
-                arguments: [listOfTambak],
-              ) as int;
-              onTambakChoosen(indexResult);
+                arguments: monitoringProvider,
+              );
             },
             child: Container(
               width: double.infinity,
@@ -59,7 +63,7 @@ class SearchTambakCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        choosenTambak?.name ?? "-",
+                        choosenTambak?.name ?? "Pilih terlebih dahulu tambak",
                         style: primaryTextStyle.copyWith(
                           fontSize: 14,
                           fontWeight: semibold,

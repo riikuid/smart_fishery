@@ -23,6 +23,7 @@ class BuatTambakProvider extends ChangeNotifier{
 
       submitResponse.whenComplete((){
         _isSubmitting = false;
+        notifyListeners();
       });
     }
   }

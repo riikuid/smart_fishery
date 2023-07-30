@@ -25,7 +25,9 @@ class _InputKualitasAirPageState extends State<InputKualitasAirPage> {
           this.provider = provider;
           return Scaffold(
             appBar: InputFieldAppBar(title: "Input Kualitas Air"),
-            bottomNavigationBar: SubmitButton(onPressed: provider.submitData),
+            bottomNavigationBar: SubmitButton(
+              onPressed: provider.submitData,
+            ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Center(
