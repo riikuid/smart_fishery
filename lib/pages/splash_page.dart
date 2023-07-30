@@ -1,6 +1,10 @@
 import 'dart:async';
 
+import 'package:common/data/repository/token_repository_impl.dart';
+import 'package:dependencies/provider.dart';
+import 'package:dependencies/shared_preferences.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/provider/auth_provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -11,17 +15,30 @@ class SplashPage extends StatefulWidget {
 
 class _SplashPageState extends State<SplashPage> {
   @override
-  void initState() {
-    // TODO: implement initState
-    Timer(
-      Duration(seconds: 3),
-      () => Navigator.popAndPushNamed(context, '/sign-in'),
-    );
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final tokenManager = TokenRepositoryImpl();
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    getInit() async {
+      if (await tokenManager.getToken() != null) {
+        if (await authProvider.getProfile(
+          token: (await tokenManager.getToken())!,
+        )) {
+          Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+        } else {
+          getInit();
+        }
+      } else {
+        Navigator.pushNamedAndRemoveUntil(
+            context, '/sign-in', (route) => false);
+      }
+    }
+
+    getInit();
+    // setState(() {
+    //   getInit();
+    // });
+
     return Scaffold(
       backgroundColor: Color(0xFFC5F0FF),
       body: Column(

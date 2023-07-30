@@ -16,7 +16,7 @@ class MonitoringRepositoryImpl implements IMonitoringRepository{
   Future<ApiResponse> getTambak() async {
     try {
       final response = await apiClient.getTambak(
-          await tokenManager.getToken()
+          (await tokenManager.getToken())!
       );
 
       if (response.statusCode == 200){
@@ -47,7 +47,7 @@ class MonitoringRepositoryImpl implements IMonitoringRepository{
     try {
       debugPrint("nyoba gunain api client");
       final response = await apiClient.getKolam(
-          await tokenManager.getToken(),
+          (await tokenManager.getToken())!,
           idTambak
       );
 

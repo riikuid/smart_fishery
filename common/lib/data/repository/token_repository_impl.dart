@@ -6,9 +6,9 @@ class TokenRepositoryImpl implements ITokenRepository{
   SharedPreferences? _sharedPreferences;
 
   @override
-  Future<String> getToken() async {
+  Future<String?> getToken() async {
     _sharedPreferences ??= await SharedPreferences.getInstance();
-    return _sharedPreferences!.getString(_tokenKey)!;
+    return _sharedPreferences!.getString(_tokenKey);
   }
 
   @override

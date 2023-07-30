@@ -65,4 +65,34 @@ class AuthService {
       throw Exception('Failed to login.');
     }
   }
+
+  Future<UserModel> getProfile({
+    String? token,
+  }) async {
+    var url = '$baseUrl/profile';
+    var headers = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ${token},'
+    };
+    final response = await http.get(
+      Uri.parse(url),
+      headers: headers,
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      var data = jsonDecode(response.body)['data'];
+      UserModel user = UserModel.fromJson(data);
+      if (data['refresh_token'] != null) {
+        user.token = '${data['refresh_token']}';
+      } else {
+        user.token = 'Invalid Token';
+      }
+
+      return user;
+    } else {
+      throw Exception('Failed to login.');
+    }
+  }
 }

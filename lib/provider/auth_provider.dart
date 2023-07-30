@@ -52,4 +52,16 @@ class AuthProvider with ChangeNotifier {
       return false;
     }
   }
+
+  Future<bool> getProfile({String? token}) async {
+    try {
+      UserModel user = await AuthService().getProfile(token: token);
+      _user = user;
+      tokenManager.putToken(user.token);
+      return true;
+    } catch (e) {
+      print(e);
+      return false;
+    }
+  }
 }
