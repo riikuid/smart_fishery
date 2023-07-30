@@ -28,6 +28,8 @@ class AuthProvider with ChangeNotifier {
         konfirmasiPassword: konfirmasiPassword,
       );
       _user = user;
+      tokenManager.putToken(user.token);
+
       return true;
     } catch (e) {
       print(e);

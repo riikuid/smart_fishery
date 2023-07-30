@@ -1,8 +1,11 @@
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/provider/auth_provider.dart';
 import 'package:smart_fishery/widget/auth_form.dart';
 import 'package:smart_fishery/widget/auth_password_form.dart';
+import 'package:smart_fishery/widget/loading_button.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -12,6 +15,8 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  bool isLoading = false;
+
   TextEditingController fullNameController = TextEditingController(text: "");
   TextEditingController noHpController = TextEditingController(text: "");
   TextEditingController passwordController = TextEditingController(text: "");
@@ -20,11 +25,38 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    AuthProvider authProvider = Provider.of<AuthProvider>(context);
+
+    handleSignUp() async {
+      setState(() {
+        isLoading = true;
+      });
+      if (await authProvider.register(
+        fullName: fullNameController.text,
+        noHp: noHpController.text,
+        password: passwordController.text,
+        konfirmasiPassword: passwordController.text,
+      )) {
+        Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: alertColor,
+            content: Text(
+              'Failed to register',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        );
+      }
+      setState(() {
+        isLoading = false;
+      });
+    }
+
     Widget signUpButton() {
       return GestureDetector(
-        onTap: () {
-          Navigator.popAndPushNamed(context, "/home");
-        },
+        onTap: handleSignUp,
         child: Container(
           padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
           margin: const EdgeInsets.all(20),
@@ -35,17 +67,12 @@ class _SignUpPageState extends State<SignUpPage> {
               Radius.circular(8.0),
             ),
           ),
-          child: GestureDetector(
-            onTap: () {
-              Navigator.popAndPushNamed(context, "/home");
-            },
-            child: Text(
-              "Sign Up",
-              textAlign: TextAlign.center,
-              style: primaryTextStyle.copyWith(
-                color: whiteColor,
-                fontWeight: semibold,
-              ),
+          child: Text(
+            "Sign Up",
+            textAlign: TextAlign.center,
+            style: primaryTextStyle.copyWith(
+              color: whiteColor,
+              fontWeight: semibold,
             ),
           ),
         ),
@@ -230,7 +257,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ),
       ),
-      bottomNavigationBar: signUpButton(),
+      bottomNavigationBar: isLoading ? LoadingButton() : signUpButton(),
     );
   }
 }
