@@ -198,10 +198,7 @@ class KolamCard extends StatelessWidget {
     return InkWell(
       onTap: () {
         Navigator.of(context)
-            .pushNamed(
-              Routes.lihatDetailKolamRoute,
-              arguments: kolam.id
-        );
+            .pushNamed(Routes.lihatDetailKolamRoute, arguments: kolam.id);
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
@@ -231,7 +228,7 @@ class KolamCard extends StatelessWidget {
               ),
             ),
             Text(
-              "Update Terakhir - $tanggalUpdate",
+              "Update Terakhir - ${DateFormat('dd MMMM yyyy', "id_ID").format(kolam.updateTerakhir)}",
               style: secondaryTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: medium,
