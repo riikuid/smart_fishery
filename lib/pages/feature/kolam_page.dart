@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
-import 'package:smart_fishery/pages/feature/kolam/buat_kolam_page.dart';
+// import 'package:smart_fishery/pages/feature/kolam/buat_kolam_page.dart';
 import 'package:smart_fishery/widget/kolam_card.dart';
 
 class KolamPage extends StatelessWidget {
@@ -94,19 +94,19 @@ class KolamPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => BuatKolamPage()),
-          );
-        },
-        backgroundColor: Color(0xFF1B9C85),
-        child: const Icon(
-          Icons.add,
-          size: 24.0,
-        ),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     Navigator.push(
+      //       context,
+      //       MaterialPageRoute(builder: (context) => BuatKolamPage()),
+      //     );
+      //   },
+      //   backgroundColor: Color(0xFF1B9C85),
+      //   child: const Icon(
+      //     Icons.add,
+      //     size: 24.0,
+      //   ),
+      // ),
       body: Column(
         children: [
           pilihTambak(),
