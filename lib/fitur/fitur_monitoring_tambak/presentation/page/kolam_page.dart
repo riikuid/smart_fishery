@@ -1,5 +1,6 @@
 import 'package:common/presentation/error_handler/error_warning.dart';
 import 'package:common/response/api_response.dart';
+import 'package:common/routes/routes.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
@@ -34,6 +35,24 @@ class KolamPage extends StatelessWidget {
             backgroundColor: const Color(0xFF1B9C85),
             leading: const BackButton(),
           ),
+          floatingActionButton: FloatingActionButton(
+            backgroundColor: Color(0xFF1B9C85),
+        child: const Icon(
+          Icons.add,
+          size: 24.0,
+        ),
+              onPressed: () async {
+                final result = await Navigator.of(context)
+                    .pushNamed(
+                      Routes.buatKolamRoute,
+                      arguments: provider.choosenTambak!,
+                    );
+                if (result != null){
+                  provider.onRefreshKolam();
+                }
+              },
+              
+            ),
           body: FutureBuilder(
               future: provider.tambakResponse,
               builder: (context, snapshot) {

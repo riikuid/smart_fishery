@@ -1,4 +1,5 @@
 import 'package:common/utils/date_formatter.dart';
+import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
 
 Future<String?> showDialogDatePicker(BuildContext context) async {
@@ -10,7 +11,7 @@ Future<String?> showDialogDatePicker(BuildContext context) async {
   );
 
   if (choosenDate != null){
-    return DateFormatter.getDMY(choosenDate);
+    return DateFormat('dd MMMM yyyy', "id_ID").format(choosenDate);
   }
   else {
     return null;

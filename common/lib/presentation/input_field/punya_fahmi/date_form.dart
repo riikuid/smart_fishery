@@ -65,7 +65,7 @@ class DateForm extends StatelessWidget {
             ).then((selectedDate) {
               if (selectedDate != null) {
                 formController.text =
-                    DateFormat('dd MMM yyyy', "id_ID").format(selectedDate);
+                    DateFormat('dd MMMM yyyy', "id_ID").format(selectedDate);
               }
             });
           },

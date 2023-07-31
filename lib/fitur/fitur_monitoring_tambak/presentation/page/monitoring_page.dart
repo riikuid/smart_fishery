@@ -24,6 +24,7 @@ class MonitoringPage extends StatelessWidget {
           return Scaffold(
             backgroundColor: backgroundColor2,
             floatingActionButton: FloatingActionButton(
+              backgroundColor: greenColor,
               onPressed: () async {
                 final result = await Navigator.of(context)
                     .pushNamed(

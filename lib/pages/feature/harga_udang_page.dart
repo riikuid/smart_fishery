@@ -40,7 +40,9 @@ class _HargaUdangPageState extends State<HargaUdangPage> {
           borderRadius: const BorderRadius.all(
             Radius.circular(10.0),
           ),
+          
         ),
+
         child: Row(
           children: [
             Padding(

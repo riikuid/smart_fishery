@@ -38,7 +38,9 @@ class KualitasAirTable extends StatelessWidget {
         child: Text(
           "Suhu",
           textAlign: TextAlign.center,
-          style: titleTableTextStyle,
+          style: titleTableTextStyle.copyWith(
+            fontSize: 11,
+          ),
         ),
       )),
       TableCell(
@@ -47,7 +49,9 @@ class KualitasAirTable extends StatelessWidget {
         child: Text(
           "Sal",
           textAlign: TextAlign.center,
-          style: titleTableTextStyle,
+          style: titleTableTextStyle.copyWith(
+            fontSize: 11,
+          ),
         ),
       )),
       TableCell(
@@ -56,7 +60,9 @@ class KualitasAirTable extends StatelessWidget {
         child: Text(
           "DO",
           textAlign: TextAlign.center,
-          style: titleTableTextStyle,
+          style: titleTableTextStyle.copyWith(
+            fontSize: 11,
+          ),
         ),
       )),
       TableCell(
@@ -65,7 +71,9 @@ class KualitasAirTable extends StatelessWidget {
         child: Text(
           "pH",
           textAlign: TextAlign.center,
-          style: titleTableTextStyle,
+          style: titleTableTextStyle.copyWith(
+            fontSize: 11,
+          ),
         ),
       )),
       TableCell(
@@ -74,7 +82,9 @@ class KualitasAirTable extends StatelessWidget {
         child: Text(
           "Kecerahan",
           textAlign: TextAlign.center,
-          style: titleTableTextStyle,
+          style: titleTableTextStyle.copyWith(
+            fontSize: 11,
+          ),
         ),
       )),
       TableCell(
@@ -83,7 +93,9 @@ class KualitasAirTable extends StatelessWidget {
         child: Text(
           "",
           textAlign: TextAlign.center,
-          style: titleTableTextStyle,
+          style: titleTableTextStyle.copyWith(
+            fontSize: 11,
+          ),
         ),
       )),
     ],
@@ -100,13 +112,15 @@ class KualitasAirTable extends StatelessWidget {
     for (var kualitasAir in listKualitasAir) {
       tableBody.add(Table(
         children: [
-          TableRow(children: [
+          TableRow(
+            
+            children: [
             TableCell(
-              verticalAlignment: TableCellVerticalAlignment.middle,
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
                   kualitasAir.tanggalPengukuran,
+                  textAlign: TextAlign.left,
                   style: secondaryTextStyle.copyWith(
                     letterSpacing: 1.5,
                     fontSize: 14,
@@ -114,7 +128,21 @@ class KualitasAirTable extends StatelessWidget {
                   ),
                 ),
               ),
-            )
+            ),
+            TableCell(
+              child: Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Text(
+                  kualitasAir.jamPengukuran,
+                  textAlign: TextAlign.right,
+                  style: secondaryTextStyle.copyWith(
+                    letterSpacing: 1.5,
+                    fontSize: 14,
+                    fontWeight: semibold,
+                  ),
+                ),
+              ),
+            ),
           ])
         ],
         columnWidths: const {0: FlexColumnWidth()},

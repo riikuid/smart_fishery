@@ -104,22 +104,10 @@ class InputKualitasAirPage extends StatelessWidget{
 
                     const SizedBox(height: verticalFormSpacingHeight,),
 
-                    Row(
-                      children: [
-                        Expanded(
-                          child: NormalTextField(
-                            controller: provider.kecerahanController,
-                            label: "Kecerahan",
-                            errorMessage: provider.kecerahanError,
-                          ),
-                        ),
-
-                        const SizedBox(width: horizontalFormSpacingWidth,),
-
-                        const Expanded(
-                          child: SizedBox()
-                        ),
-                      ],
+                    NormalTextField(
+                      controller: provider.kecerahanController,
+                      label: "Kecerahan",
+                      errorMessage: provider.kecerahanError,
                     ),
 
                     const SizedBox(height: 32,),

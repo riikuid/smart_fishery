@@ -13,7 +13,7 @@ class FiturKolamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateFormat dateFormat = DateFormat('dd-MM-yyyy');
+    DateFormat dateFormat = DateFormat("dd MMMM yyyy", "id_ID");
 
     int hitungUmur(String tanggalTebar) {
       DateTime tanggalTebar = dateFormat.parse(kolam.tanggalTebar);
