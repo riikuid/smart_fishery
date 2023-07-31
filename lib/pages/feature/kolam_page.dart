@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
-import 'package:smart_fishery/pages/feature/kolam/buat_kolam_page.dart';
 import 'package:smart_fishery/widget/kolam_card.dart';
 
 class KolamPage extends StatelessWidget {
@@ -98,7 +97,7 @@ class KolamPage extends StatelessWidget {
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => BuatKolamPage()),
+            MaterialPageRoute(builder: (context) => SizedBox()),
           );
         },
         backgroundColor: Color(0xFF1B9C85),

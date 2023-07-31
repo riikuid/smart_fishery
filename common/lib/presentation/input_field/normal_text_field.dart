@@ -1,4 +1,5 @@
 import 'package:common/presentation/input_field/styles/styles.dart';
+import 'package:common/themes.dart';
 import 'package:flutter/material.dart';
 
 class NormalTextField extends StatelessWidget {
@@ -19,9 +20,21 @@ class NormalTextField extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          label,
-          style: inputFieldLabelHeaderStyle,
+        RichText(
+          text : TextSpan(
+            text: label,
+            style: inputFieldLabelHeaderStyle,
+            children: [
+              TextSpan(
+                text: " *",
+                style: primaryTextStyle.copyWith(
+                  color: alertColor,
+                  fontSize: 12,
+                  fontWeight: semibold,
+                )
+              )
+            ]
+          )
         ),
 
         const SizedBox(height: labelAndFormSpacing,),

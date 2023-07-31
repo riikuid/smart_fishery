@@ -1,4 +1,4 @@
-import 'package:fitur_lihat_detail_kolam/domain/model/kualitas_air.dart';
+import 'package:common/domain/model/kualitas_air.dart';
 import 'package:flutter/material.dart';
 import 'package:common/themes.dart';
 
@@ -106,7 +106,7 @@ class KualitasAirTable extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                  kualitasAir.tanggal,
+                  kualitasAir.tanggalPengukuran,
                   style: secondaryTextStyle.copyWith(
                     letterSpacing: 1.5,
                     fontSize: 14,

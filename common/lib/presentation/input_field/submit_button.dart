@@ -27,13 +27,15 @@ class SubmitButton extends StatelessWidget{
             ),
             backgroundColor: MaterialStatePropertyAll(greenColor),
           ),
-          child: Text(
-            "Submit",
-            style: primaryTextStyle.copyWith(
-              fontWeight: semibold,
-              color: whiteColor,
+          child: onPressed == null ?
+            const CircularProgressIndicator() :
+            Text(
+              "Submit",
+              style: primaryTextStyle.copyWith(
+                fontWeight: semibold,
+                color: whiteColor,
+              ),
             ),
-          ),
         ),
       ),
     );

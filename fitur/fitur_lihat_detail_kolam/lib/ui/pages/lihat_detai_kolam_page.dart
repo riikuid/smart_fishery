@@ -79,6 +79,7 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
                     if (!tabController.indexIsChanging) {
                       final currentIndex = tabController.index;
                       String? nextRoute;
+
                       if (currentIndex == Routes.detailKualitasAirPageIndex) {
                         nextRoute = Routes.inputKualitasAirRoute;
                       } else if (currentIndex == Routes.detailPanenPageIndex) {
@@ -90,7 +91,7 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
 
                       if (nextRoute != null) {
                         Navigator.of(context)
-                            .pushNamed(nextRoute)
+                            .pushNamed(nextRoute , arguments: idKolam)
                             .then((result) {
                           if (result != null) {
                             provider.refreshData();

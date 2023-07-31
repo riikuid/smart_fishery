@@ -1,4 +1,4 @@
-import 'package:fitur_lihat_detail_kolam/domain/model/panen.dart';
+import 'package:common/domain/model/panen.dart';
 import 'package:flutter/material.dart';
 
 class PanenTable extends StatelessWidget{

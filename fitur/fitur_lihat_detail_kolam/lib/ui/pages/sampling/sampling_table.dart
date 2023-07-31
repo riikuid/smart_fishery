@@ -1,4 +1,4 @@
-import 'package:fitur_lihat_detail_kolam/domain/model/sampling.dart';
+import 'package:common/domain/model/sampling.dart';
 import 'package:flutter/material.dart';
 
 class SamplingTable extends StatelessWidget{

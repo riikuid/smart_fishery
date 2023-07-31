@@ -1,17 +1,16 @@
 import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/themes.dart';
-import 'package:common/utils/show_dialog_date_picker.dart';
 import 'package:flutter/material.dart';
 
-class DateField extends StatelessWidget{
+class ClockPickerField extends StatelessWidget {
+  final String currentValue;
   final void Function(String) onValueChange;
   final String? errorMessage;
-  final String choosenDate;
-  const DateField({
+  const ClockPickerField({
     super.key,
+    required this.currentValue,
     required this.onValueChange,
     required this.errorMessage,
-    required this.choosenDate,
   });
 
   @override
@@ -22,18 +21,18 @@ class DateField extends StatelessWidget{
       children: [
         RichText(
             text : TextSpan(
-                text: "Tanggal Pengecekan",
-                style: inputFieldLabelHeaderStyle,
-                children: [
-                  TextSpan(
-                      text: " *",
-                      style: primaryTextStyle.copyWith(
-                        color: alertColor,
-                        fontSize: 12,
-                        fontWeight: semibold,
-                      )
+              text: "Waktu Pengecekan",
+              style: inputFieldLabelHeaderStyle,
+              children: [
+                TextSpan(
+                  text: " *",
+                  style: primaryTextStyle.copyWith(
+                    color: alertColor,
+                    fontSize: 12,
+                    fontWeight: semibold,
                   )
-                ]
+                )
+              ]
             )
         ),
 
@@ -43,13 +42,16 @@ class DateField extends StatelessWidget{
           width: double.infinity,
           child: GestureDetector(
             onTap: () async {
-              final datePicked = await showDialogDatePicker(context);
-              if (datePicked != null){
-                onValueChange(datePicked);
+              final timePicked = await showTimePicker(
+                context: context,
+                initialTime: TimeOfDay.now()
+              );
+              if (timePicked != null && context.mounted){
+                onValueChange(timePicked.format(context));
               }
             },
             child: InputDecorator(
-              isEmpty: choosenDate.isEmpty,
+              isEmpty: currentValue.isEmpty,
               decoration: InputDecoration(
                 enabledBorder: enabledInputFieldBorder,
                 focusedBorder: focusedInputFieldBorder,
@@ -57,9 +59,9 @@ class DateField extends StatelessWidget{
                 errorBorder: errorInputFieldBorder,
                 contentPadding: inputFieldContentPadding,
                 errorText: errorMessage,
-                suffixIcon: const Icon(Icons.date_range),
+                suffixIcon: const Icon(Icons.access_time),
               ),
-              child: Text(choosenDate),
+              child: Text(currentValue),
             ),
           ),
         ),

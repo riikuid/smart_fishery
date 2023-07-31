@@ -1,5 +1,5 @@
 import 'package:dependencies/provider.dart';
-import 'package:fitur_lihat_detail_kolam/domain/model/sampling.dart';
+import 'package:common/domain/model/sampling.dart';
 import 'package:fitur_lihat_detail_kolam/ui/component/lihat_detail_page_loader.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/sampling/sampling_table.dart';
 import 'package:fitur_lihat_detail_kolam/ui/provider/lihat_detail_provider.dart';

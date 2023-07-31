@@ -15,3 +15,5 @@ class ApiResponseFailed implements ApiResponse{
     this.errorCode
   });
 }
+
+class ApiResponseLoading implements ApiResponse{}

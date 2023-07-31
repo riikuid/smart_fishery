@@ -1,5 +1,5 @@
 import 'package:dependencies/provider.dart';
-import 'package:fitur_lihat_detail_kolam/domain/model/panen.dart';
+import 'package:common/domain/model/panen.dart';
 import 'package:fitur_lihat_detail_kolam/ui/component/lihat_detail_page_loader.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/panen/panen_table.dart';
 import 'package:fitur_lihat_detail_kolam/ui/provider/lihat_detail_provider.dart';

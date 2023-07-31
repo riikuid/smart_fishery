@@ -1,5 +1,5 @@
 import 'package:dependencies/provider.dart';
-import 'package:fitur_lihat_detail_kolam/domain/model/kualitas_air.dart';
+import 'package:common/domain/model/kualitas_air.dart';
 import 'package:fitur_lihat_detail_kolam/ui/component/lihat_detail_page_loader.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/kualitas_air/kualitas_air_table.dart';
 import 'package:fitur_lihat_detail_kolam/ui/provider/lihat_detail_provider.dart';

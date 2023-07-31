@@ -31,7 +31,7 @@ class BuatKolamProvider extends ChangeNotifier {
     textFieldError =
         emptyValidator.validate(namaTambak, fieldName: "Nama tambak");
     if (textFieldError == null) {
-      return await _repository.buatKolam(namaTambak);
+      return ApiResponseFailed();
     } else {
       return ApiResponseFailed();
     }
