@@ -11,14 +11,14 @@ class BuatKolamRepositoryImpl implements IBuatKolamRepository {
   Future<ApiResponse> buatKolam(
     String idTambak,
     String namaKolam,
-    double panjangKolam,
-    double lebarKolam,
-    double kedalamanKolam,
+    String panjangKolam,
+    String lebarKolam,
+    String kedalamanKolam,
     String tanggalTebar,
-    int totalTebar,
+    String totalTebar,
     String tipeTotalTebar,
-    int umurAwal,
-    int lamaPersiapan,
+    String umurAwal,
+    String lamaPersiapan,
   ) async {
     try {
       final response = await apiClient.buatKolam(

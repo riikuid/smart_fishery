@@ -13,8 +13,6 @@ class KolamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String tanggalUpdate =
-        DateFormat('dd MMMM yyyy', "id_ID").format(kolam.updateTerakhir);
     content() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
