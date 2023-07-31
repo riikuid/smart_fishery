@@ -4,7 +4,7 @@ import 'package:fitur_buat_tambak/presentation/page/buat_tambak_page.dart';
 import 'package:fitur_input_kualitas_air/presentation/input_kualitas_air_page.dart';
 import 'package:fitur_input_panen/presentation/input_panen_page.dart';
 import 'package:fitur_input_sampling/presentation/input_sampling_page.dart';
-import 'package:fitur_lihat_detail/ui/lihat_detail_page.dart';
+import 'package:fitur_lihat_detail_kolam/ui/pages/lihat_detai_kolam_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:smart_fishery/pages/auth/sign_in_page.dart';
 import 'package:smart_fishery/pages/feature/belajar_page.dart';
@@ -60,7 +60,7 @@ class MainApp extends StatelessWidget {
           '/kolam': (context) => const KolamPage(),
           '/pilih-tambak': (context) => const PilihTambakPage(),
           Routes.buatTambakRoute: (context) => BuatTambakPage(),
-          Routes.lihatDetailKolamRoute: (context) => const LihatDetailPage(),
+          Routes.lihatDetailKolamRoute: (context) => LihatDetailKolamPage(),
           Routes.inputKualitasAirRoute: (context) =>
               const InputKualitasAirPage(),
           Routes.inputPanenRoute: (context) => InputPanenPage(),

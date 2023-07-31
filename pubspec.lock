@@ -146,10 +146,10 @@ packages:
       relative: true
     source: path
     version: "1.0.0+1"
-  fitur_lihat_detail:
+  fitur_lihat_detail_kolam:
     dependency: "direct main"
     description:
-      path: "fitur/fitur_lihat_detail"
+      path: "fitur/fitur_lihat_detail_kolam"
       relative: true
     source: path
     version: "0.0.1"

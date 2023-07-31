@@ -194,9 +194,11 @@ class KolamCard extends StatelessWidget {
 
     return InkWell(
       onTap: () {
-        const idKolam = -1;
         Navigator.of(context)
-            .pushNamed(Routes.lihatDetailKolamRoute, arguments: idKolam);
+            .pushNamed(
+              Routes.lihatDetailKolamRoute,
+              arguments: kolam.id
+        );
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),
