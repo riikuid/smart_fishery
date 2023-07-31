@@ -1,4 +1,5 @@
 import 'package:common/themes.dart';
+import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
 
@@ -52,7 +53,8 @@ class TambakCard extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      tambak.createdAt,
+                      DateFormat('dd MMMM yyyy', "id_ID")
+                          .format(tambak.createdAt),
                       style: secondaryTextStyle.copyWith(
                         fontWeight: medium,
                         fontSize: 12,

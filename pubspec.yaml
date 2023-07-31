@@ -31,6 +31,7 @@ dependencies:
   fitur_buat_tambak:
     path: fitur/fitur_buat_tambak
   http: ^1.1.0
+  url_launcher: ^6.1.12
 
 dev_dependencies:
   flutter_test:

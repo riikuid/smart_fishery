@@ -1,5 +1,6 @@
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
+import 'package:smart_fishery/models/harga_udang_model.dart';
 import 'package:smart_fishery/models/user_model.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
 import 'package:smart_fishery/provider/harga_udang_provider.dart';
@@ -15,12 +16,11 @@ class HargaUdangPage extends StatefulWidget {
 }
 
 class _HargaUdangPageState extends State<HargaUdangPage> {
+  String searchKeyword = '';
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
-    // HargaUdangProvider hargaUdangProvider =
-    //     Provider.of<HargaUdangProvider>(context);
 
     loadHargaUdang() async {
       await Provider.of<HargaUdangProvider>(context, listen: false)
@@ -51,8 +51,12 @@ class _HargaUdangPageState extends State<HargaUdangPage> {
               ),
             ),
             Expanded(
-              child: TextFormField(
-                initialValue: null,
+              child: TextField(
+                onChanged: (value) {
+                  setState(() {
+                    searchKeyword = value;
+                  });
+                },
                 decoration: InputDecoration.collapsed(
                   filled: true,
                   fillColor: Colors.transparent,
@@ -62,7 +66,6 @@ class _HargaUdangPageState extends State<HargaUdangPage> {
                   ),
                   hoverColor: Colors.transparent,
                 ),
-                onFieldSubmitted: (value) {},
               ),
             ),
           ],
@@ -123,6 +126,16 @@ class _HargaUdangPageState extends State<HargaUdangPage> {
                       ),
                     );
                   } else {
+                    List<HargaUdangModel> filteredHargaUdang =
+                        hargaUdangProvider.hargaUdangs.reversed
+                            .where((hargaUdang) =>
+                                hargaUdang.kota.toLowerCase().contains(
+                                      searchKeyword.toLowerCase(),
+                                    ) ||
+                                hargaUdang.provinsi.toLowerCase().contains(
+                                      searchKeyword.toLowerCase(),
+                                    ))
+                            .toList();
                     return Expanded(
                       child: RefreshIndicator(
                         onRefresh: () {
@@ -138,12 +151,9 @@ class _HargaUdangPageState extends State<HargaUdangPage> {
                           physics: BouncingScrollPhysics(
                             parent: AlwaysScrollableScrollPhysics(),
                           ),
-                          itemCount: hargaUdangProvider.hargaUdangs.length,
+                          itemCount: filteredHargaUdang.length,
                           itemBuilder: (context, index) {
-                            final hargaUdang = hargaUdangProvider
-                                .hargaUdangs.reversed
-                                .toList()[index];
-                            return HargaUdangCard(hargaUdang);
+                            return HargaUdangCard(filteredHargaUdang[index]);
                           },
                         ),
                       ),

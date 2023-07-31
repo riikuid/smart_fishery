@@ -26,7 +26,8 @@ class _SplashPageState extends State<SplashPage> {
         )) {
           Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
         } else {
-          getInit();
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/sign-in', (route) => false);
         }
       } else {
         Navigator.pushNamedAndRemoveUntil(

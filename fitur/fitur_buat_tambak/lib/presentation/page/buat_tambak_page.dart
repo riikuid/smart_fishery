@@ -29,97 +29,92 @@ class _BuatTambakPageState extends State<BuatTambakPage> {
       create: (context) => BuatTambakProvider(
         repository: BuatTambakRepositoryImpl(),
       ),
-      child: Consumer<BuatTambakProvider>(
-        builder: (context , provider , child) {
-          return FutureBuilder(
+      child: Consumer<BuatTambakProvider>(builder: (context, provider, child) {
+        return FutureBuilder(
             future: provider.submitResponse,
-            builder: (context , snapshot) {
-              if (snapshot.hasData){
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
                 if (snapshot.data! is ApiResponseSuccess) {
                   Navigator.pop(context, true);
                 }
               }
 
               return Scaffold(
-                // backgroundColor: Color(0xFFECE1E1),
-                backgroundColor: whiteColor,
-                appBar: AppBar(
-                  elevation: 0,
-                  centerTitle: true,
-                  title: Text(
-                    "Buat Tambak Baru",
-                    style: primaryTextStyle.copyWith(fontWeight: bold),
-                  ),
+                  // backgroundColor: Color(0xFFECE1E1),
                   backgroundColor: whiteColor,
-                  leading: InkWell(
-                    onTap: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Icon(
-                      Icons.arrow_back,
-                      color: Color(0xFF1B9C85),
+                  appBar: AppBar(
+                    elevation: 0,
+                    centerTitle: true,
+                    title: Text(
+                      "Buat Tambak Baru",
+                      style: primaryTextStyle.copyWith(fontWeight: bold),
+                    ),
+                    backgroundColor: whiteColor,
+                    leading: InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: const Icon(
+                        Icons.arrow_back,
+                        color: Color(0xFF1B9C85),
+                      ),
                     ),
                   ),
-                ),
-
-                body: Container(
-                  padding: const EdgeInsets.only(
-                    top: 20,
-                    right: 20,
-                    left: 20,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Text(
-                            "Nama Tambak",
-                            style: primaryTextStyle.copyWith(
-                              fontSize: 14,
-                              fontWeight: semibold,
+                  body: Container(
+                    padding: const EdgeInsets.only(
+                      top: 20,
+                      right: 20,
+                      left: 20,
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Text(
+                              "Nama Tambak",
+                              style: primaryTextStyle.copyWith(
+                                fontSize: 14,
+                                fontWeight: semibold,
+                              ),
                             ),
-                          ),
-                          Text(
-                            " *",
-                            style: primaryTextStyle.copyWith(
-                              color: alertColor,
-                              fontSize: 14,
-                              fontWeight: semibold,
+                            Text(
+                              " *",
+                              style: primaryTextStyle.copyWith(
+                                color: alertColor,
+                                fontSize: 14,
+                                fontWeight: semibold,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      TextFormField(
-                        controller: textEditingController,
-                        style: primaryTextStyle.copyWith(),
-                        decoration: InputDecoration(
-                          errorText: provider.textFieldError,
-                          enabledBorder: enabledInputFieldBorder,
-                          focusedBorder: focusedInputFieldBorder,
-                          errorBorder: errorInputFieldBorder,
-                          focusedErrorBorder: errorInputFieldBorder,
+                          ],
                         ),
-                      ),
-                    ],
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        TextFormField(
+                          controller: textEditingController,
+                          maxLength: 25,
+                          style: primaryTextStyle.copyWith(),
+                          decoration: InputDecoration(
+                            errorText: provider.textFieldError,
+                            enabledBorder: enabledInputFieldBorder,
+                            focusedBorder: focusedInputFieldBorder,
+                            errorBorder: errorInputFieldBorder,
+                            focusedErrorBorder: errorInputFieldBorder,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                bottomNavigationBar: SubmitButton(
-                  onPressed: snapshot.hasData ?
-                    (){
-                      provider.submitData(textEditingController.text);
-                    } :
-                    null
-                    ,
-                )
-              );
-            }
-          );
-        }
-      ),
+                  bottomNavigationBar: SubmitButton(
+                    onPressed: snapshot.hasData
+                        ? () {
+                            provider.submitData(textEditingController.text);
+                          }
+                        : null,
+                  ));
+            });
+      }),
     );
   }
 }
