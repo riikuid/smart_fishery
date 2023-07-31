@@ -1,3 +1,5 @@
+import 'package:common/domain/model/kualitas_air.dart';
+
 class Kolam {
   final String id;
   final String namaKolam;
@@ -10,6 +12,7 @@ class Kolam {
   final int lamaPersiapan;
   final String tipeTotalTebar;
   final DateTime updateTerakhir;
+  final KualitasAir? lastKualitasAir;
   Kolam({
     required this.id,
     required this.namaKolam,
@@ -22,6 +25,7 @@ class Kolam {
     required this.lamaPersiapan,
     required this.tipeTotalTebar,
     required this.updateTerakhir,
+    required this.lastKualitasAir,
   });
 
   factory Kolam.fromJson(Map<String, dynamic> json) {
@@ -37,6 +41,7 @@ class Kolam {
       lamaPersiapan: json['lama_persiapan'],
       tipeTotalTebar: json['tipe_total_tebar'],
       updateTerakhir: DateTime.parse(json['updated_at']),
+      lastKualitasAir: KualitasAir.fromJson(json['kualitas_air_detail']),
     );
   }
 }

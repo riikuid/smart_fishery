@@ -4,7 +4,7 @@ import 'package:http/http.dart';
 
 class MonitoringApiClient{
   static const _baseTambakUrl = "${ApiUrl.baseApiUrl}/tambak";
-  static const _baseKolamUrl = "$_baseTambakUrl/kolam";
+  static const _baseKolamUrl = "${ApiUrl.baseApiUrl}/monitoring";
   final _bearerFormatter = FormatBearerUseCase();
 
   Future<Response> getTambak(String token){

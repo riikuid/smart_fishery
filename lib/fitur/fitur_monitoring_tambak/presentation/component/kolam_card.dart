@@ -21,7 +21,7 @@ class KolamCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "30.08",
+                kolam.lastKualitasAir?.suhu.toStringAsFixed(2) ?? "-",
                 style: primaryTextStyle.copyWith(
                   color: const Color(0xFF0079FF),
                   fontWeight: semibold,
@@ -39,7 +39,7 @@ class KolamCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "2.54",
+                kolam.lastKualitasAir?.dO.toStringAsFixed(2) ?? "-",
                 style: primaryTextStyle.copyWith(
                   color: const Color(0xFFC82C2C),
                   fontWeight: semibold,
@@ -55,7 +55,7 @@ class KolamCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "15.25",
+                kolam.lastKualitasAir?.sal.toStringAsFixed(2) ?? "-",
                 style: primaryTextStyle.copyWith(
                   color: const Color(0xFF0079FF),
                   fontWeight: semibold,
@@ -71,7 +71,7 @@ class KolamCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "3.43",
+                kolam.lastKualitasAir?.ph.toStringAsFixed(2) ?? "-",
                 style: primaryTextStyle.copyWith(
                   color: const Color(0xFFC82C2C),
                   fontWeight: semibold,
@@ -87,99 +87,9 @@ class KolamCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Text(
-                "30.08",
+                kolam.lastKualitasAir?.kecerahan.toStringAsFixed(2) ?? "-",
                 style: primaryTextStyle.copyWith(
                   color: const Color(0xFF0079FF),
-                  fontWeight: semibold,
-                ),
-              ),
-              Text(
-                "Kecerahan",
-                style: primaryTextStyle.copyWith(fontSize: 12),
-              ),
-            ],
-          ),
-        ],
-      );
-    }
-
-    nullHandle() {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "-",
-                style: primaryTextStyle.copyWith(
-                  color: secondaryTextColor,
-                  fontWeight: semibold,
-                ),
-              ),
-              Text(
-                "Suhu",
-                style: primaryTextStyle.copyWith(
-                  fontSize: 12,
-                ),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "-",
-                style: primaryTextStyle.copyWith(
-                  color: secondaryTextColor,
-                  fontWeight: semibold,
-                ),
-              ),
-              Text(
-                "Do",
-                style: primaryTextStyle.copyWith(fontSize: 12),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "-",
-                style: primaryTextStyle.copyWith(
-                  color: secondaryTextColor,
-                  fontWeight: semibold,
-                ),
-              ),
-              Text(
-                "Sal",
-                style: primaryTextStyle.copyWith(fontSize: 12),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "-",
-                style: primaryTextStyle.copyWith(
-                  color: secondaryTextColor,
-                  fontWeight: semibold,
-                ),
-              ),
-              Text(
-                "pH",
-                style: primaryTextStyle.copyWith(fontSize: 12),
-              ),
-            ],
-          ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(
-                "-",
-                style: primaryTextStyle.copyWith(
-                  color: secondaryTextColor,
                   fontWeight: semibold,
                 ),
               ),
@@ -240,7 +150,7 @@ class KolamCard extends StatelessWidget {
               height: 5,
             ),
             // content(),
-            nullHandle(),
+            content(),
           ],
         ),
       ),

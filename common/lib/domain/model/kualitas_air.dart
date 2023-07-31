@@ -16,15 +16,20 @@ class KualitasAir {
     required this.kecerahan,
   });
 
-  factory KualitasAir.fromJson(Map<String , dynamic> json){
-    return KualitasAir(
-      tanggalPengukuran: json['tanggal_pengukuran'],
-      jamPengukuran: json['jam_pengukuran'],
-      suhu: json['suhu'].toDouble(),
-      dO: json['do'].toDouble(),
-      sal: json['sal'].toDouble(),
-      ph: json['ph'].toDouble(),
-      kecerahan: json['kecerahan'].toDouble(),
-    );
+  static KualitasAir? fromJson(dynamic json){
+    if (json != null) {
+      return KualitasAir(
+        tanggalPengukuran: json['tanggal_pengukuran'],
+        jamPengukuran: json['jam_pengukuran'],
+        suhu: json['suhu'].toDouble(),
+        dO: json['do'].toDouble(),
+        sal: json['sal'].toDouble(),
+        ph: json['ph'].toDouble(),
+        kecerahan: json['kecerahan'].toDouble(),
+      );
+    }
+    else {
+      return null;
+    }
   }
 }
