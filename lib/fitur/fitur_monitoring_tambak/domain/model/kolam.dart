@@ -1,6 +1,4 @@
-
-
-class Kolam{
+class Kolam {
   final String id;
   final String namaKolam;
   final double lebarKolam;
@@ -11,7 +9,7 @@ class Kolam{
   final int umurAwal;
   final int lamaPersiapan;
   final String tipeTotalTebar;
-  final String updateTerakhir;
+  final DateTime updateTerakhir;
   Kolam({
     required this.id,
     required this.namaKolam,
@@ -26,9 +24,7 @@ class Kolam{
     required this.updateTerakhir,
   });
 
-  factory Kolam.fromJson(
-    Map<String , dynamic> json
-  ){
+  factory Kolam.fromJson(Map<String, dynamic> json) {
     return Kolam(
       id: json['id'],
       namaKolam: json['nama_kolam'],
@@ -40,7 +36,7 @@ class Kolam{
       umurAwal: json['umur_awal'],
       lamaPersiapan: json['lama_persiapan'],
       tipeTotalTebar: json['tipe_total_tebar'],
-      updateTerakhir: json['updated_at'],
+      updateTerakhir: DateTime.parse(json['updated_at']),
     );
   }
 }

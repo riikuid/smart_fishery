@@ -15,10 +15,8 @@ class SearchTambakCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final monitoringProvider = Provider.of<MonitoringProvider>(
-      context,
-      listen : false
-    );
+    final monitoringProvider =
+        Provider.of<MonitoringProvider>(context, listen: false);
 
     return Container(
       width: double.infinity,

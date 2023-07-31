@@ -1,4 +1,5 @@
 import 'package:common/routes/routes.dart';
+import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
@@ -12,6 +13,8 @@ class KolamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String tanggalUpdate =
+        DateFormat('dd MMMM yyyy', "id_ID").format(kolam.updateTerakhir);
     content() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -228,7 +231,7 @@ class KolamCard extends StatelessWidget {
               ),
             ),
             Text(
-              "Update Terakhir - ${kolam.updateTerakhir}",
+              "Update Terakhir - $tanggalUpdate",
               style: secondaryTextStyle.copyWith(
                 fontSize: 12,
                 fontWeight: medium,

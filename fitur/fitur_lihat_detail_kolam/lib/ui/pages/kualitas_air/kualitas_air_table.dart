@@ -77,6 +77,15 @@ class KualitasAirTable extends StatelessWidget {
           style: titleTableTextStyle,
         ),
       )),
+      TableCell(
+          child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 7.0),
+        child: Text(
+          "",
+          textAlign: TextAlign.center,
+          style: titleTableTextStyle,
+        ),
+      )),
     ],
     decoration: BoxDecoration(
       color: Colors.black12,
@@ -172,6 +181,12 @@ class KualitasAirTable extends StatelessWidget {
                 fontWeight: semibold,
               ),
               textAlign: TextAlign.center,
+            )),
+            TableCell(
+                child: Icon(
+              Icons.delete,
+              color: alertColor,
+              size: 20,
             )),
           ])
         ],
