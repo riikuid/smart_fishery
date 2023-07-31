@@ -71,6 +71,7 @@ class AuthProvider with ChangeNotifier {
         token: token,
       );
       _user = null;
+      // tokenManager.clearToken();
     } catch (e) {
       print(e);
     }

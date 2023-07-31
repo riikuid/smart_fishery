@@ -1,3 +1,4 @@
+import 'package:common/data/repository/token_repository_impl.dart';
 import 'package:dependencies/intl.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
@@ -12,6 +13,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     UserModel user = authProvider.user;
+    final tokenManager = TokenRepositoryImpl();
+
+    handleSingOut() {}
 
     Widget dateSuhu() {
       return Container(
@@ -212,52 +216,82 @@ class HomePage extends StatelessWidget {
             // SizedBox(
             //   height: MediaQuery.of(context).size.height * 0.02,
             // ),
-            Stack(
-              alignment: Alignment.bottomRight,
-              children: [
-                Container(
-                  padding: EdgeInsets.all(15),
-                  decoration: BoxDecoration(
-                    color: bannerColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(12.0),
+            GestureDetector(
+              onTap: () {
+                Navigator.pushNamed(context, '/belajar');
+              },
+              child: Stack(
+                alignment: Alignment.bottomRight,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                    decoration: BoxDecoration(
+                      color: bannerColor,
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(12.0),
+                      ),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x19000000),
+                          blurRadius: 10,
+                          offset: Offset(0, 9),
+                        ),
+                      ],
                     ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Color(0x19000000),
-                        blurRadius: 10,
-                        offset: Offset(0, 9),
-                      ),
-                    ],
+                    height: MediaQuery.of(context).size.width * 0.3,
+                    width: double.infinity,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Cara Budidaya Udang",
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: bold,
+                            fontSize: MediaQuery.of(context).size.width * 0.035,
+                            color: bannerTextColor,
+                          ),
+                        ),
+                        Text(
+                          "Tambak Kalisogo",
+                          style: primaryTextStyle.copyWith(
+                            fontWeight: bold,
+                            fontSize: MediaQuery.of(context).size.width * 0.035,
+                            color: bannerTextColor,
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                  height: MediaQuery.of(context).size.width * 0.3,
-                  width: double.infinity,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Cara Budidaya Udang",
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: bold,
-                          fontSize: MediaQuery.of(context).size.width * 0.035,
-                          color: bannerTextColor,
-                        ),
-                      ),
-                      Text(
-                        "Tambak Kalisogo",
-                        style: primaryTextStyle.copyWith(
-                          fontWeight: bold,
-                          fontSize: MediaQuery.of(context).size.width * 0.035,
-                          color: bannerTextColor,
-                        ),
-                      )
-                    ],
+                  Image.asset(
+                    'assets/image_dashboard.png',
+                    width: MediaQuery.of(context).size.width * 0.4,
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () async {
+                    AuthProvider().logout(token: await tokenManager.getToken());
+                    await tokenManager.clearToken();
+                    Navigator.pushNamedAndRemoveUntil(
+                        context, '/sign-in', (route) => false);
+                  },
+                  child: Text(
+                    "Sign Out",
+                    textAlign: TextAlign.center,
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 14,
+                      fontWeight: semibold,
+                      color: alertColor,
+                    ),
                   ),
                 ),
-                Image.asset(
-                  'assets/image_dashboard.png',
-                  width: MediaQuery.of(context).size.width * 0.4,
-                )
               ],
             )
           ],
