@@ -1,7 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/theme.dart';
-import 'package:smart_fishery/widget/date_form.dart';
+import 'package:common/presentation/input_field/punya_fahmi/date_form.dart';
 import 'package:smart_fishery/widget/normal_form.dart';
 
 class BuatKolamPage extends StatefulWidget {

@@ -7,7 +7,7 @@ abstract class IBuatKolamRepository {
     double panjangKolam,
     double lebarKolam,
     double kedalamanKolam,
-    DateTime tanggalTebar,
+    String tanggalTebar,
     int totalTebar,
     String tipeTotalTebar,
     int umurAwal,

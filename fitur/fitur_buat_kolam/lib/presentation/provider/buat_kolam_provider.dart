@@ -3,9 +3,9 @@ import 'package:common/response/api_response.dart';
 import 'package:fitur_buat_kolam/domain/repository/i_buat_kolam_repository.dart';
 import 'package:flutter/material.dart';
 
-class BuatTambakProvider extends ChangeNotifier {
+class BuatKolamProvider extends ChangeNotifier {
   final IBuatKolamRepository _repository;
-  BuatTambakProvider({
+  BuatKolamProvider({
     required IBuatKolamRepository repository,
   }) : _repository = repository;
 
