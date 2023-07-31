@@ -1,0 +1,206 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "smart_fishery",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "smart_fishery (profile mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "smart_fishery (release mode)",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "common",
+            "cwd": "common",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "common (profile mode)",
+            "cwd": "common",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "common (release mode)",
+            "cwd": "common",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "dependencies",
+            "cwd": "dependencies",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "dependencies (profile mode)",
+            "cwd": "dependencies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "dependencies (release mode)",
+            "cwd": "dependencies",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fitur_buat_kolam",
+            "cwd": "fitur\\fitur_buat_kolam",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fitur_buat_kolam (profile mode)",
+            "cwd": "fitur\\fitur_buat_kolam",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fitur_buat_kolam (release mode)",
+            "cwd": "fitur\\fitur_buat_kolam",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fitur_buat_tambak",
+            "cwd": "fitur\\fitur_buat_tambak",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fitur_buat_tambak (profile mode)",
+            "cwd": "fitur\\fitur_buat_tambak",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fitur_buat_tambak (release mode)",
+            "cwd": "fitur\\fitur_buat_tambak",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fitur_input_kualitas_air",
+            "cwd": "fitur\\fitur_input_kualitas_air",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fitur_input_kualitas_air (profile mode)",
+            "cwd": "fitur\\fitur_input_kualitas_air",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fitur_input_kualitas_air (release mode)",
+            "cwd": "fitur\\fitur_input_kualitas_air",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fitur_input_panen",
+            "cwd": "fitur\\fitur_input_panen",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fitur_input_panen (profile mode)",
+            "cwd": "fitur\\fitur_input_panen",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fitur_input_panen (release mode)",
+            "cwd": "fitur\\fitur_input_panen",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fitur_input_penyakit",
+            "cwd": "fitur\\fitur_input_penyakit",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fitur_input_penyakit (profile mode)",
+            "cwd": "fitur\\fitur_input_penyakit",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fitur_input_penyakit (release mode)",
+            "cwd": "fitur\\fitur_input_penyakit",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fitur_input_sampling",
+            "cwd": "fitur\\fitur_input_sampling",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fitur_input_sampling (profile mode)",
+            "cwd": "fitur\\fitur_input_sampling",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fitur_input_sampling (release mode)",
+            "cwd": "fitur\\fitur_input_sampling",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "fitur_lihat_detail_kolam",
+            "cwd": "fitur\\fitur_lihat_detail_kolam",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "fitur_lihat_detail_kolam (profile mode)",
+            "cwd": "fitur\\fitur_lihat_detail_kolam",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "fitur_lihat_detail_kolam (release mode)",
+            "cwd": "fitur\\fitur_lihat_detail_kolam",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
