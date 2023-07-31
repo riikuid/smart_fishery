@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
 import 'package:smart_fishery/widget/auth_password_form.dart';
-import 'package:smart_fishery/widget/loading_button.dart';
+import 'package:common/presentation/loading_button.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});

@@ -3,7 +3,7 @@ import 'package:common/response/api_response.dart';
 import 'package:common/routes/routes.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
+import 'package:common/domain/model/tambak.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/provider/monitoring_provider.dart';
 import 'package:smart_fishery/theme.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/tambak_card.dart';

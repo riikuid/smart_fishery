@@ -1,3 +1,4 @@
+import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/themes.dart';
 import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
@@ -7,12 +8,14 @@ class DateForm extends StatelessWidget {
   final bool isRequired;
   final TextEditingController formController;
   final TextInputType formKeyboard;
+  final String? errorText;
 
   DateForm(
     this.labelForm,
     this.formController,
     this.formKeyboard,
     this.isRequired,
+    this.errorText,
   );
 
   @override
@@ -86,6 +89,9 @@ class DateForm extends StatelessWidget {
                 color: greenColor,
               ),
             ),
+            errorBorder: errorInputFieldBorder,
+            focusedErrorBorder: errorInputFieldBorder,
+            errorText: errorText,
           ),
         ),
       ],

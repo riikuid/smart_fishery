@@ -1,5 +1,5 @@
+import 'package:common/themes.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_fishery/theme.dart';
 
 class LoadingButton extends StatelessWidget {
   const LoadingButton({super.key});
@@ -21,7 +21,7 @@ class LoadingButton extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-              margin: EdgeInsets.only(right: 10),
+              margin: const EdgeInsets.only(right: 10),
               height: 14,
               width: 14,
               child: CircularProgressIndicator(

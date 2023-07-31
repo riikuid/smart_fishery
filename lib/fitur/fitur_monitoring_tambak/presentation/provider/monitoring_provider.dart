@@ -1,7 +1,7 @@
 import 'package:common/response/api_response.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
+import 'package:common/domain/model/tambak.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/repository/i_monitoring_repository.dart';
 
 class MonitoringProvider extends ChangeNotifier{

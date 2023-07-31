@@ -28,9 +28,9 @@ class Kolam {
     return Kolam(
       id: json['id'],
       namaKolam: json['nama_kolam'],
-      lebarKolam: json['lebar_kolam'],
-      panjangKolam: json['panjang_kolam'],
-      kedalamanKolam: json['kedalaman_kolam'],
+      lebarKolam: json['lebar_kolam'].toDouble(),
+      panjangKolam: json['panjang_kolam'].toDouble(),
+      kedalamanKolam: json['kedalaman_kolam'].toDouble(),
       totalTebar: json['total_tebar'],
       tanggalTebar: json['tanggal_tebar'],
       umurAwal: json['umur_awal'],

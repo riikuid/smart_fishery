@@ -1,3 +1,4 @@
+import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/themes.dart';
 import 'package:flutter/material.dart';
 
@@ -6,12 +7,15 @@ class NormalForm extends StatelessWidget {
   final bool isRequired;
   final TextEditingController formController;
   final TextInputType formKeyboard;
+  final String? errorMessage;
 
-  NormalForm(
+  const NormalForm(
     this.labelForm,
     this.formController,
     this.formKeyboard,
     this.isRequired,
+    this.errorMessage,
+      {super.key}
   );
 
   @override
@@ -52,6 +56,7 @@ class NormalForm extends StatelessWidget {
             fontSize: 12,
           ),
           decoration: InputDecoration(
+            errorText: errorMessage,
             hintText: isRequired ? "" : "Opsional",
             hintStyle: secondaryTextStyle.copyWith(
               fontSize: 12,
@@ -68,6 +73,8 @@ class NormalForm extends StatelessWidget {
                 color: greenColor,
               ),
             ),
+            errorBorder: errorInputFieldBorder,
+            focusedErrorBorder: errorInputFieldBorder,
           ),
         ),
       ],

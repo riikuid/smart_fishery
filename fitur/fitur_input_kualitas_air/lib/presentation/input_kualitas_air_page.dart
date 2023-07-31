@@ -9,14 +9,9 @@ import 'package:dependencies/provider.dart';
 import 'package:fitur_input_kualitas_air/data/repository/input_kualitas_air_repository_impl.dart';
 import 'package:flutter/material.dart';
 import 'package:fitur_input_kualitas_air/presentation/input_kualitas_air_provider.dart';
-class InputKualitasAirPage extends StatefulWidget{
+class InputKualitasAirPage extends StatelessWidget{
   const InputKualitasAirPage({super.key});
 
-  @override
-  State<InputKualitasAirPage> createState() => _InputKualitasAirPageState();
-}
-
-class _InputKualitasAirPageState extends State<InputKualitasAirPage> {
   @override
   Widget build(BuildContext context) {
     final idKolam = ModalRoute.of(context)?.settings.arguments as String;

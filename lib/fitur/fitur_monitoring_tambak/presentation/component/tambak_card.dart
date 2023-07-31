@@ -1,7 +1,7 @@
 import 'package:common/themes.dart';
 import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/tambak.dart';
+import 'package:common/domain/model/tambak.dart';
 
 class TambakCard extends StatelessWidget {
   final Tambak tambak;

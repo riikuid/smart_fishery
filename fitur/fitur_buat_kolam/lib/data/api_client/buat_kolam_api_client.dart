@@ -1,6 +1,7 @@
 import 'package:common/constant/api_url.dart';
 import 'package:common/domain/use_case/format_bearer_use_case.dart';
 import 'package:dependencies/http.dart';
+import 'package:flutter/material.dart';
 
 class BuatKolamApiClient {
   final _bearerFormatter = FormatBearerUseCase();
@@ -19,10 +20,11 @@ class BuatKolamApiClient {
     required String umurAwal,
     required String lamaPersiapan,
   }) {
+    debugPrint("ID TAMBAK 2 : $idTambak");
     return post(Uri.parse(_buatKolamUrl),
         headers: _bearerFormatter.format(token),
         body: {
-          'id_tambak': idTambak,
+          'id_tambaks': idTambak,
           'nama_kolam': namaKolam,
           'panjang_kolam': panjangKolam,
           'lebar_kolam': lebarKolam,

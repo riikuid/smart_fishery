@@ -1,5 +1,6 @@
 import 'package:common/presentation/error_handler/error_warning.dart';
 import 'package:common/response/api_response.dart';
+import 'package:common/routes/routes.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
@@ -22,6 +23,19 @@ class MonitoringPage extends StatelessWidget {
         builder: (context , provider , child) {
           return Scaffold(
             backgroundColor: backgroundColor2,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () async {
+                final result = await Navigator.of(context)
+                    .pushNamed(
+                      Routes.buatKolamRoute,
+                      arguments: provider.choosenTambak!,
+                    );
+                if (result != null){
+                  provider.onRefreshKolam();
+                }
+              },
+              child: const Icon(Icons.add),
+            ),
             appBar: AppBar(
               elevation: 0,
               centerTitle: true,

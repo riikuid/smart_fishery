@@ -83,6 +83,10 @@ class InputKualitasAirProvider extends ChangeNotifier{
         debugPrint("Masuk sini, submitresponse sukses : ${submitResponse is ApiResponseFailed ? (submitResponse as ApiResponseFailed).errorMessage : "ya"}");
         notifyListeners();
       }
+      else {
+        submitResponse = ApiResponseFailed();
+        notifyListeners();
+      }
     }
   }
   
