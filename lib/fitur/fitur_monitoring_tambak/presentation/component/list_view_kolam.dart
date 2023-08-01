@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
+import 'package:common/domain/model/kolam.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/kolam_card.dart';
 
 class ListViewKolam extends StatelessWidget{

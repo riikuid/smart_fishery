@@ -1,3 +1,4 @@
+import 'package:common/domain/model/kolam.dart';
 import 'package:common/routes/routes.dart';
 import 'package:common/themes.dart';
 import 'package:dependencies/provider.dart';
@@ -16,16 +17,16 @@ class LihatDetailKolamPage extends StatefulWidget {
 }
 
 class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
-  String? idKolam;
+  Kolam? kolam;
 
   @override
   Widget build(BuildContext context) {
-    idKolam ??= ModalRoute.of(context)?.settings.arguments as String;
+    kolam ??= ModalRoute.of(context)?.settings.arguments as Kolam;
 
     return ChangeNotifierProvider(
       create: (context) => LihatDetailProvider(
         repository: LihatDetailKolamRepositoryImpl(),
-        idKolam: idKolam!,
+        idKolam: kolam!.id,
       ),
       child: DefaultTabController(
         length: 4,
@@ -38,7 +39,7 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
             appBar: AppBar(
               centerTitle: true,
               title: Text(
-                "Kolam A1",
+                kolam!.namaKolam,
                 style: primaryTextStyle.copyWith(
                   fontWeight: semibold,
                   color: whiteColor,
@@ -91,7 +92,7 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
 
                       if (nextRoute != null) {
                         Navigator.of(context)
-                            .pushNamed(nextRoute , arguments: idKolam)
+                            .pushNamed(nextRoute , arguments: kolam!.id)
                             .then((result) {
                           if (result != null) {
                             provider.refreshData();

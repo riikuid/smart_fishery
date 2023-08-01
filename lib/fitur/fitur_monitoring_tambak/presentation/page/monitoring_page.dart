@@ -5,7 +5,7 @@ import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/data/repository/monitoring_repository_impl.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
+import 'package:common/domain/model/kolam.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/list_view_kolam.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/search_tambak_card.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/provider/monitoring_provider.dart';

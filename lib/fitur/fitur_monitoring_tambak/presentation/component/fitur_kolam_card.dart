@@ -2,7 +2,7 @@ import 'package:common/routes/routes.dart';
 import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/model/kolam.dart';
+import 'package:common/domain/model/kolam.dart';
 
 class FiturKolamCard extends StatelessWidget {
   final Kolam kolam;
