@@ -1,4 +1,6 @@
 import 'package:common/domain/model/kualitas_air.dart';
+import 'package:dependencies/provider.dart';
+import 'package:fitur_lihat_detail_kolam/ui/provider/lihat_detail_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:common/themes.dart';
 
@@ -9,8 +11,11 @@ class KualitasAirTable extends StatelessWidget {
     required this.listKualitasAir,
   });
 
+  late LihatDetailProvider provider;
+
   @override
   Widget build(BuildContext context) {
+    provider = Provider.of(context , listen: false);
     return ListView(
       children: [
         Table(
@@ -99,7 +104,7 @@ class KualitasAirTable extends StatelessWidget {
         ),
       )),
     ],
-    decoration: BoxDecoration(
+    decoration: const BoxDecoration(
       color: Colors.black12,
     ),
   );
@@ -210,12 +215,17 @@ class KualitasAirTable extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             )),
-            TableCell(
-                child: Icon(
-              Icons.delete,
-              color: alertColor,
-              size: 20,
-            )),
+            InkWell(
+              onTap: (){
+                provider.deleteKualitasAir(kualitasAir.id);
+              },
+              child: TableCell(
+                  child: Icon(
+                Icons.delete,
+                color: alertColor,
+                size: 20,
+              )),
+            ),
           ])
         ],
         columnWidths: const {
@@ -227,7 +237,7 @@ class KualitasAirTable extends StatelessWidget {
         },
       ));
 
-      tableBody.add(Divider());
+      tableBody.add(const Divider());
     }
 
     return tableBody;

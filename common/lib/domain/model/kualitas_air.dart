@@ -1,4 +1,5 @@
 class KualitasAir {
+  final String id;
   final String tanggalPengukuran;
   final String jamPengukuran;
   final double suhu;
@@ -7,6 +8,7 @@ class KualitasAir {
   final double ph;
   final double kecerahan;
   KualitasAir({
+    required this.id,
     required this.tanggalPengukuran,
     required this.jamPengukuran,
     required this.suhu,
@@ -19,6 +21,7 @@ class KualitasAir {
   static KualitasAir? fromJson(dynamic json){
     if (json != null) {
       return KualitasAir(
+        id: json['id'],
         tanggalPengukuran: json['tanggal_pengukuran'],
         jamPengukuran: json['jam_pengukuran'],
         suhu: json['suhu'].toDouble(),

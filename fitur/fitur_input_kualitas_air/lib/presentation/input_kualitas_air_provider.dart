@@ -70,6 +70,7 @@ class InputKualitasAirProvider extends ChangeNotifier{
       if (noError) {
         submitResponse = await _repository.submitKualitasAir(
             data: KualitasAir(
+              id: "",
               tanggalPengukuran: choosenDate,
               jamPengukuran: choosenTime,
               suhu: double.parse(suhuController.text),

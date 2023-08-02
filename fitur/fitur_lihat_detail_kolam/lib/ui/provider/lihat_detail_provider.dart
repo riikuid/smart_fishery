@@ -1,21 +1,24 @@
 import 'package:common/response/api_response.dart';
 import 'package:fitur_lihat_detail_kolam/domain/model/detail_kolam.dart';
+import 'package:fitur_lihat_detail_kolam/domain/repository/i_edit_kualitas_air_repository.dart';
 import 'package:fitur_lihat_detail_kolam/domain/repository/i_lihat_detail_kolam_repository.dart';
 import 'package:flutter/material.dart';
 
 class LihatDetailProvider extends ChangeNotifier{
-  final ILihatDetailKolamRepository repository;
+  final ILihatDetailKolamRepository getDetailKolamRepository;
+  final IEditKualitasAirRepository editKualitasAirRepository;
   final String idKolam;
 
   LihatDetailProvider({
-    required this.repository,
+    required this.getDetailKolamRepository,
+    required this.editKualitasAirRepository,
     required this.idKolam
-  }) : detailResponse = repository.getKolam(idKolam);
+  }) : detailResponse = getDetailKolamRepository.getKolam(idKolam);
 
   Future<ApiResponse> detailResponse;
 
   void refreshData(){
-    detailResponse = repository.getKolam(idKolam);
+    detailResponse = getDetailKolamRepository.getKolam(idKolam);
     notifyListeners();
   }
 
@@ -64,4 +67,18 @@ class LihatDetailProvider extends ChangeNotifier{
     }
   }
 
+  ApiResponse _deleteKualitasAirResponse = ApiResponseFailed();
+  void deleteKualitasAir(String idKualitasAir) async {
+    if (_deleteKualitasAirResponse is! ApiResponseLoading){
+      _deleteKualitasAirResponse = ApiResponseLoading();
+
+      _deleteKualitasAirResponse = await editKualitasAirRepository
+          .deleteKualitasAir(idKualitasAir).then((value){
+        if (value is ApiResponseSuccess){
+          refreshData();
+        }
+        return value;
+      });
+    }
+  }
 }
