@@ -3,8 +3,10 @@ import 'package:dependencies/intl.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/models/suhu_model.dart';
 import 'package:smart_fishery/models/user_model.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
+import 'package:smart_fishery/provider/suhu_provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -12,6 +14,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    SuhuProvider suhuProvider = Provider.of<SuhuProvider>(context);
+    SuhuModel suhu = suhuProvider.suhu;
     UserModel user = authProvider.user;
     final tokenManager = TokenRepositoryImpl();
 
@@ -57,7 +61,7 @@ class HomePage extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  "15 - 18 C",
+                  "${suhu.suhu}\u00B0C",
                   style: primaryTextStyle.copyWith(
                     color: successColor,
                     fontWeight: bold,
@@ -326,7 +330,7 @@ class HomePage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            user.fullName,
+                            user.fullName.split(" ")[0],
                             style: primaryTextStyle.copyWith(
                               fontWeight: bold,
                               fontSize: 18,

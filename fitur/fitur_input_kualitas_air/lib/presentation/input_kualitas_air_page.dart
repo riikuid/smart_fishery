@@ -5,6 +5,7 @@ import 'package:common/presentation/input_field/normal_text_field.dart';
 import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/presentation/input_field/submit_button.dart';
 import 'package:common/response/api_response.dart';
+import 'package:common/themes.dart';
 import 'package:dependencies/provider.dart';
 import 'package:fitur_input_kualitas_air/data/repository/input_kualitas_air_repository_impl.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +31,24 @@ class InputKualitasAirPage extends StatelessWidget{
             });
           }
           return Scaffold(
-            appBar: InputFieldAppBar(title: "Input Kualitas Air"),
+            appBar: AppBar(
+              elevation: 0,
+              centerTitle: true,
+              title: Text(
+                "Input Kualitas Air",
+                style: primaryTextStyle.copyWith(fontWeight: bold),
+              ),
+              backgroundColor: whiteColor,
+              leading: InkWell(
+                onTap: () {
+                  Navigator.pop(context);
+                },
+                child: const Icon(
+                  Icons.arrow_back,
+                  color: Color(0xFF1B9C85),
+                ),
+              ),
+            ),
             bottomNavigationBar: SubmitButton(
               onPressed: provider.submitResponse is ApiResponseLoading ?
                 null :

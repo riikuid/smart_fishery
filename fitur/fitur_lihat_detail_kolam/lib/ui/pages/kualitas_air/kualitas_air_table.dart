@@ -150,7 +150,7 @@ class KualitasAirTable extends StatelessWidget {
             ),
           ])
         ],
-        columnWidths: const {0: FlexColumnWidth()},
+        // columnWidths: const {0: FlexColumnWidth()},
       ));
 
       tableBody.add(const SizedBox(
@@ -215,17 +215,17 @@ class KualitasAirTable extends StatelessWidget {
               ),
               textAlign: TextAlign.center,
             )),
-            InkWell(
-              onTap: (){
+            TableCell(
+                child: InkWell(
+                  onTap: (){
                 provider.deleteKualitasAir(kualitasAir.id);
               },
-              child: TableCell(
                   child: Icon(
-                Icons.delete,
-                color: alertColor,
-                size: 20,
-              )),
-            ),
+                              Icons.delete,
+                              color: alertColor,
+                              size: 20,
+                            ),
+                )),
           ])
         ],
         columnWidths: const {

@@ -1,4 +1,5 @@
 import 'package:common/routes/routes.dart';
+import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
@@ -13,6 +14,7 @@ class KolamCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     content() {
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -128,12 +130,59 @@ class KolamCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              kolam.namaKolam,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    kolam.namaKolam,
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 16,
+                      fontWeight: semibold,
+                    ),
+                  ),
+                ),
+                InkWell(
+                  onTap: (){
+
+                  },
+                  child: const Icon(
+                                Icons.edit,
+                                // color: alertColor,
+                                size: 18,
+                              ),
+                ),
+                const SizedBox(width: 10,),
+                InkWell(
+                  onTap: ()async {
+                    if (await confirm(
+              context,
+              title:  Text('CONFIRM', 
               style: primaryTextStyle.copyWith(
-                fontSize: 16,
-                fontWeight: semibold,
-              ),
+                fontWeight: semibold, fontSize: 16,
+              ),),
+              content:  Text('Would you like to remove?', style: primaryTextStyle.copyWith(
+                fontWeight: medium, fontSize: 16,
+              ),),
+              textOK:  Text('Yes', style: primaryTextStyle.copyWith(
+                fontWeight: semibold, fontSize: 16, color: const Color(0xFF0079FF),
+              ),),
+              textCancel:  Text('No', style: primaryTextStyle.copyWith(
+                fontWeight: semibold, fontSize: 16, color: const Color(0xFFC82C2C),
+              ),),
+              
+            )) {
+              return print('pressedOK');
+            }
+            return print('pressedCancel');
+                  },
+                  child: Icon(
+                                Icons.delete,
+                                color: alertColor,
+                                size: 18,
+                              ),
+                ),
+                
+              ],
             ),
             Text(
               "Update Terakhir - ${DateFormat('dd MMMM yyyy', "id_ID").format(kolam.updateTerakhir)}",

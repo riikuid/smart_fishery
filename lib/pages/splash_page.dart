@@ -5,6 +5,7 @@ import 'package:dependencies/provider.dart';
 import 'package:dependencies/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
+import 'package:smart_fishery/provider/suhu_provider.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -18,9 +19,12 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     final tokenManager = TokenRepositoryImpl();
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    SuhuProvider suhuProvider = Provider.of<SuhuProvider>(context);
 
     getInit() async {
+      await suhuProvider.getSuhu();
       if (await tokenManager.getToken() != null) {
+        
         if (await authProvider.getProfile(
           token: (await tokenManager.getToken())!,
         )) {
