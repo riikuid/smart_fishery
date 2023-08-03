@@ -1,9 +1,11 @@
 import 'package:common/routes/routes.dart';
-import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:dependencies/intl.dart';
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
 import 'package:common/domain/model/kolam.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/build_confirm_dialog.dart';
+import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/provider/monitoring_provider.dart';
 
 class FiturKolamCard extends StatelessWidget {
   final Kolam kolam;
@@ -15,6 +17,7 @@ class FiturKolamCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat("dd MMMM yyyy", "id_ID");
+    final MonitoringProvider provider = Provider.of(context , listen : false);
 
     int hitungUmur(String tanggalTebar) {
       DateTime tanggalTebar = dateFormat.parse(kolam.tanggalTebar);
@@ -118,27 +121,11 @@ class FiturKolamCard extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: ()async {
-                    if (await confirm(
-              context,
-              title:  Text('CONFIRM', 
-              style: primaryTextStyle.copyWith(
-                fontWeight: semibold, fontSize: 16,
-              ),),
-              content:  Text('Would you like to remove?', style: primaryTextStyle.copyWith(
-                fontWeight: medium, fontSize: 16,
-              ),),
-              textOK:  Text('Yes', style: primaryTextStyle.copyWith(
-                fontWeight: semibold, fontSize: 16, color: const Color(0xFF0079FF),
-              ),),
-              textCancel:  Text('No', style: primaryTextStyle.copyWith(
-                fontWeight: semibold, fontSize: 16, color: const Color(0xFFC82C2C),
-              ),),
-              
-            )) {
-              return print('pressedOK');
-            }
-            return print('pressedCancel');
+                  onTap: () async {
+                    final willDelete = await buildConfirmDialog(context);
+                    if (willDelete){
+                      provider.deleteKolam(kolam.id);
+                    }
                   },
                   child: Icon(
                                 Icons.delete,
