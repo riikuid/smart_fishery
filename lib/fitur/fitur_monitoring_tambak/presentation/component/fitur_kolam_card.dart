@@ -85,9 +85,10 @@ class FiturKolamCard extends StatelessWidget {
     }
 
     return InkWell(
-      onTap: () {
-        Navigator.of(context)
+      onTap: () async {
+        await Navigator.of(context)
             .pushNamed(Routes.lihatDetailKolamRoute, arguments: kolam);
+        provider.onRefreshKolam();
       },
       child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 20),

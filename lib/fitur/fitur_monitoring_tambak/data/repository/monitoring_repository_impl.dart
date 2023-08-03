@@ -71,4 +71,10 @@ class MonitoringRepositoryImpl implements IMonitoringRepository{
       return ApiResponseFailed();
     }
   }
+
+  @override
+  Future<ApiResponse> editKolam(Kolam newKolam) {
+    // TODO: implement editKolam
+    throw UnimplementedError();
+  }
 }

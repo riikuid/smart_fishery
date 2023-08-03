@@ -1,4 +1,5 @@
 import 'package:common/constant/api_url.dart';
+import 'package:common/domain/model/kolam.dart';
 import 'package:common/domain/use_case/format_bearer_use_case.dart';
 import 'package:http/http.dart';
 
@@ -15,6 +16,16 @@ class KolamApiClient {
   }){
     return delete(
       Uri.parse(_getDeleteUrl(idKolam)),
+      headers: _bearerFormatter.format(token),
+    );
+  }
+
+  Future<Response> editKolam({
+    required Kolam newKolam,
+    required String token,
+  }){
+    return put(
+      Uri.parse(_baseUrl),
       headers: _bearerFormatter.format(token),
     );
   }

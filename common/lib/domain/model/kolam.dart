@@ -44,4 +44,19 @@ class Kolam {
       lastKualitasAir: KualitasAir.fromJson(json['kualitas_air_detail']),
     );
   }
+
+  Map<String , String> toJson(){
+    return {
+      "id" : id,
+      "nama_kolam" : namaKolam,
+      "lebar_kolam" : lebarKolam.toString(),
+      "panjang_kolam" : panjangKolam.toString(),
+      "kedalaman_kolam" : kedalamanKolam.toString(),
+      "total_tebar" : totalTebar.toString(),
+      "tanggal_tebar" : tanggalTebar.toString(),
+      "umur_awal" : umurAwal.toString(),
+      "lama_persiapan" : lamaPersiapan.toString(),
+      "tipe_total_tebar" : tipeTotalTebar.toString(),
+    };
+  }
 }
