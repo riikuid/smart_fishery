@@ -1,4 +1,4 @@
-package com.example.smart_fishery
+package com.unesa.smartfishery
 
 import io.flutter.embedding.android.FlutterActivity
 

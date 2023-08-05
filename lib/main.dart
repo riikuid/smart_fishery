@@ -53,6 +53,7 @@ class MainApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         routes: {
           '/': (context) => const SplashPage(),
           '/sign-up': (context) => const SignUpPage(),
@@ -66,7 +67,8 @@ class MainApp extends StatelessWidget {
           '/pilih-tambak': (context) => const PilihTambakPage(),
           Routes.buatTambakRoute: (context) => const BuatTambakPage(),
           Routes.buatKolamRoute: (context) => const BuatKolamPage(),
-          Routes.lihatDetailKolamRoute: (context) => const LihatDetailKolamPage(),
+          Routes.lihatDetailKolamRoute: (context) =>
+              const LihatDetailKolamPage(),
           Routes.inputKualitasAirRoute: (context) =>
               const InputKualitasAirPage(),
           Routes.inputPanenRoute: (context) => const InputPanenPage(),
