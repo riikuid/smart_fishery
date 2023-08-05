@@ -1,6 +1,5 @@
 import 'package:common/presentation/input_field/clock_picker_field.dart';
 import 'package:common/presentation/input_field/date_field.dart';
-import 'package:common/presentation/input_field/input_field_app_bar.dart';
 import 'package:common/presentation/input_field/normal_text_field.dart';
 import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/presentation/input_field/submit_button.dart';

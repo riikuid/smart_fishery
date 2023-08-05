@@ -1,11 +1,11 @@
 import 'package:common/presentation/error_handler/error_warning.dart';
 import 'package:common/response/api_response.dart';
+import 'package:common/routes/argument/input_kolam_argument.dart';
 import 'package:common/routes/routes.dart';
 import 'package:dependencies/loader_overlay.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/core.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/data/repository/kolam_repository_impl.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/data/repository/monitoring_repository_impl.dart';
 import 'package:common/domain/model/kolam.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/presentation/component/list_view_kolam.dart';
@@ -21,7 +21,6 @@ class MonitoringPage extends StatelessWidget {
       child: ChangeNotifierProvider(
         create: (context) => MonitoringProvider(
           repository: MonitoringRepositoryImpl(),
-          kolamRepository: KolamRepositoryImpl(),
         ),
         child: Consumer<MonitoringProvider>(
           builder: (context , provider , child) {
@@ -39,7 +38,9 @@ class MonitoringPage extends StatelessWidget {
                   final result = await Navigator.of(context)
                       .pushNamed(
                         Routes.buatKolamRoute,
-                        arguments: provider.choosenTambak!,
+                        arguments: InputKolamArgument(
+                          tambak: provider.choosenTambak!,
+                        ),
                       );
                   if (result != null){
                     provider.onRefreshKolam();

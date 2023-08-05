@@ -1,9 +1,9 @@
-import 'package:common/domain/model/tambak.dart';
 import 'package:common/presentation/input_field/punya_fahmi/date_form.dart';
 import 'package:common/presentation/input_field/punya_fahmi/normal_form.dart';
 import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/presentation/loading_button.dart';
 import 'package:common/response/api_response.dart';
+import 'package:common/routes/argument/input_kolam_argument.dart';
 import 'package:common/themes.dart';
 import 'package:dependencies/dropdown_button_2.dart';
 import 'package:fitur_buat_kolam/data/repository/buat_kolam_repository_impl.dart';
@@ -11,37 +11,19 @@ import 'package:fitur_buat_kolam/presentation/provider/buat_kolam_provider.dart'
 import 'package:flutter/material.dart';
 import 'package:dependencies/provider.dart';
 
-class BuatKolamPage extends StatefulWidget {
-  const BuatKolamPage({super.key});
-
-  @override
-  State<BuatKolamPage> createState() => _BuatKolamPageState();
-}
-
-class _BuatKolamPageState extends State<BuatKolamPage> {
-  TextEditingController namaKolamController = TextEditingController();
-  TextEditingController panjangKolamController = TextEditingController();
-  TextEditingController lebarKolamController = TextEditingController();
-  TextEditingController kedalamanKolamController = TextEditingController();
-  TextEditingController totalTebarController = TextEditingController();
-  TextEditingController tanggalTebarController = TextEditingController();
-  TextEditingController umurAwalController = TextEditingController();
-  TextEditingController lamaPersiapanController = TextEditingController();
-  String? tipeTotalTebarValue;
-
-  final List<String> tipeTotalTebar = [
-    "Netto",
-    "Bruto",
-    "Aktual",
-  ];
+class BuatKolamPage extends StatelessWidget {
+  const BuatKolamPage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
-    Tambak tambak = ModalRoute.of(context)?.settings.arguments as Tambak;
+    final argument = ModalRoute.of(context)?.settings.arguments as InputKolamArgument;
 
     return ChangeNotifierProvider(
       create: (context) => BuatKolamProvider(
-        repository: BuatKolamRepositoryImpl()
+        repository: BuatKolamRepositoryImpl(),
+        argument: argument,
       ),
       child: Consumer<BuatKolamProvider>(
         builder: (context , provider , child) {
@@ -110,7 +92,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                         fontSize: 12,
                       ),
                       decoration: InputDecoration(
-                        hintText: tambak.name,
+                        hintText: provider.tambak.name,
                         hintStyle: secondaryTextStyle.copyWith(
                           fontSize: 14,
                         ),
@@ -133,7 +115,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                     ),
                     NormalForm(
                       "Nama Kolam",
-                      namaKolamController,
+                      provider.namaKolamController,
                       TextInputType.name,
                       true,
                       provider.namaKolamError,
@@ -146,7 +128,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                         Expanded(
                           child: NormalForm(
                             "Panjang Kolam (m)",
-                            panjangKolamController,
+                            provider.panjangKolamController,
                             TextInputType.number,
                             true,
                             provider.panjangKolamError,
@@ -158,7 +140,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                         Expanded(
                           child: NormalForm(
                             "Lebar Kolam (m)",
-                            lebarKolamController,
+                            provider.lebarKolamController,
                             TextInputType.number,
                             true,
                             provider.lebarKolamError,
@@ -171,7 +153,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                     ),
                     NormalForm(
                       "Kedalaman Kolam (m)",
-                      kedalamanKolamController,
+                      provider.kedalamanKolamController,
                       TextInputType.number,
                       true,
                       provider.kedalamanKolamError,
@@ -198,7 +180,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                         Expanded(
                           child: NormalForm(
                             "Total Tebar (ekor)",
-                            totalTebarController,
+                            provider.totalTebarController,
                             TextInputType.number,
                             true,
                             provider.totalTebarError,
@@ -234,7 +216,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                                 height: 10,
                               ),
                               DropdownButtonFormField2<String>(
-                                value: tipeTotalTebarValue,
+                                value: provider.tipeTotalTebar,
                                 isExpanded: true,
                                 decoration: InputDecoration(
                                   // Add Horizontal padding using menuItemStyleData.padding so it matches
@@ -263,7 +245,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                                   'Pilih Tipe',
                                   style: TextStyle(fontSize: 14),
                                 ),
-                                items: tipeTotalTebar
+                                items: provider.allTipeTotalTebar
                                     .map((item) => DropdownMenuItem<String>(
                                           value: item,
                                           child: Text(
@@ -280,15 +262,8 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                                   }
                                   return null;
                                 },
-                                onChanged: (value) {
-                                  if (value != null) {
-                                    tipeTotalTebarValue = value;
-                                  }
-                                  debugPrint(tipeTotalTebarValue);
-                                },
-                                onSaved: (value) {
-                                  tipeTotalTebarValue = value.toString();
-                                },
+                                onChanged: provider.setTipeTotalTebar,
+                                onSaved: provider.setTipeTotalTebar,
                                 buttonStyleData: const ButtonStyleData(
                                   padding: EdgeInsets.only(right: 10),
                                 ),
@@ -318,7 +293,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                     ),
                     DateForm(
                       "Tanggal Tebar",
-                      tanggalTebarController,
+                      provider.tanggalTebarController,
                       TextInputType.number,
                       true,
                       provider.tanggalTebarError,
@@ -331,7 +306,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                         Expanded(
                           child: NormalForm(
                             "Umur Awal (hari)",
-                            umurAwalController,
+                            provider.umurAwalController,
                             TextInputType.number,
                             true,
                             provider.umurAwalError,
@@ -343,7 +318,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
                         Expanded(
                           child: NormalForm(
                             "Lama Persiapan (hari)",
-                            lamaPersiapanController,
+                            provider.lamaPersiapanController,
                             TextInputType.number,
                             true,
                             provider.lamaPersiapanError
@@ -358,20 +333,7 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
             bottomNavigationBar: InkWell(
               onTap: provider.submitResponse is ApiResponseLoading ?
                 null :
-                (){
-                  provider.submitData(
-                    tambak.id,
-                    namaKolamController.text,
-                    panjangKolamController.text,
-                    lebarKolamController.text,
-                    kedalamanKolamController.text,
-                    tanggalTebarController.text,
-                    totalTebarController.text,
-                    tipeTotalTebarValue,
-                    umurAwalController.text,
-                    lamaPersiapanController.text,
-                  );
-                },
+                provider.submitData,
               child: provider.submitResponse is ApiResponseLoading ?
                 const LoadingButton() :
                 Container(
@@ -397,18 +359,5 @@ class _BuatKolamPageState extends State<BuatKolamPage> {
         }
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    namaKolamController.dispose();
-    panjangKolamController.dispose();
-    lebarKolamController.dispose();
-    kedalamanKolamController.dispose();
-    totalTebarController.dispose();
-    tanggalTebarController.dispose();
-    umurAwalController.dispose();
-    lamaPersiapanController.dispose();
-    super.dispose();
   }
 }

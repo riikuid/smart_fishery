@@ -1,5 +1,5 @@
+import 'package:common/routes/argument/input_kolam_argument.dart';
 import 'package:common/routes/routes.dart';
-import 'package:confirm_dialog/confirm_dialog.dart';
 import 'package:dependencies/intl.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
@@ -146,8 +146,18 @@ class KolamCard extends StatelessWidget {
                   ),
                 ),
                 InkWell(
-                  onTap: (){
+                  onTap: () async {
+                    final result = await Navigator.of(context).pushNamed(
+                      Routes.buatKolamRoute,
+                      arguments: InputKolamArgument(
+                        tambak: provider.choosenTambak!,
+                        initialKolam: kolam
+                      ),
+                    );
 
+                    if (result != null){
+                      provider.onRefreshKolam();
+                    }
                   },
                   child: const Icon(
                                 Icons.edit,

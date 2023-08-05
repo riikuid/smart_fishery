@@ -1,8 +1,6 @@
-import 'dart:async';
 
 import 'package:common/data/repository/token_repository_impl.dart';
 import 'package:dependencies/provider.dart';
-import 'package:dependencies/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
 import 'package:smart_fishery/provider/suhu_provider.dart';

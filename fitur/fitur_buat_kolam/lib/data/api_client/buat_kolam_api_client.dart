@@ -1,7 +1,7 @@
 import 'package:common/constant/api_url.dart';
+import 'package:common/domain/model/kolam.dart';
 import 'package:common/domain/use_case/format_bearer_use_case.dart';
 import 'package:dependencies/http.dart';
-import 'package:flutter/material.dart';
 
 class BuatKolamApiClient {
   final _bearerFormatter = FormatBearerUseCase();
@@ -10,30 +10,25 @@ class BuatKolamApiClient {
   Future<Response> buatKolam({
     required String token,
     required String idTambak,
-    required String namaKolam,
-    required String panjangKolam,
-    required String lebarKolam,
-    required String kedalamanKolam,
-    required String tanggalTebar,
-    required String totalTebar,
-    required String tipeTotalTebar,
-    required String umurAwal,
-    required String lamaPersiapan,
+    required Kolam kolam,
   }) {
-    debugPrint("ID TAMBAK 2 : $idTambak");
+    final jsonRequest = kolam.toJson();
+    jsonRequest['id_tambaks'] = idTambak;
+
     return post(Uri.parse(_buatKolamUrl),
         headers: _bearerFormatter.format(token),
-        body: {
-          'id_tambaks': idTambak,
-          'nama_kolam': namaKolam,
-          'panjang_kolam': panjangKolam,
-          'lebar_kolam': lebarKolam,
-          'kedalaman_kolam': kedalamanKolam,
-          'tanggal_tebar': tanggalTebar,
-          'total_tebar': totalTebar,
-          'tipe_total_tebar': tipeTotalTebar,
-          'umur_awal': umurAwal,
-          'lama_persiapan': lamaPersiapan,
-        });
+        body: jsonRequest
+    );
+  }
+
+  Future<Response> editKolam({
+    required String token,
+    required Kolam kolam,
+  }){
+    return put(
+      Uri.parse(_buatKolamUrl),
+      headers: _bearerFormatter.format(token),
+      body: kolam.toJson()
+    );
   }
 }

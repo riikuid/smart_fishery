@@ -1,4 +1,3 @@
-import 'package:common/utils/date_formatter.dart';
 import 'package:dependencies/intl.dart';
 import 'package:flutter/material.dart';
 

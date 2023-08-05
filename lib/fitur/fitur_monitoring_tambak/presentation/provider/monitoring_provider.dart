@@ -3,15 +3,12 @@ import 'package:dependencies/flutter_toast.dart';
 import 'package:flutter/material.dart';
 import 'package:common/domain/model/kolam.dart';
 import 'package:common/domain/model/tambak.dart';
-import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/repository/i_kolam_repository.dart';
 import 'package:smart_fishery/fitur/fitur_monitoring_tambak/domain/repository/i_monitoring_repository.dart';
 
 class MonitoringProvider extends ChangeNotifier{
   final IMonitoringRepository _repository;
-  final IKolamRepository kolamRepository;
   MonitoringProvider({
     required IMonitoringRepository repository,
-    required this.kolamRepository,
   }) : _repository = repository ,
       tambakResponse = repository.getTambak();
 
@@ -65,11 +62,12 @@ class MonitoringProvider extends ChangeNotifier{
     if (deleteKolamResponse is! ApiResponseLoading){
       deleteKolamResponse = ApiResponseLoading();
 
-      deleteKolamResponse = await kolamRepository.deleteKolam(
+      deleteKolamResponse = await _repository.deleteKolam(
         idKolam: idKolam
       ).then((value){
-        if (value is ApiResponseFailed)
+        if (value is ApiResponseFailed) {
           Fluttertoast.showToast(msg: "Gagal menghapus kolam, periksa internet anda!");
+        }
         return value;
       });
       onRefreshKolam();
