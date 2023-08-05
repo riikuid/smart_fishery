@@ -17,7 +17,7 @@ class FiturKolamCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DateFormat dateFormat = DateFormat("dd MMMM yyyy", "id_ID");
-    final MonitoringProvider provider = Provider.of(context , listen : false);
+    final MonitoringProvider provider = Provider.of(context, listen: false);
 
     int hitungUmur(String tanggalTebar) {
       DateTime tanggalTebar = dateFormat.parse(kolam.tanggalTebar);
@@ -84,75 +84,77 @@ class FiturKolamCard extends StatelessWidget {
       );
     }
 
-    return InkWell(
-      onTap: () async {
-        await Navigator.of(context)
-            .pushNamed(Routes.lihatDetailKolamRoute, arguments: kolam);
-        provider.onRefreshKolam();
-      },
-      child: Container(
-        margin: const EdgeInsets.symmetric(horizontal: 20),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: const BorderRadius.all(
-            Radius.circular(12.0),
-          ),
-          boxShadow: const [
-            BoxShadow(
-              color: Color(0x19000000),
-              blurRadius: 6,
-              offset: Offset(0, 1),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+      child: InkWell(
+        onTap: () async {
+          await Navigator.of(context)
+              .pushNamed(Routes.lihatDetailKolamRoute, arguments: kolam);
+          provider.onRefreshKolam();
+        },
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          width: double.infinity,
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: const BorderRadius.all(
+              Radius.circular(12.0),
             ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    kolam.namaKolam,
-                    style: primaryTextStyle.copyWith(
-                      fontSize: 16,
-                      fontWeight: semibold,
+            boxShadow: const [
+              BoxShadow(
+                color: Color(0x19000000),
+                blurRadius: 6,
+                offset: Offset(0, 1),
+              ),
+            ],
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Expanded(
+                    child: Text(
+                      kolam.namaKolam,
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 16,
+                        fontWeight: semibold,
+                      ),
                     ),
                   ),
-                ),
-                InkWell(
-                  onTap: () async {
-                    final willDelete = await buildConfirmDialog(context);
-                    if (willDelete){
-                      provider.deleteKolam(kolam.id);
-                    }
-                  },
-                  child: Icon(
-                                Icons.delete,
-                                color: alertColor,
-                                size: 18,
-                              ),
-                ),
-              ],
-            ),
-            Text(
-              "Tanggal Tebaran - ${kolam.tanggalTebar}",
-              style: secondaryTextStyle.copyWith(
-                fontSize: 12,
-                fontWeight: medium,
+                  InkWell(
+                    onTap: () async {
+                      final willDelete = await buildConfirmDialog(context);
+                      if (willDelete) {
+                        provider.deleteKolam(kolam.id);
+                      }
+                    },
+                    child: Icon(
+                      Icons.delete,
+                      color: alertColor,
+                      size: 18,
+                    ),
+                  ),
+                ],
               ),
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Divider(),
-            const SizedBox(
-              height: 5,
-            ),
-            content(),
-            // nullHandle(),
-          ],
+              Text(
+                "Tanggal Tebaran - ${kolam.tanggalTebar}",
+                style: secondaryTextStyle.copyWith(
+                  fontSize: 12,
+                  fontWeight: medium,
+                ),
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Divider(),
+              const SizedBox(
+                height: 5,
+              ),
+              content(),
+              // nullHandle(),
+            ],
+          ),
         ),
       ),
     );

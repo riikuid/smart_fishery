@@ -31,7 +31,7 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
         idKolam: kolam!.id,
       ),
       child: DefaultTabController(
-        length: 4,
+        length: 1,
         child: Builder(builder: (context) {
           final provider =
               Provider.of<LihatDetailProvider>(context, listen: false);
@@ -55,23 +55,23 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
                   Tab(
                     text: "Kualitas Air",
                   ),
-                  Tab(
-                    text: "Panen",
-                  ),
-                  Tab(
-                    text: "Sampling",
-                  ),
-                  Tab(
-                    text: "Penyakit",
-                  )
+                  // Tab(
+                  //   text: "Panen",
+                  // ),
+                  // Tab(
+                  //   text: "Sampling",
+                  // ),
+                  // Tab(
+                  //   text: "Penyakit",
+                  // )
                 ],
               ),
             ),
             body: const TabBarView(children: [
               KualitasAirPage(),
-              PanenPage(),
-              SamplingPage(),
-              SizedBox(),
+              // PanenPage(),
+              // SamplingPage(),
+              // SizedBox(),
             ]),
             floatingActionButton: Padding(
               padding: const EdgeInsets.all(24.0),
@@ -94,7 +94,7 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
 
                       if (nextRoute != null) {
                         Navigator.of(context)
-                            .pushNamed(nextRoute , arguments: kolam!.id)
+                            .pushNamed(nextRoute, arguments: kolam!.id)
                             .then((result) {
                           if (result != null) {
                             provider.refreshData();

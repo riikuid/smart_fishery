@@ -1,11 +1,25 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:smart_fishery/core.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class KonsultasiPage extends StatelessWidget {
   const KonsultasiPage({super.key});
 
   @override
   Widget build(BuildContext context) {
+    whatsapp() async {
+      var contact = "62876456999";
+      var androidUrl =
+          "whatsapp://send?phone=$contact&text=Hi, saya butuh bantuan dengan aplikasi Smart Fishery";
+
+      try {
+        await launchUrl(Uri.parse(androidUrl));
+      } on Exception {
+        EasyLoading.showError('WhatsApp is not installed.');
+      }
+    }
+
     Widget phoneCard() {
       return Container(
         padding: EdgeInsets.all(20),
@@ -185,39 +199,42 @@ class KonsultasiPage extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.all(20),
-        height: 100,
-        width: double.infinity,
-        color: Color(0xFFFDFAFA),
-        child: Row(
-          children: [
-            Image.asset(
-              'assets/image_whatsapp.png',
-            ),
-            SizedBox(
-              width: 15,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Contact Live Chat',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: bold,
-                    fontSize: 18,
+      bottomNavigationBar: InkWell(
+        onTap: whatsapp,
+        child: Container(
+          padding: EdgeInsets.all(20),
+          height: 100,
+          width: double.infinity,
+          color: Color(0xFFFDFAFA),
+          child: Row(
+            children: [
+              Image.asset(
+                'assets/image_whatsapp.png',
+              ),
+              SizedBox(
+                width: 15,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Contact Live Chat',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: bold,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-                Text(
-                  'Siap menerima saran anda',
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: medium,
-                    fontSize: 18,
+                  Text(
+                    'Siap menerima saran anda',
+                    style: primaryTextStyle.copyWith(
+                      fontWeight: medium,
+                      fontSize: 18,
+                    ),
                   ),
-                ),
-              ],
-            )
-          ],
+                ],
+              )
+            ],
+          ),
         ),
       ),
     );

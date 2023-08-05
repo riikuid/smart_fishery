@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.smart_fishery">
+    package="com.unesa.smartfishery">
     <queries>
     <!-- to opens https URLs -->
     <intent>
