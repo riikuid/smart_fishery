@@ -15,7 +15,7 @@ class KualitasAirTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    provider = Provider.of(context , listen: false);
+    provider = Provider.of(context, listen: false);
     return ListView(
       children: [
         Table(
@@ -117,33 +117,17 @@ class KualitasAirTable extends StatelessWidget {
     for (var kualitasAir in listKualitasAir) {
       tableBody.add(Table(
         children: [
-          TableRow(
-            
-            children: [
+          TableRow(children: [
             TableCell(
               child: Padding(
                 padding: const EdgeInsets.only(left: 10.0),
                 child: Text(
-                  kualitasAir.tanggalPengukuran,
+                  "${kualitasAir.tanggalPengukuran} - ${kualitasAir.jamPengukuran}",
                   textAlign: TextAlign.left,
-                  style: secondaryTextStyle.copyWith(
+                  style: primaryTextStyle.copyWith(
                     letterSpacing: 1.5,
-                    fontSize: 14,
-                    fontWeight: semibold,
-                  ),
-                ),
-              ),
-            ),
-            TableCell(
-              child: Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Text(
-                  kualitasAir.jamPengukuran,
-                  textAlign: TextAlign.right,
-                  style: secondaryTextStyle.copyWith(
-                    letterSpacing: 1.5,
-                    fontSize: 14,
-                    fontWeight: semibold,
+                    fontSize: 12,
+                    fontWeight: medium,
                   ),
                 ),
               ),
@@ -164,7 +148,7 @@ class KualitasAirTable extends StatelessWidget {
                 child: Text(
               kualitasAir.suhu.toStringAsFixed(1),
               style: primaryTextStyle.copyWith(
-                // color: greenColor,
+                color: greenColor,
                 letterSpacing: 1.5,
                 fontSize: 14,
                 fontWeight: semibold,
@@ -175,7 +159,7 @@ class KualitasAirTable extends StatelessWidget {
                 child: Text(
               kualitasAir.dO.toStringAsFixed(1),
               style: primaryTextStyle.copyWith(
-                // color: greenColor,
+                color: greenColor,
                 letterSpacing: 1.5,
                 fontSize: 14,
                 fontWeight: semibold,
@@ -186,7 +170,7 @@ class KualitasAirTable extends StatelessWidget {
                 child: Text(
               kualitasAir.sal.toStringAsFixed(1),
               style: primaryTextStyle.copyWith(
-                // color: greenColor,
+                color: greenColor,
                 letterSpacing: 1.5,
                 fontSize: 14,
                 fontWeight: semibold,
@@ -197,7 +181,7 @@ class KualitasAirTable extends StatelessWidget {
                 child: Text(
               kualitasAir.ph.toStringAsFixed(1),
               style: primaryTextStyle.copyWith(
-                // color: greenColor,
+                color: greenColor,
                 letterSpacing: 1.5,
                 fontSize: 14,
                 fontWeight: semibold,
@@ -208,7 +192,7 @@ class KualitasAirTable extends StatelessWidget {
                 child: Text(
               kualitasAir.kecerahan.toStringAsFixed(1),
               style: primaryTextStyle.copyWith(
-                // color: greenColor,
+                color: greenColor,
                 letterSpacing: 1.5,
                 fontSize: 14,
                 fontWeight: semibold,
@@ -217,15 +201,15 @@ class KualitasAirTable extends StatelessWidget {
             )),
             TableCell(
                 child: InkWell(
-                  onTap: (){
+              onTap: () {
                 provider.deleteKualitasAir(kualitasAir.id);
               },
-                  child: Icon(
-                              Icons.delete,
-                              color: alertColor,
-                              size: 20,
-                            ),
-                )),
+              child: Icon(
+                Icons.delete,
+                color: alertColor,
+                size: 20,
+              ),
+            )),
           ])
         ],
         columnWidths: const {

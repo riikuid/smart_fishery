@@ -3,7 +3,7 @@ import 'package:common/themes.dart';
 import 'package:common/utils/show_dialog_date_picker.dart';
 import 'package:flutter/material.dart';
 
-class DateField extends StatelessWidget{
+class DateField extends StatelessWidget {
   final void Function(String) onValueChange;
   final String? errorMessage;
   final String choosenDate;
@@ -21,30 +21,27 @@ class DateField extends StatelessWidget{
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RichText(
-            text : TextSpan(
-                text: "Tanggal Pengecekan",
+            text: TextSpan(
+                text: "Tanggal",
                 style: inputFieldLabelHeaderStyle,
                 children: [
-                  TextSpan(
-                      text: " *",
-                      style: primaryTextStyle.copyWith(
-                        color: alertColor,
-                        fontSize: 12,
-                        fontWeight: semibold,
-                      )
-                  )
-                ]
-            )
+              TextSpan(
+                  text: " *",
+                  style: primaryTextStyle.copyWith(
+                    color: alertColor,
+                    fontSize: 12,
+                    fontWeight: semibold,
+                  ))
+            ])),
+        const SizedBox(
+          height: labelAndFormSpacing,
         ),
-
-        const SizedBox(height: labelAndFormSpacing,),
-
         SizedBox(
           width: double.infinity,
           child: GestureDetector(
             onTap: () async {
               final datePicked = await showDialogDatePicker(context);
-              if (datePicked != null){
+              if (datePicked != null) {
                 onValueChange(datePicked);
               }
             },
@@ -59,8 +56,13 @@ class DateField extends StatelessWidget{
                 errorText: errorMessage,
                 suffixIcon: const Icon(Icons.date_range),
               ),
-              child: Text(choosenDate),
-              
+              child: Text(
+                choosenDate,
+                style: primaryTextStyle.copyWith(
+                  fontSize: 14,
+                  fontWeight: medium,
+                ),
+              ),
             ),
           ),
         ),

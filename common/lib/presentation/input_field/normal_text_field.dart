@@ -7,7 +7,8 @@ class NormalTextField extends StatelessWidget {
   final String label;
   final String? errorMessage;
   final TextInputType keyboardType;
-  const NormalTextField({super.key,
+  const NormalTextField({
+    super.key,
     required this.controller,
     required this.label,
     required this.errorMessage,
@@ -21,25 +22,25 @@ class NormalTextField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RichText(
-          text : TextSpan(
-            text: label,
-            style: inputFieldLabelHeaderStyle,
-            children: [
+            text: TextSpan(
+                text: label,
+                style: inputFieldLabelHeaderStyle,
+                children: [
               TextSpan(
-                text: " *",
-                style: primaryTextStyle.copyWith(
-                  color: alertColor,
-                  fontSize: 12,
-                  fontWeight: semibold,
-                )
-              )
-            ]
-          )
+                  text: " *",
+                  style: primaryTextStyle.copyWith(
+                    color: alertColor,
+                    fontSize: 12,
+                    fontWeight: semibold,
+                  ))
+            ])),
+        const SizedBox(
+          height: labelAndFormSpacing,
         ),
-
-        const SizedBox(height: labelAndFormSpacing,),
-
         TextField(
+          style: primaryTextStyle.copyWith(
+            fontWeight: medium,
+          ),
           controller: controller,
           keyboardType: keyboardType,
           decoration: InputDecoration(

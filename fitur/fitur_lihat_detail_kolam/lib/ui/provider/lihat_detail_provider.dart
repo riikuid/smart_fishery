@@ -1,80 +1,98 @@
 import 'package:common/response/api_response.dart';
 import 'package:fitur_lihat_detail_kolam/domain/model/detail_kolam.dart';
 import 'package:fitur_lihat_detail_kolam/domain/repository/i_edit_kualitas_air_repository.dart';
+import 'package:fitur_lihat_detail_kolam/domain/repository/i_edit_panen_repository.dart';
 import 'package:fitur_lihat_detail_kolam/domain/repository/i_lihat_detail_kolam_repository.dart';
 import 'package:flutter/material.dart';
 
-class LihatDetailProvider extends ChangeNotifier{
+class LihatDetailProvider extends ChangeNotifier {
   final ILihatDetailKolamRepository getDetailKolamRepository;
   final IEditKualitasAirRepository editKualitasAirRepository;
+  final IEditPanenRepository editPanenRepository;
   final String idKolam;
 
-  LihatDetailProvider({
-    required this.getDetailKolamRepository,
-    required this.editKualitasAirRepository,
-    required this.idKolam
-  }) : detailResponse = getDetailKolamRepository.getKolam(idKolam);
+  LihatDetailProvider(
+      {required this.getDetailKolamRepository,
+      required this.editKualitasAirRepository,
+      required this.editPanenRepository,
+      required this.idKolam})
+      : detailResponse = getDetailKolamRepository.getKolam(idKolam);
 
   Future<ApiResponse> detailResponse;
 
-  void refreshData(){
+  void refreshData() {
     detailResponse = getDetailKolamRepository.getKolam(idKolam);
     notifyListeners();
   }
 
   Future<ApiResponse> get listOfPanen async {
     final apiResponse = await detailResponse;
-    if (apiResponse is ApiResponseSuccess<DetailKolam>){
+    if (apiResponse is ApiResponseSuccess<DetailKolam>) {
       return ApiResponseSuccess(
         data: apiResponse.data!.listPanen,
       );
-    }
-    else{
+    } else {
       return apiResponse;
     }
   }
-    Future<ApiResponse> get listOfKualitasAir async {
+
+  Future<ApiResponse> get listOfKualitasAir async {
     final apiResponse = await detailResponse;
-    if (apiResponse is ApiResponseSuccess<DetailKolam>){
+    if (apiResponse is ApiResponseSuccess<DetailKolam>) {
       return ApiResponseSuccess(
         data: apiResponse.data!.listKualitasAir,
       );
-    }
-    else{
+    } else {
       return apiResponse;
     }
   }
-    Future<ApiResponse> get listOfPenyakit async {
+
+  Future<ApiResponse> get listOfPenyakit async {
     final apiResponse = await detailResponse;
-    if (apiResponse is ApiResponseSuccess<DetailKolam>){
+    if (apiResponse is ApiResponseSuccess<DetailKolam>) {
       return ApiResponseSuccess(
         data: apiResponse.data!.listPenyakit,
       );
-    }
-    else{
+    } else {
       return apiResponse;
     }
   }
-    Future<ApiResponse> get listOfSampling async {
+
+  Future<ApiResponse> get listOfSampling async {
     final apiResponse = await detailResponse;
-    if (apiResponse is ApiResponseSuccess<DetailKolam>){
+    if (apiResponse is ApiResponseSuccess<DetailKolam>) {
       return ApiResponseSuccess(
         data: apiResponse.data!.listSampling,
       );
-    }
-    else{
+    } else {
       return apiResponse;
     }
   }
 
   ApiResponse _deleteKualitasAirResponse = ApiResponseFailed();
   void deleteKualitasAir(String idKualitasAir) async {
-    if (_deleteKualitasAirResponse is! ApiResponseLoading){
+    if (_deleteKualitasAirResponse is! ApiResponseLoading) {
       _deleteKualitasAirResponse = ApiResponseLoading();
 
       _deleteKualitasAirResponse = await editKualitasAirRepository
-          .deleteKualitasAir(idKualitasAir).then((value){
-        if (value is ApiResponseSuccess){
+          .deleteKualitasAir(idKualitasAir)
+          .then((value) {
+        if (value is ApiResponseSuccess) {
+          refreshData();
+        }
+        return value;
+      });
+    }
+  }
+
+  ApiResponse _deletePanenResponse = ApiResponseFailed();
+  void deletePanen(String idPanen) async {
+    if (_deletePanenResponse is! ApiResponseLoading) {
+      _deletePanenResponse = ApiResponseLoading();
+
+      _deletePanenResponse =
+          await editPanenRepository.deletePanen(idPanen).then((value) {
+        if (value is ApiResponseSuccess) {
           refreshData();
         }
         return value;

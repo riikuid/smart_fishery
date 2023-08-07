@@ -1,7 +1,6 @@
-
-class Panen{
-
-  final String tanggal;
+class Panen {
+  final String id;
+  final DateTime tanggal;
   final double totalBerat;
   final int sizeUdang;
   final String jenisPanen;
@@ -9,6 +8,7 @@ class Panen{
   final int totalHarga;
 
   Panen({
+    required this.id,
     required this.tanggal,
     required this.totalBerat,
     required this.sizeUdang,
@@ -17,14 +17,15 @@ class Panen{
     required this.totalHarga,
   });
 
-  factory Panen.fromJson(Map<String , dynamic> json){
+  factory Panen.fromJson(Map<String, dynamic> json) {
     // debugPrint("created_at ${json['created_at']}");
     // debugPrint("total_berat ${json['total_berat']}");
     // debugPrint("size_udang ${json['size_udang']}");
     // debugPrint('jenis_panen ${json['jenis_panen']}');
     // debugPrint('harga_perKilo ')
     return Panen(
-      tanggal: json['created_at'],
+      id: json['id'],
+      tanggal: DateTime.parse(json['created_at']),
       totalBerat: json['total_berat'].toDouble(),
       sizeUdang: json['size_udang'],
       jenisPanen: json['jenis_panen'],

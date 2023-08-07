@@ -1,7 +1,7 @@
 import 'package:common/themes.dart';
 import 'package:flutter/material.dart';
 
-class SubmitButton extends StatelessWidget{
+class SubmitButton extends StatelessWidget {
   final void Function()? onPressed;
   const SubmitButton({
     super.key,
@@ -17,25 +17,45 @@ class SubmitButton extends StatelessWidget{
         child: FilledButton(
           onPressed: onPressed,
           style: ButtonStyle(
-              padding: const MaterialStatePropertyAll(
-                  EdgeInsets.symmetric(vertical: 15),
-              ),
+            padding: const MaterialStatePropertyAll(
+              EdgeInsets.symmetric(vertical: 22),
+            ),
             shape: MaterialStatePropertyAll(
-              RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12)
-              ),
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             ),
             backgroundColor: MaterialStatePropertyAll(greenColor),
           ),
-          child: onPressed == null ?
-            const CircularProgressIndicator() :
-            Text(
-              "Submit",
-              style: primaryTextStyle.copyWith(
-                fontWeight: semibold,
-                color: whiteColor,
-              ),
-            ),
+          child: onPressed == null
+              ? Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(right: 10),
+                      height: 14,
+                      width: 14,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 2.5,
+                        color: whiteColor,
+                      ),
+                    ),
+                    Text(
+                      'Loading',
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 14,
+                        fontWeight: semibold,
+                        color: whiteColor,
+                      ),
+                    ),
+                  ],
+                )
+              : Text(
+                  "Submit",
+                  style: primaryTextStyle.copyWith(
+                    fontWeight: semibold,
+                    color: whiteColor,
+                  ),
+                ),
         ),
       ),
     );
