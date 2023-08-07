@@ -23,13 +23,10 @@ class InputPanenProvider extends ChangeNotifier {
 
   final beratController = TextEditingController();
   final sizeController = TextEditingController();
-  final jenisController = TextEditingController();
+
   final hargaPerKiloController = TextEditingController();
 
   ApiResponse submitResponse = ApiResponseFailed();
-
-  String? _jenisPanen;
-  String? get jenisPanen => _jenisPanen;
 
   int? _totalHarga;
   int? get totalHarga => _totalHarga;
@@ -39,6 +36,9 @@ class InputPanenProvider extends ChangeNotifier {
     double harga = double.parse(hargaPerKiloController.text);
     _totalHarga = (berat * harga).round();
   }
+
+  String? _jenisPanen;
+  String? get jenisPanen => _jenisPanen;
 
   void setJenisPanen(String? value) {
     if (value != null) {
@@ -111,7 +111,6 @@ class InputPanenProvider extends ChangeNotifier {
   void disposeResource() {
     beratController.dispose();
     sizeController.dispose();
-    jenisController.dispose();
     hargaPerKiloController.dispose();
   }
 }

@@ -1,21 +1,24 @@
-class Sampling{
-  final String tanggal;
+class Sampling {
+  final String id;
+  final DateTime tanggal;
   final double mbw;
   final double fr;
-  final int isHealthy;
+  final String kondisiUdang;
   Sampling({
+    required this.id,
     required this.tanggal,
     required this.mbw,
     required this.fr,
-    required this.isHealthy,
+    required this.kondisiUdang,
   });
 
-  factory Sampling.fromJson(Map<String , dynamic> json){
+  factory Sampling.fromJson(Map<String, dynamic> json) {
     return Sampling(
-      tanggal: json['created_at'],
+      id: json['id'],
+      tanggal: DateTime.parse(json['created_at']),
       mbw: json['mbw_sampling'].toDouble(),
       fr: json['fr_sampling'].toDouble(),
-      isHealthy: json['is_shirimp']
+      kondisiUdang: json['kondisi_udang'],
     );
   }
 }
