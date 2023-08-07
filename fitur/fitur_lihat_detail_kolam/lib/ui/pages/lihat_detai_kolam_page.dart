@@ -4,6 +4,7 @@ import 'package:common/themes.dart';
 import 'package:dependencies/provider.dart';
 import 'package:fitur_lihat_detail_kolam/data/repository/edit_kualitas_air_repository_impl.dart';
 import 'package:fitur_lihat_detail_kolam/data/repository/edit_panen_repository_impl.dart';
+import 'package:fitur_lihat_detail_kolam/data/repository/edit_sampling_repository_impl.dart';
 import 'package:fitur_lihat_detail_kolam/data/repository/lihat_detail_kolam_repository_impl.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/kualitas_air/kualitas_air_page.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/panen/panen_page.dart';
@@ -30,6 +31,7 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
         getDetailKolamRepository: LihatDetailKolamRepositoryImpl(),
         editKualitasAirRepository: EditKualitasAirRepositoryImpl(),
         editPanenRepository: EditPanenRepositoryImpl(),
+        editSamplingRepository: EditSamplingRepositoryImpl(),
         idKolam: kolam!.id,
       ),
       child: DefaultTabController(

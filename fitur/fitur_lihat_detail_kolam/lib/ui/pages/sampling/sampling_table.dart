@@ -154,14 +154,15 @@ class SamplingTable extends StatelessWidget {
               textAlign: TextAlign.center,
             )),
             TableCell(
-                //   child: InkWell(
-                // onTap: () {
-                //   provider.deleteKualitasAir(kualitasAir.id);
-                // },
-                child: Icon(
-              Icons.delete,
-              color: alertColor,
-              size: 20,
+                child: InkWell(
+              onTap: () {
+                provider.deleteSampling(sampling.id);
+              },
+              child: Icon(
+                Icons.delete,
+                color: alertColor,
+                size: 20,
+              ),
             )),
           ])
         ],

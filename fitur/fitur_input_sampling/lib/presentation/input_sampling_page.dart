@@ -165,6 +165,7 @@ class InputSamplingPage extends StatelessWidget {
                           iconSize: 24,
                         ),
                         dropdownStyleData: DropdownStyleData(
+                          maxHeight: 200,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(5),
                           ),
