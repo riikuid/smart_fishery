@@ -54,7 +54,7 @@ class LihatDetailProvider extends ChangeNotifier {
     final apiResponse = await detailResponse;
     if (apiResponse is ApiResponseSuccess<DetailKolam>) {
       return ApiResponseSuccess(
-        data: apiResponse.data!.listPenyakit,
+        data: apiResponse.data!.listPenyakitKolam,
       );
     } else {
       return apiResponse;

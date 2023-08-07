@@ -6,12 +6,12 @@ import 'package:common/domain/model/sampling.dart';
 class DetailKolam {
   List<KualitasAir> listKualitasAir;
   List<Panen> listPanen;
-  List<PenyakitKolam> listPenyakit;
+  List<PenyakitKolam> listPenyakitKolam;
   List<Sampling> listSampling;
   DetailKolam({
     required this.listKualitasAir,
     required this.listPanen,
-    required this.listPenyakit,
+    required this.listPenyakitKolam,
     required this.listSampling,
   });
 }
