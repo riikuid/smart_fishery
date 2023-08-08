@@ -9,13 +9,8 @@ class LihatDetailKolamApiClient {
   Future<Response> getDetailKolam({
     required String token,
     required String idKolam,
-  }){
-    return post(
-      Uri.parse(_baseLihatDetailKolamUrl),
-      headers: _bearerFormatter.format(token),
-      body: {
-        "id_kolam" : idKolam
-      }
-    );
+  }) {
+    return post(Uri.parse(_baseLihatDetailKolamUrl),
+        headers: _bearerFormatter.format(token), body: {"id_kolam": idKolam});
   }
 }

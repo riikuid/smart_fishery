@@ -4,6 +4,8 @@ import 'package:fitur_buat_kolam/presentation/page/buat_kolam_page.dart';
 import 'package:fitur_buat_tambak/presentation/page/buat_tambak_page.dart';
 import 'package:fitur_input_kualitas_air/presentation/input_kualitas_air_page.dart';
 import 'package:fitur_input_panen/presentation/input_panen_page.dart';
+import 'package:fitur_input_penyakit/presentation/input_penyakit_page.dart';
+import 'package:fitur_input_penyakit/presentation/pilih_penyakit_udang_page.dart';
 import 'package:fitur_input_sampling/presentation/input_sampling_page.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/lihat_detai_kolam_page.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -65,6 +67,7 @@ class MainApp extends StatelessWidget {
           '/monitoring': (context) => const MonitoringPage(),
           '/kolam': (context) => const KolamPage(),
           '/pilih-tambak': (context) => const PilihTambakPage(),
+          '/pilih-penyakit': (context) => const PilihPenyakitPage(),
           Routes.buatTambakRoute: (context) => const BuatTambakPage(),
           Routes.buatKolamRoute: (context) => const BuatKolamPage(),
           Routes.lihatDetailKolamRoute: (context) =>
@@ -73,6 +76,7 @@ class MainApp extends StatelessWidget {
               const InputKualitasAirPage(),
           Routes.inputPanenRoute: (context) => const InputPanenPage(),
           Routes.inputSamplingRoute: (context) => const InputSamplingPage(),
+          Routes.inputPenyakitRoute: (context) => const InputPenyakitPage(),
         },
       ),
     );

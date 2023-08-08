@@ -4,10 +4,12 @@ import 'package:common/themes.dart';
 import 'package:dependencies/provider.dart';
 import 'package:fitur_lihat_detail_kolam/data/repository/edit_kualitas_air_repository_impl.dart';
 import 'package:fitur_lihat_detail_kolam/data/repository/edit_panen_repository_impl.dart';
+import 'package:fitur_lihat_detail_kolam/data/repository/edit_penyakit_kolam_repository_impl.dart';
 import 'package:fitur_lihat_detail_kolam/data/repository/edit_sampling_repository_impl.dart';
 import 'package:fitur_lihat_detail_kolam/data/repository/lihat_detail_kolam_repository_impl.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/kualitas_air/kualitas_air_page.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/panen/panen_page.dart';
+import 'package:fitur_lihat_detail_kolam/ui/pages/penyakit_kolam/penyakit_kolam_page.dart';
 import 'package:fitur_lihat_detail_kolam/ui/pages/sampling/sampling_page.dart';
 import 'package:fitur_lihat_detail_kolam/ui/provider/lihat_detail_provider.dart';
 import 'package:flutter/material.dart';
@@ -32,10 +34,11 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
         editKualitasAirRepository: EditKualitasAirRepositoryImpl(),
         editPanenRepository: EditPanenRepositoryImpl(),
         editSamplingRepository: EditSamplingRepositoryImpl(),
+        editPenyakitKolamRepository: EditPenyakitKolamRepositoryImpl(),
         idKolam: kolam!.id,
       ),
       child: DefaultTabController(
-        length: 3,
+        length: 4,
         child: Builder(builder: (context) {
           final provider =
               Provider.of<LihatDetailProvider>(context, listen: false);
@@ -60,22 +63,22 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
                     text: "Kualitas Air",
                   ),
                   Tab(
-                    text: "Panen",
-                  ),
-                  Tab(
                     text: "Sampling",
                   ),
-                  // Tab(
-                  //   text: "Penyakit",
-                  // )
+                  Tab(
+                    text: "Penyakit",
+                  ),
+                  Tab(
+                    text: "Panen",
+                  ),
                 ],
               ),
             ),
             body: const TabBarView(children: [
               KualitasAirPage(),
-              PanenPage(),
               SamplingPage(),
-              // SizedBox(),
+              PenyakitKolamPage(),
+              PanenPage(),
             ]),
             floatingActionButton: Padding(
               padding: const EdgeInsets.all(24.0),
@@ -94,6 +97,9 @@ class _LihatDetailKolamPageState extends State<LihatDetailKolamPage> {
                       } else if (currentIndex ==
                           Routes.detailSamplingPageIndex) {
                         nextRoute = Routes.inputSamplingRoute;
+                      } else if (currentIndex ==
+                          Routes.detailPenyakitPageIndex) {
+                        nextRoute = Routes.inputPenyakitRoute;
                       }
 
                       if (nextRoute != null) {

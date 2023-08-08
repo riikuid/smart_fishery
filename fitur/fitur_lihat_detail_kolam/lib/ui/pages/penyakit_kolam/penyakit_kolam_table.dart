@@ -24,7 +24,7 @@ class PenyakitKolamTable extends StatelessWidget {
             _header,
           ],
           columnWidths: const {
-            0: FlexColumnWidth(2),
+            0: FlexColumnWidth(3),
             1: FlexColumnWidth(1),
           },
         ),
@@ -37,10 +37,10 @@ class PenyakitKolamTable extends StatelessWidget {
     children: [
       TableCell(
           child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 7.0),
+        padding: const EdgeInsets.symmetric(vertical: 7.0, horizontal: 10),
         child: Text(
           "Nama Penyakit",
-          textAlign: TextAlign.center,
+          textAlign: TextAlign.left,
           style: titleTableTextStyle.copyWith(
             fontSize: 11,
           ),
@@ -98,31 +98,34 @@ class PenyakitKolamTable extends StatelessWidget {
         children: [
           TableRow(children: [
             TableCell(
-                child: Text(
-              penyakitKolam.namaPenyakit,
-              style: primaryTextStyle.copyWith(
-                color: greenColor,
-                letterSpacing: 1.5,
-                fontSize: 14,
-                fontWeight: semibold,
+                child: Padding(
+              padding: const EdgeInsets.only(left: 10.0),
+              child: Text(
+                penyakitKolam.namaPenyakit,
+                style: primaryTextStyle.copyWith(
+                  color: greenColor,
+                  letterSpacing: 1.5,
+                  fontSize: 14,
+                  fontWeight: semibold,
+                ),
+                textAlign: TextAlign.left,
               ),
-              textAlign: TextAlign.center,
             )),
             TableCell(
-                //   child: InkWell(
-                // onTap: () {
-                //   provider.deleteSampling(sampling.id);
-                // },
-                child: Icon(
-              Icons.delete,
-              color: alertColor,
-              size: 20,
-              // ),
+                child: InkWell(
+              onTap: () {
+                provider.deletePenyakitKolam(penyakitKolam.id);
+              },
+              child: Icon(
+                Icons.delete,
+                color: alertColor,
+                size: 20,
+              ),
             )),
           ])
         ],
         columnWidths: const {
-          0: FlexColumnWidth(2),
+          0: FlexColumnWidth(3),
           1: FlexColumnWidth(),
         },
       ));

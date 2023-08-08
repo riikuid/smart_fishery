@@ -2,6 +2,7 @@ import 'package:common/response/api_response.dart';
 import 'package:fitur_lihat_detail_kolam/domain/model/detail_kolam.dart';
 import 'package:fitur_lihat_detail_kolam/domain/repository/i_edit_kualitas_air_repository.dart';
 import 'package:fitur_lihat_detail_kolam/domain/repository/i_edit_panen_repository.dart';
+import 'package:fitur_lihat_detail_kolam/domain/repository/i_edit_penyakit_kolam_repository.dart';
 import 'package:fitur_lihat_detail_kolam/domain/repository/i_edit_sampling_repository.dart';
 import 'package:fitur_lihat_detail_kolam/domain/repository/i_lihat_detail_kolam_repository.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class LihatDetailProvider extends ChangeNotifier {
   final IEditKualitasAirRepository editKualitasAirRepository;
   final IEditPanenRepository editPanenRepository;
   final IEditSamplingRepository editSamplingRepository;
+  final IEditPenyakitKolamRepository editPenyakitKolamRepository;
   final String idKolam;
 
   LihatDetailProvider(
@@ -18,6 +20,7 @@ class LihatDetailProvider extends ChangeNotifier {
       required this.editKualitasAirRepository,
       required this.editPanenRepository,
       required this.editSamplingRepository,
+      required this.editPenyakitKolamRepository,
       required this.idKolam})
       : detailResponse = getDetailKolamRepository.getKolam(idKolam);
 
@@ -50,7 +53,7 @@ class LihatDetailProvider extends ChangeNotifier {
     }
   }
 
-  Future<ApiResponse> get listOfPenyakit async {
+  Future<ApiResponse> get listOfPenyakitKolam async {
     final apiResponse = await detailResponse;
     if (apiResponse is ApiResponseSuccess<DetailKolam>) {
       return ApiResponseSuccess(
@@ -110,6 +113,22 @@ class LihatDetailProvider extends ChangeNotifier {
 
       _deleteSamplingResponse =
           await editSamplingRepository.deleteSampling(idSampling).then((value) {
+        if (value is ApiResponseSuccess) {
+          refreshData();
+        }
+        return value;
+      });
+    }
+  }
+
+  ApiResponse _deletePenyakitKolamResponse = ApiResponseFailed();
+  void deletePenyakitKolam(String idPenyakitKolam) async {
+    if (_deletePenyakitKolamResponse is! ApiResponseLoading) {
+      _deletePenyakitKolamResponse = ApiResponseLoading();
+
+      _deletePenyakitKolamResponse = await editPenyakitKolamRepository
+          .deletePenyakitKolam(idPenyakitKolam)
+          .then((value) {
         if (value is ApiResponseSuccess) {
           refreshData();
         }

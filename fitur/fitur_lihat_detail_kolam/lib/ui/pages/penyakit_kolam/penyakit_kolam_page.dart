@@ -14,7 +14,7 @@ class PenyakitKolamPage extends StatelessWidget {
           buildBody: (listPenyakitKolam) {
             return PenyakitKolamTable(listPenyakitKolam: listPenyakitKolam);
           },
-          futureResponse: provider.listOfSampling);
+          futureResponse: provider.listOfPenyakitKolam);
     });
   }
 }

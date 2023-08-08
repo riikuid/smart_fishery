@@ -1,4 +1,4 @@
-# fitur_input_penyakit
+# fitur_input_sampling
 
 A new Flutter module project.
 
