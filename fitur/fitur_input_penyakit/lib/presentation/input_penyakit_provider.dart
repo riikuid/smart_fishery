@@ -50,8 +50,8 @@ class InputPenyakitProvider extends ChangeNotifier {
       submitResponse = ApiResponseLoading();
       notifyListeners();
 
-      namaPenyakitError =
-          nullValidator.validate(namaPenyakit, fieldName: "Nama Penyakit");
+      namaPenyakitError = emptyValidator.validate(namaPenyakitController.text,
+          fieldName: "Nama Penyakit");
       notifyListeners();
 
       if (noError) {
@@ -59,7 +59,7 @@ class InputPenyakitProvider extends ChangeNotifier {
             data: PenyakitKolam(
               id: "",
               tanggal: DateTime.now(),
-              namaPenyakit: namaPenyakit!,
+              namaPenyakit: namaPenyakitController.text,
             ),
             idKolam: _idKolam);
         debugPrint(

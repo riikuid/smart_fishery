@@ -29,48 +29,6 @@ class _BelajarPageState extends State<BelajarPage> {
       setState(() {});
     }
 
-    Widget searchbar() {
-      return Container(
-        margin: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-        padding: const EdgeInsets.symmetric(
-          vertical: 6.0,
-          horizontal: 12.0,
-        ),
-        decoration: BoxDecoration(
-          color: Color(0xFFF1F2F6),
-          borderRadius: const BorderRadius.all(
-            Radius.circular(10.0),
-          ),
-        ),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.search,
-                color: Colors.grey[500],
-              ),
-            ),
-            Expanded(
-              child: TextFormField(
-                initialValue: null,
-                decoration: InputDecoration.collapsed(
-                  filled: true,
-                  fillColor: Colors.transparent,
-                  hintText: "What are you craving?",
-                  hintStyle: primaryTextStyle.copyWith(
-                    color: Colors.grey[500],
-                  ),
-                  hoverColor: Colors.transparent,
-                ),
-                onFieldSubmitted: (value) {},
-              ),
-            ),
-          ],
-        ),
-      );
-    }
-
     return Scaffold(
       // backgroundColor: Color(0xFFECE1E1),
       backgroundColor: whiteColor,
@@ -94,7 +52,6 @@ class _BelajarPageState extends State<BelajarPage> {
       ),
       body: Column(
         children: [
-          searchbar(),
           FutureBuilder(
             future: Provider.of<BelajarProvider>(context, listen: false)
                 .getListBudidayaBelajars(user.token),

@@ -17,82 +17,84 @@ class BelajarCard extends StatelessWidget {
       }
     }
 
-    return InkWell(
-      onTap: () {
-        launchYoutube(belajar.linkYt);
-      },
-      child: Container(
-        padding: EdgeInsets.only(bottom: 15),
-        margin: const EdgeInsets.symmetric(
-          horizontal: 20,
-          vertical: 10,
-        ),
-        decoration: BoxDecoration(
-          color: whiteColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(12.0),
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+        vertical: 10,
+      ),
+      child: InkWell(
+        onTap: () {
+          launchYoutube(belajar.linkYt);
+        },
+        child: Container(
+          padding: EdgeInsets.only(bottom: 15),
+          decoration: BoxDecoration(
+            color: whiteColor,
+            borderRadius: BorderRadius.all(
+              Radius.circular(12.0),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Color(0x19000000),
+                blurRadius: 6,
+                offset: Offset(0, 1),
+              ),
+            ],
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Color(0x19000000),
-              blurRadius: 6,
-              offset: Offset(0, 1),
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Container(
-              height: MediaQuery.of(context).size.height * 0.17,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: NetworkImage(
-                    belajar.thumbnailYt,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Container(
+                height: MediaQuery.of(context).size.height * 0.17,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      belajar.thumbnailYt,
+                    ),
+                    fit: BoxFit.cover,
                   ),
-                  fit: BoxFit.cover,
-                ),
-                color: Colors.grey,
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(12),
-                  topRight: Radius.circular(12),
+                  color: Colors.grey,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(12),
+                    topRight: Radius.circular(12),
+                  ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    belajar.title,
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: bold,
-                      fontSize: 16,
-                    ),
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                  Text(
-                    belajar.description,
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: medium,
-                      fontSize: 12,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  SizedBox(
-                    height: 3,
-                  ),
-                ],
+              SizedBox(
+                height: 10,
               ),
-            ),
-          ],
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      belajar.title,
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: bold,
+                        fontSize: 16,
+                      ),
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                    Text(
+                      belajar.description,
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: medium,
+                        fontSize: 12,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(
+                      height: 3,
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

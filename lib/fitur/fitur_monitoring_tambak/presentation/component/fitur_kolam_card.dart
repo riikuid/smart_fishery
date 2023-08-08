@@ -1,3 +1,4 @@
+import 'package:common/routes/argument/input_kolam_argument.dart';
 import 'package:common/routes/routes.dart';
 import 'package:dependencies/intl.dart';
 import 'package:dependencies/provider.dart';
@@ -121,6 +122,28 @@ class FiturKolamCard extends StatelessWidget {
                         fontWeight: semibold,
                       ),
                     ),
+                  ),
+                  InkWell(
+                    onTap: () async {
+                      final result = await Navigator.of(context).pushNamed(
+                        Routes.buatKolamRoute,
+                        arguments: InputKolamArgument(
+                            tambak: provider.choosenTambak!,
+                            initialKolam: kolam),
+                      );
+
+                      if (result != null) {
+                        provider.onRefreshKolam();
+                      }
+                    },
+                    child: const Icon(
+                      Icons.edit,
+                      // color: alertColor,
+                      size: 18,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 5,
                   ),
                   InkWell(
                     onTap: () async {

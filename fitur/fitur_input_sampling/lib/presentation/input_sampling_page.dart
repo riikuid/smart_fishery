@@ -4,6 +4,7 @@ import 'package:common/presentation/input_field/submit_button.dart';
 import 'package:common/response/api_response.dart';
 import 'package:common/themes.dart';
 import 'package:dependencies/dropdown_button_2.dart';
+import 'package:dependencies/intl.dart';
 import 'package:dependencies/provider.dart';
 import 'package:fitur_input_sampling/data/repository/input_sampling_repository_impl.dart';
 import 'package:fitur_input_sampling/presentation/input_sampling_provider.dart';
@@ -62,6 +63,53 @@ class InputSamplingPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: Column(
                 children: [
+                  Row(
+                    children: [
+                      Text(
+                        "Tanggal",
+                        style: primaryTextStyle.copyWith(
+                          fontSize: 12,
+                          fontWeight: semibold,
+                        ),
+                      ),
+                      Text(
+                        "",
+                        style: primaryTextStyle.copyWith(
+                          color: alertColor,
+                          fontSize: 12,
+                          fontWeight: semibold,
+                        ),
+                      )
+                    ],
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  TextFormField(
+                    readOnly: true,
+                    style: primaryTextStyle.copyWith(
+                      fontSize: 12,
+                    ),
+                    decoration: InputDecoration(
+                      hintText: DateFormat('dd MMMM yyyy', "id_ID")
+                          .format(DateTime.now()),
+                      hintStyle: secondaryTextStyle.copyWith(
+                        fontSize: 14,
+                      ),
+                      enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Colors.blueGrey.withOpacity(0.5),
+                        ),
+                      ),
+                      focusedBorder: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          width: 1,
+                          color: Colors.blueGrey.withOpacity(0.5),
+                        ),
+                      ),
+                    ),
+                  ),
                   const SizedBox(
                     height: verticalFormSpacingHeight,
                   ),
@@ -107,7 +155,7 @@ class InputSamplingPage extends StatelessWidget {
                           // Add Horizontal padding using menuItemStyleData.padding so it matches
                           // the menu padding when button's width is not specified.
                           contentPadding:
-                              const EdgeInsets.symmetric(vertical: 16),
+                              const EdgeInsets.symmetric(vertical: 18),
                           enabledBorder: OutlineInputBorder(
                             borderSide: BorderSide(
                               width: 1,

@@ -137,16 +137,22 @@ class _PilihTambakPageState extends State<PilihTambakPage> {
         ),
       ),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Icon(
               Icons.search,
               color: Colors.grey[500],
+              size: 18,
             ),
           ),
           Expanded(
             child: TextField(
+              style: primaryTextStyle.copyWith(
+                fontSize: 14,
+              ),
               onChanged: (value) {
                 setState(() {
                   searchKeyword = value;
@@ -158,6 +164,7 @@ class _PilihTambakPageState extends State<PilihTambakPage> {
                 hintText: "Cari nama tambak anda",
                 hintStyle: primaryTextStyle.copyWith(
                   color: Colors.grey[500],
+                  fontSize: 14,
                 ),
                 hoverColor: Colors.transparent,
               ),

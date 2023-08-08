@@ -75,6 +75,56 @@ class _InputPanenPageState extends State<InputPanenPage> {
                   children: [
                     Row(
                       children: [
+                        Text(
+                          "Tanggal",
+                          style: primaryTextStyle.copyWith(
+                            fontSize: 12,
+                            fontWeight: semibold,
+                          ),
+                        ),
+                        Text(
+                          "",
+                          style: primaryTextStyle.copyWith(
+                            color: alertColor,
+                            fontSize: 12,
+                            fontWeight: semibold,
+                          ),
+                        )
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    TextFormField(
+                      readOnly: true,
+                      style: primaryTextStyle.copyWith(
+                        fontSize: 12,
+                      ),
+                      decoration: InputDecoration(
+                        hintText: DateFormat('dd MMMM yyyy', "id_ID")
+                            .format(DateTime.now()),
+                        hintStyle: secondaryTextStyle.copyWith(
+                          fontSize: 14,
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.blueGrey.withOpacity(0.5),
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(
+                            width: 1,
+                            color: Colors.blueGrey.withOpacity(0.5),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: verticalFormSpacingHeight,
+                    ),
+                    Row(
+                      children: [
                         Expanded(
                           child: NormalTextField(
                               controller: provider.beratController,
@@ -121,7 +171,7 @@ class _InputPanenPageState extends State<InputPanenPage> {
                             // Add Horizontal padding using menuItemStyleData.padding so it matches
                             // the menu padding when button's width is not specified.
                             contentPadding:
-                                const EdgeInsets.symmetric(vertical: 16),
+                                const EdgeInsets.symmetric(vertical: 18),
                             enabledBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 width: 1,

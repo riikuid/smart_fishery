@@ -35,6 +35,9 @@ dependencies:
   url_launcher: ^6.1.12
   confirm_dialog: ^1.0.2
   flutter_easyloading: ^3.0.5
+  flutter_launcher_icons: ^0.13.1
+
+  
 
 dev_dependencies:
   flutter_test:
@@ -45,3 +48,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon_logo.png"
+  windows:
+    generate: true
+    image_path: "assets/icon_logo.png"
+    icon_size: 48

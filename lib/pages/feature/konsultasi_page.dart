@@ -207,31 +207,36 @@ class KonsultasiPage extends StatelessWidget {
           width: double.infinity,
           color: Color(0xFFFDFAFA),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Image.asset(
                 'assets/image_whatsapp.png',
+                height: 50,
               ),
               SizedBox(
                 width: 15,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'Contact Live Chat',
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: bold,
-                      fontSize: 18,
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Contact Live Chat',
+                      maxLines: 2,
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: bold,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                  Text(
-                    'Siap menerima saran anda',
-                    style: primaryTextStyle.copyWith(
-                      fontWeight: medium,
-                      fontSize: 18,
+                    Text(
+                      'Siap menerima saran anda',
+                      style: primaryTextStyle.copyWith(
+                        fontWeight: medium,
+                        fontSize: 16,
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               )
             ],
           ),

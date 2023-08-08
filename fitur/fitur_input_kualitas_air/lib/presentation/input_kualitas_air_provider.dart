@@ -5,15 +5,15 @@ import 'package:common/response/api_response.dart';
 import 'package:fitur_input_kualitas_air/domain/repository/i_input_kualitas_air_repository.dart';
 import 'package:flutter/material.dart';
 
-class InputKualitasAirProvider extends ChangeNotifier{
-  
+class InputKualitasAirProvider extends ChangeNotifier {
   final IInputKualitasAirRepository _repository;
   final String _idKolam;
   InputKualitasAirProvider({
     required IInputKualitasAirRepository repository,
     required String idKolam,
-  }) : _repository = repository , _idKolam = idKolam;
-  
+  })  : _repository = repository,
+        _idKolam = idKolam;
+
   String _choosenDate = "";
   String get choosenDate => _choosenDate;
   void setChoosenDate(String value) {
@@ -23,7 +23,7 @@ class InputKualitasAirProvider extends ChangeNotifier{
 
   String _choosenTime = "";
   String get choosenTime => _choosenTime;
-  void setChoosenTime(String value){
+  void setChoosenTime(String value) {
     _choosenTime = value;
     notifyListeners();
   }
@@ -49,7 +49,7 @@ class InputKualitasAirProvider extends ChangeNotifier{
 
   void submitData() async {
     debugPrint("Masuk submit data");
-    if (submitResponse is! ApiResponseLoading){
+    if (submitResponse is! ApiResponseLoading) {
       debugPrint("Masuk if-nya submit");
       submitResponse = ApiResponseLoading();
       notifyListeners();
@@ -78,31 +78,31 @@ class InputKualitasAirProvider extends ChangeNotifier{
               sal: double.parse(salController.text),
               ph: double.parse(phController.text),
               kecerahan: double.parse(kecerahanController.text),
+              updatedAt: DateTime.now(),
             ),
-            idKolam: _idKolam
-        );
-        debugPrint("Masuk sini, submitresponse sukses : ${submitResponse is ApiResponseFailed ? (submitResponse as ApiResponseFailed).errorMessage : "ya"}");
+            idKolam: _idKolam);
+        debugPrint(
+            "Masuk sini, submitresponse sukses : ${submitResponse is ApiResponseFailed ? (submitResponse as ApiResponseFailed).errorMessage : "ya"}");
         notifyListeners();
-      }
-      else {
+      } else {
         submitResponse = ApiResponseFailed();
         notifyListeners();
       }
     }
   }
-  
+
   bool get noError {
     return choosenDateError == null &&
-      choosenTimeError == null &&
-      suhuError == null &&
-      doError == null &&
-      salError == null &&
-      phError == null &&
-      kecerahanError == null;
+        choosenTimeError == null &&
+        suhuError == null &&
+        doError == null &&
+        salError == null &&
+        phError == null &&
+        kecerahanError == null;
   }
 
   @override
-  void dispose(){
+  void dispose() {
     doController.dispose();
     salController.dispose();
     phController.dispose();
@@ -110,5 +110,4 @@ class InputKualitasAirProvider extends ChangeNotifier{
     suhuController.dispose();
     super.dispose();
   }
-
 }

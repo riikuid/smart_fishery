@@ -59,13 +59,17 @@ class PilihPenyakitPageState extends State<PilihPenyakitPage> {
                         final apiResponse = snapshot.data!;
 
                         if (apiResponse is ApiResponseSuccess) {
-                          final List<PenyakitUdang> listOfPenyakit =
-                              (apiResponse.data as List<PenyakitUdang>)
-                                  .where((penyakitUdang) => penyakitUdang
-                                      .namaPanjang
+                          final List<
+                              PenyakitUdang> listOfPenyakit = (apiResponse.data
+                                  as List<PenyakitUdang>)
+                              .where((penyakitUdang) =>
+                                  penyakitUdang.namaPanjang
+                                      .toLowerCase()
+                                      .contains(searchKeyword.toLowerCase()) ||
+                                  penyakitUdang.namaPendek
                                       .toLowerCase()
                                       .contains(searchKeyword.toLowerCase()))
-                                  .toList();
+                              .toList();
 
                           return listOfPenyakit.isNotEmpty
                               ? ListView.separated(

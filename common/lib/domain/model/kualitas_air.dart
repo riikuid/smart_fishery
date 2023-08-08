@@ -7,6 +7,7 @@ class KualitasAir {
   final double sal;
   final double ph;
   final double kecerahan;
+  final DateTime updatedAt;
   KualitasAir({
     required this.id,
     required this.tanggalPengukuran,
@@ -16,9 +17,10 @@ class KualitasAir {
     required this.sal,
     required this.ph,
     required this.kecerahan,
+    required this.updatedAt,
   });
 
-  static KualitasAir? fromJson(dynamic json){
+  static KualitasAir? fromJson(dynamic json) {
     if (json != null) {
       return KualitasAir(
         id: json['id'],
@@ -29,9 +31,9 @@ class KualitasAir {
         sal: json['sal'].toDouble(),
         ph: json['ph'].toDouble(),
         kecerahan: json['kecerahan'].toDouble(),
+        updatedAt: DateTime.parse(json['updated_at']),
       );
-    }
-    else {
+    } else {
       return null;
     }
   }

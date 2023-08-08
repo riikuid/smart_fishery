@@ -27,7 +27,8 @@ class KualitasAirTable extends StatelessWidget {
             1: FlexColumnWidth(),
             2: FlexColumnWidth(),
             3: FlexColumnWidth(),
-            4: FlexColumnWidth(),
+            4: FlexColumnWidth(1.5),
+            5: FlexColumnWidth(0.5),
           },
         ),
         ...tableBody,
@@ -217,7 +218,8 @@ class KualitasAirTable extends StatelessWidget {
           1: FlexColumnWidth(),
           2: FlexColumnWidth(),
           3: FlexColumnWidth(),
-          4: FlexColumnWidth(),
+          4: FlexColumnWidth(1.3),
+          5: FlexColumnWidth(0.7),
         },
       ));
 

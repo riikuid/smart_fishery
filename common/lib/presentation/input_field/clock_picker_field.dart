@@ -20,33 +20,45 @@ class ClockPickerField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         RichText(
-            text : TextSpan(
-              text: "Waktu Pengecekan",
-              style: inputFieldLabelHeaderStyle,
-              children: [
-                TextSpan(
+            text: TextSpan(
+                text: "Waktu Pengecekan",
+                style: inputFieldLabelHeaderStyle,
+                children: [
+              TextSpan(
                   text: " *",
                   style: primaryTextStyle.copyWith(
                     color: alertColor,
                     fontSize: 12,
                     fontWeight: semibold,
-                  )
-                )
-              ]
-            )
+                  ))
+            ])),
+        const SizedBox(
+          height: labelAndFormSpacing,
         ),
-
-        const SizedBox(height: labelAndFormSpacing,),
-
         SizedBox(
           width: double.infinity,
           child: GestureDetector(
             onTap: () async {
               final timePicked = await showTimePicker(
                 context: context,
-                initialTime: TimeOfDay.now()
+                initialTime: TimeOfDay.now(),
+                builder: (context, child) {
+                  return Theme(
+                    data: Theme.of(context).copyWith(
+                      colorScheme: ColorScheme.light(
+                        primary: greenColor, // <-- SEE HERE
+                      ),
+                      textButtonTheme: TextButtonThemeData(
+                        style: TextButton.styleFrom(
+                          primary: Colors.red, // button text color
+                        ),
+                      ),
+                    ),
+                    child: child!,
+                  );
+                },
               );
-              if (timePicked != null && context.mounted){
+              if (timePicked != null && context.mounted) {
                 onValueChange(timePicked.format(context));
               }
             },

@@ -9,6 +9,7 @@ import 'package:dependencies/provider.dart';
 import 'package:fitur_input_penyakit/data/repository/input_penyakit_repository_impl.dart';
 import 'package:fitur_input_penyakit/presentation/input_penyakit_provider.dart';
 import 'package:fitur_input_penyakit/presentation/pilih_penyakit_udang_page.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class InputPenyakitPage extends StatelessWidget {
@@ -80,7 +81,7 @@ class InputPenyakitPage extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            " *",
+                            "",
                             style: primaryTextStyle.copyWith(
                               color: alertColor,
                               fontSize: 12,
@@ -136,31 +137,52 @@ class InputPenyakitPage extends StatelessWidget {
                       const SizedBox(
                         height: labelAndFormSpacing,
                       ),
-                      TextFormField(
-                        readOnly: true,
-                        style: primaryTextStyle.copyWith(
-                          fontSize: 12,
-                        ),
+                      InkWell(
                         onTap: () {
                           Navigator.pushNamed(context, "/pilih-penyakit",
                               arguments: provider);
                         },
-                        decoration: InputDecoration(
-                          hintText: DateFormat('dd MMMM yyyy', "id_ID")
-                              .format(DateTime.now()),
-                          hintStyle: secondaryTextStyle.copyWith(
-                            fontSize: 14,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: Colors.blueGrey.withOpacity(0.5),
+                        child: InputDecorator(
+                          isEmpty: provider.choosenPenyakitUdang == null,
+                          child: Visibility(
+                            visible: provider.choosenPenyakitUdang != null,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  provider.choosenPenyakitUdang?.namaPendek ??
+                                      "",
+                                  style: primaryTextStyle.copyWith(),
+                                ),
+                                Text(
+                                  provider.choosenPenyakitUdang?.namaPanjang ??
+                                      "",
+                                  style: primaryTextStyle.copyWith(
+                                    fontWeight: semibold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              width: 1,
-                              color: Colors.blueGrey.withOpacity(0.5),
+                          decoration: InputDecoration(
+                            hintText: "Pilih Nama Penyakit",
+                            alignLabelWithHint: false,
+                            hintStyle: secondaryTextStyle.copyWith(
+                              fontSize: 14,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 1,
+                                color: Colors.blueGrey.withOpacity(0.5),
+                              ),
+                            ),
+                            errorBorder: errorInputFieldBorder,
+                            errorText: provider.namaPenyakitError,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                width: 1,
+                                color: Colors.blueGrey.withOpacity(0.5),
+                              ),
                             ),
                           ),
                         ),

@@ -62,6 +62,21 @@ class DateForm extends StatelessWidget {
               initialDate: DateTime.now(),
               firstDate: DateTime(2020),
               lastDate: DateTime(2030),
+              builder: (context, child) {
+                return Theme(
+                  data: Theme.of(context).copyWith(
+                    colorScheme: ColorScheme.light(
+                      primary: greenColor, // <-- SEE HERE
+                    ),
+                    textButtonTheme: TextButtonThemeData(
+                      style: TextButton.styleFrom(
+                        primary: Colors.red, // button text color
+                      ),
+                    ),
+                  ),
+                  child: child!,
+                );
+              },
             ).then((selectedDate) {
               if (selectedDate != null) {
                 formController.text =
@@ -77,6 +92,9 @@ class DateForm extends StatelessWidget {
           },
           decoration: InputDecoration(
             hintText: "Pilih Tanggal",
+            hintStyle: primaryTextStyle.copyWith(
+              fontSize: 14,
+            ),
             enabledBorder: OutlineInputBorder(
               borderSide: BorderSide(
                 width: 1,

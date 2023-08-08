@@ -122,7 +122,7 @@ class SamplingTable extends StatelessWidget {
           TableRow(children: [
             TableCell(
                 child: Text(
-              "${sampling.mbw.toStringAsFixed(1)} g",
+              sampling.mbw.toStringAsFixed(1),
               style: primaryTextStyle.copyWith(
                 color: greenColor,
                 letterSpacing: 1.5,
