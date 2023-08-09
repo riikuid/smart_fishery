@@ -22,121 +22,115 @@ class MonitoringPage extends StatelessWidget {
         create: (context) => MonitoringProvider(
           repository: MonitoringRepositoryImpl(),
         ),
-        child: Consumer<MonitoringProvider>(
-          builder: (context , provider , child) {
-            if (provider.deleteKolamResponse is ApiResponseLoading){
-              context.loaderOverlay.show();
-            }
-            else {
-              context.loaderOverlay.hide();
-            }
-            return Scaffold(
-              backgroundColor: backgroundColor2,
-              floatingActionButton: FloatingActionButton(
+        child:
+            Consumer<MonitoringProvider>(builder: (context, provider, child) {
+          if (provider.deleteKolamResponse is ApiResponseLoading) {
+            context.loaderOverlay.show();
+          } else {
+            context.loaderOverlay.hide();
+          }
+          return Scaffold(
+            backgroundColor: backgroundColor2,
+            floatingActionButton: Visibility(
+              visible: provider.choosenTambak != null,
+              child: FloatingActionButton(
                 backgroundColor: greenColor,
                 onPressed: () async {
-                  final result = await Navigator.of(context)
-                      .pushNamed(
-                        Routes.buatKolamRoute,
-                        arguments: InputKolamArgument(
-                          tambak: provider.choosenTambak!,
-                        ),
-                      );
-                  if (result != null){
+                  final result = await Navigator.of(context).pushNamed(
+                    Routes.buatKolamRoute,
+                    arguments: InputKolamArgument(
+                      tambak: provider.choosenTambak!,
+                    ),
+                  );
+                  if (result != null) {
                     provider.onRefreshKolam();
                   }
                 },
                 child: const Icon(Icons.add),
               ),
-              appBar: AppBar(
-                elevation: 0,
-                centerTitle: true,
-                title: Text(
-                  "Monitoring",
-                  style: primaryTextStyle.copyWith(
-                    fontWeight: FontWeight.bold,
-                    color: whiteColor,
-                  ),
+            ),
+            appBar: AppBar(
+              elevation: 0,
+              centerTitle: true,
+              title: Text(
+                "Monitoring",
+                style: primaryTextStyle.copyWith(
+                  fontWeight: FontWeight.bold,
+                  color: whiteColor,
                 ),
-                backgroundColor: const Color(0xFF1B9C85),
-                leading: const BackButton(),
               ),
-              body : FutureBuilder(
+              backgroundColor: const Color(0xFF1B9C85),
+              leading: const BackButton(),
+            ),
+            body: FutureBuilder(
                 future: provider.tambakResponse,
-                builder: (context , snapshot) {
+                builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     final apiResponse = snapshot.data!;
                     if (apiResponse is ApiResponseSuccess) {
                       return Column(
-                          children: [
-                            SearchTambakCard(
-                              choosenTambak: provider.choosenTambak,
-                              listOfTambak: apiResponse.data,
-                            ),
-                            Expanded(
-                              child: FutureBuilder(
+                        children: [
+                          SearchTambakCard(
+                            choosenTambak: provider.choosenTambak,
+                            listOfTambak: apiResponse.data,
+                          ),
+                          Expanded(
+                            child: FutureBuilder(
                                 future: provider.kolamResponse,
-                                builder: (context , snapshot) {
+                                builder: (context, snapshot) {
                                   if (snapshot.hasData) {
                                     final apiResponse = snapshot.data!;
                                     if (apiResponse is ApiResponseSuccess) {
-                                      final List<Kolam> listKolam = apiResponse.data;
+                                      final List<Kolam> listKolam =
+                                          apiResponse.data;
                                       if (listKolam.isNotEmpty) {
                                         return ListViewKolam(
                                           listKolam: listKolam,
                                         );
-                                      }
-                                      else{
+                                      } else {
                                         return const Center(
                                           child: Text("Tidak ada data"),
                                         );
                                       }
-                                    }
-                                    else if (apiResponse is ApiResponseFailed) {
+                                    } else if (apiResponse
+                                        is ApiResponseFailed) {
                                       return Center(
                                         child: ErrorWarning(
                                           onRefresh: provider.onRefreshKolam,
-                                          errorMessage: apiResponse.errorMessage,
+                                          errorMessage:
+                                              apiResponse.errorMessage,
                                         ),
                                       );
-                                    }
-                                    else {
+                                    } else {
                                       throw Exception("Enggak Mungkin!! T_T");
                                     }
-                                  }
-                                  else {
+                                  } else {
                                     return const Center(
                                       child: CircularProgressIndicator(),
                                     );
                                   }
-                                }
-                              ),
-                            )
-                          ],
-                        );
-                    }
-                    else if (apiResponse is ApiResponseFailed){
+                                }),
+                          )
+                        ],
+                      );
+                    } else if (apiResponse is ApiResponseFailed) {
                       return Center(
                         child: ErrorWarning(
                           onRefresh: provider.onRefreshTambak,
                           errorMessage: apiResponse.errorMessage,
                         ),
                       );
-                    }
-                    else {
+                    } else {
                       throw Exception("Unknown Exception Occurs");
                     }
-                  }
-                  else {
+                  } else {
                     return const Center(
-                        child: CircularProgressIndicator(),
+                      child: CircularProgressIndicator(),
                     );
                   }
-                }
-              ),
-            );
-          }
-        ),
+                }),
+          );
+        }),
       ),
     );
   }

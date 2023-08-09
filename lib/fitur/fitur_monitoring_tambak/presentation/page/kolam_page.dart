@@ -22,11 +22,11 @@ class KolamPage extends StatelessWidget {
         create: (context) => MonitoringProvider(
           repository: MonitoringRepositoryImpl(),
         ),
-        child: Consumer<MonitoringProvider>(builder: (context, provider, child) {
-          if (provider.deleteKolamResponse is ApiResponseLoading){
+        child:
+            Consumer<MonitoringProvider>(builder: (context, provider, child) {
+          if (provider.deleteKolamResponse is ApiResponseLoading) {
             context.loaderOverlay.show();
-          }
-          else {
+          } else {
             context.loaderOverlay.hide();
           }
           return Scaffold(
@@ -44,26 +44,27 @@ class KolamPage extends StatelessWidget {
               backgroundColor: const Color(0xFF1B9C85),
               leading: const BackButton(),
             ),
-            floatingActionButton: FloatingActionButton(
-              backgroundColor: const Color(0xFF1B9C85),
-          child: const Icon(
-            Icons.add,
-            size: 24.0,
-          ),
+            floatingActionButton: Visibility(
+              visible: provider.choosenTambak != null,
+              child: FloatingActionButton(
+                backgroundColor: const Color(0xFF1B9C85),
+                child: const Icon(
+                  Icons.add,
+                  size: 24.0,
+                ),
                 onPressed: () async {
-                  final result = await Navigator.of(context)
-                      .pushNamed(
-                        Routes.buatKolamRoute,
-                        arguments: InputKolamArgument(
-                          tambak: provider.choosenTambak!,
-                        ),
-                      );
-                  if (result != null){
+                  final result = await Navigator.of(context).pushNamed(
+                    Routes.buatKolamRoute,
+                    arguments: InputKolamArgument(
+                      tambak: provider.choosenTambak!,
+                    ),
+                  );
+                  if (result != null) {
                     provider.onRefreshKolam();
                   }
                 },
-
               ),
+            ),
             body: FutureBuilder(
                 future: provider.tambakResponse,
                 builder: (context, snapshot) {
@@ -94,11 +95,13 @@ class KolamPage extends StatelessWidget {
                                           child: Text("Tidak ada data"),
                                         );
                                       }
-                                    } else if (apiResponse is ApiResponseFailed) {
+                                    } else if (apiResponse
+                                        is ApiResponseFailed) {
                                       return Center(
                                         child: ErrorWarning(
                                           onRefresh: provider.onRefreshKolam,
-                                          errorMessage: apiResponse.errorMessage,
+                                          errorMessage:
+                                              apiResponse.errorMessage,
                                         ),
                                       );
                                     } else {

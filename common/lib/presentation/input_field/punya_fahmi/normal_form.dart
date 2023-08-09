@@ -9,14 +9,9 @@ class NormalForm extends StatelessWidget {
   final TextInputType formKeyboard;
   final String? errorMessage;
 
-  const NormalForm(
-    this.labelForm,
-    this.formController,
-    this.formKeyboard,
-    this.isRequired,
-    this.errorMessage,
-      {super.key}
-  );
+  const NormalForm(this.labelForm, this.formController, this.formKeyboard,
+      this.isRequired, this.errorMessage,
+      {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +48,7 @@ class NormalForm extends StatelessWidget {
           controller: formController,
           keyboardType: formKeyboard,
           style: primaryTextStyle.copyWith(
-            fontSize: 12,
+            fontSize: 14,
           ),
           decoration: InputDecoration(
             errorText: errorMessage,

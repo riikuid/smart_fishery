@@ -61,7 +61,7 @@ class SearchTambakCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        choosenTambak?.name ?? "Pilih terlebih dahulu tambak",
+                        choosenTambak?.name ?? "Pilih tambak terlebih dahulu",
                         style: primaryTextStyle.copyWith(
                           fontSize: 14,
                           fontWeight: semibold,

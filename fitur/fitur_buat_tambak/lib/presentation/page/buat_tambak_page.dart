@@ -110,6 +110,7 @@ class _BuatTambakPageState extends State<BuatTambakPage> {
                     onPressed: snapshot.hasData
                         ? () {
                             provider.submitData(textEditingController.text);
+                            Navigator.pop(context);
                           }
                         : null,
                   ));
