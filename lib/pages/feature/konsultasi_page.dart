@@ -1,6 +1,9 @@
+import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:smart_fishery/core.dart';
+import 'package:smart_fishery/models/konsultasi_model.dart';
+import 'package:smart_fishery/provider/konsultasi_provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class KonsultasiPage extends StatelessWidget {
@@ -8,8 +11,11 @@ class KonsultasiPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    KonsultasiProvider konsultasiProvider =
+        Provider.of<KonsultasiProvider>(context);
+    KonsultasiModel konsultasi = konsultasiProvider.konsultasi[0];
     whatsapp() async {
-      var contact = "62876456999";
+      var contact = konsultasi.nomorWA;
       var androidUrl =
           "whatsapp://send?phone=$contact&text=Hi, saya butuh bantuan dengan aplikasi Smart Fishery";
 
@@ -71,7 +77,7 @@ class KonsultasiPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "+62 876-456-999",
+                  konsultasi.nomorWA,
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: MediaQuery.of(context).size.width * 0.035,
@@ -136,7 +142,7 @@ class KonsultasiPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "abaditambak@outlook.com",
+                  konsultasi.email,
                   style: primaryTextStyle.copyWith(
                     fontWeight: medium,
                     fontSize: MediaQuery.of(context).size.width * 0.035,

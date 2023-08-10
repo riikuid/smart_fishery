@@ -1,8 +1,8 @@
-
 import 'package:common/data/repository/token_repository_impl.dart';
 import 'package:dependencies/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
+import 'package:smart_fishery/provider/konsultasi_provider.dart';
 import 'package:smart_fishery/provider/suhu_provider.dart';
 
 class SplashPage extends StatefulWidget {
@@ -18,14 +18,16 @@ class _SplashPageState extends State<SplashPage> {
     final tokenManager = TokenRepositoryImpl();
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
     SuhuProvider suhuProvider = Provider.of<SuhuProvider>(context);
-
+    KonsultasiProvider konsultasiProvider =
+        Provider.of<KonsultasiProvider>(context);
     getInit() async {
       await suhuProvider.getSuhu();
       if (await tokenManager.getToken() != null) {
-        
         if (await authProvider.getProfile(
           token: (await tokenManager.getToken())!,
         )) {
+          konsultasiProvider
+              .getKonsultasi((await authProvider.tokenManager.getToken())!);
           Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
         } else {
           Navigator.pushNamedAndRemoveUntil(

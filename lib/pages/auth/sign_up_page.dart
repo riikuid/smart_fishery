@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:smart_fishery/core.dart';
 import 'package:smart_fishery/provider/auth_provider.dart';
+import 'package:smart_fishery/provider/konsultasi_provider.dart';
 import 'package:smart_fishery/widget/auth_form.dart';
 import 'package:smart_fishery/widget/auth_password_form.dart';
 import 'package:common/presentation/loading_button.dart';
@@ -26,6 +27,8 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     AuthProvider authProvider = Provider.of<AuthProvider>(context);
+    KonsultasiProvider konsultasiProvider =
+        Provider.of<KonsultasiProvider>(context);
 
     handleSignUp() async {
       setState(() {
@@ -37,6 +40,8 @@ class _SignUpPageState extends State<SignUpPage> {
         password: passwordController.text,
         konfirmasiPassword: passwordController.text,
       )) {
+        konsultasiProvider
+            .getKonsultasi((await authProvider.tokenManager.getToken())!);
         Navigator.pushNamedAndRemoveUntil(context, '/home', (route) => false);
       } else {
         ScaffoldMessenger.of(context).showSnackBar(

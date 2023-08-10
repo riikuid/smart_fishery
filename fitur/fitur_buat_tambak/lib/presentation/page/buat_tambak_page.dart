@@ -1,3 +1,4 @@
+import 'package:common/presentation/input_field/normal_text_field.dart';
 import 'package:common/presentation/input_field/styles/styles.dart';
 import 'package:common/presentation/input_field/submit_button.dart';
 import 'package:common/response/api_response.dart';
@@ -30,91 +31,62 @@ class _BuatTambakPageState extends State<BuatTambakPage> {
         repository: BuatTambakRepositoryImpl(),
       ),
       child: Consumer<BuatTambakProvider>(builder: (context, provider, child) {
-        return FutureBuilder(
-            future: provider.submitResponse,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data! is ApiResponseSuccess) {
-                  Navigator.pop(context, true);
-                }
-              }
-
-              return Scaffold(
-                  // backgroundColor: Color(0xFFECE1E1),
-                  backgroundColor: whiteColor,
-                  appBar: AppBar(
-                    elevation: 0,
-                    centerTitle: true,
-                    title: Text(
-                      "Buat Tambak Baru",
-                      style: primaryTextStyle.copyWith(fontWeight: bold),
-                    ),
-                    backgroundColor: whiteColor,
-                    leading: InkWell(
-                      onTap: () {
-                        Navigator.pop(context);
-                      },
-                      child: const Icon(
-                        Icons.arrow_back,
-                        color: Color(0xFF1B9C85),
-                      ),
-                    ),
+        debugPrint("kita ganteng0");
+        debugPrint("${provider.submitResponse.runtimeType}");
+        if (provider.submitResponse is ApiResponseSuccess) {
+          debugPrint("kita ganteng1");
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            debugPrint("kita ganteng2");
+            // This will pop the current page after the build is complete.
+            Navigator.pop(context, true);
+          });
+        }
+        return Scaffold(
+          backgroundColor: whiteColor,
+          appBar: AppBar(
+            elevation: 0,
+            centerTitle: true,
+            title: Text(
+              "Buat Tambak",
+              style: primaryTextStyle.copyWith(fontWeight: bold),
+            ),
+            backgroundColor: whiteColor,
+            leading: InkWell(
+              onTap: () {
+                Navigator.pop(context);
+              },
+              child: const Icon(
+                Icons.arrow_back,
+                color: Color(0xFF1B9C85),
+              ),
+            ),
+          ),
+          bottomNavigationBar: SubmitButton(
+            onPressed: provider.submitResponse is ApiResponseLoading
+                ? null
+                : provider.submitData,
+          ),
+          body: Padding(
+            padding: const EdgeInsets.only(
+              top: verticalFormSpacingHeight,
+            ),
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(horizontal: 24),
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 10,
                   ),
-                  body: Container(
-                    padding: const EdgeInsets.only(
-                      top: 20,
-                      right: 20,
-                      left: 20,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            Text(
-                              "Nama Tambak",
-                              style: primaryTextStyle.copyWith(
-                                fontSize: 14,
-                                fontWeight: semibold,
-                              ),
-                            ),
-                            Text(
-                              " *",
-                              style: primaryTextStyle.copyWith(
-                                color: alertColor,
-                                fontSize: 14,
-                                fontWeight: semibold,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(
-                          height: 10,
-                        ),
-                        TextFormField(
-                          controller: textEditingController,
-                          maxLength: 25,
-                          style: primaryTextStyle.copyWith(),
-                          decoration: InputDecoration(
-                            errorText: provider.textFieldError,
-                            enabledBorder: enabledInputFieldBorder,
-                            focusedBorder: focusedInputFieldBorder,
-                            errorBorder: errorInputFieldBorder,
-                            focusedErrorBorder: errorInputFieldBorder,
-                          ),
-                        ),
-                      ],
-                    ),
+                  NormalTextField(
+                    controller: provider.textEditingController,
+                    errorMessage: provider.textFieldError,
+                    label: "Nama Tambak",
                   ),
-                  bottomNavigationBar: SubmitButton(
-                    onPressed: snapshot.hasData
-                        ? () {
-                            provider.submitData(textEditingController.text);
-                            Navigator.pop(context);
-                          }
-                        : null,
-                  ));
-            });
+                ],
+              ),
+            ),
+          ),
+        );
       }),
     );
   }

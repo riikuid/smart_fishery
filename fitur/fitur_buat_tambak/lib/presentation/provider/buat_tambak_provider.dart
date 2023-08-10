@@ -1,39 +1,59 @@
+import 'package:common/domain/model/tambak.dart';
 import 'package:common/domain/use_case/empty_validation_use_case.dart';
 import 'package:common/response/api_response.dart';
 import 'package:fitur_buat_tambak/domain/repository/i_buat_tambak_repository.dart';
 import 'package:flutter/material.dart';
 
-class BuatTambakProvider extends ChangeNotifier{
+class BuatTambakProvider extends ChangeNotifier {
   final IBuatTambakRepository _repository;
   BuatTambakProvider({
     required IBuatTambakRepository repository,
   }) : _repository = repository;
 
+  final textEditingController = TextEditingController();
 
   final emptyValidator = EmptyValidationUseCase();
+
   String? textFieldError;
 
-  Future<ApiResponse> submitResponse = Future.value(ApiResponseFailed());
-  var _isSubmitting = false;
-  void submitData(String namaTambak){
-    if (!_isSubmitting){
-      _isSubmitting = true;
-      submitResponse = _submitDataProcess(namaTambak);
+  ApiResponse submitResponse = ApiResponseFailed();
+  // var _isSubmitting = false;
+  void submitData() async {
+    if (submitResponse is! ApiResponseLoading) {
+      submitResponse = ApiResponseLoading();
       notifyListeners();
 
-      submitResponse.whenComplete((){
-        _isSubmitting = false;
+      final namaTambak = textEditingController.text;
+
+      textFieldError =
+          emptyValidator.validate(namaTambak, fieldName: "Nama Tambak");
+      notifyListeners();
+
+      if (_noError) {
+        debugPrint("No Error dari form");
+        submitResponse = await _repository.buatTambak(
+            data: Tambak(
+          id: "",
+          name: namaTambak,
+          createdAt: DateTime.now(),
+        ));
+
+        debugPrint(
+            "Masuk sini, submitresponse sukses : ${submitResponse is ApiResponseFailed ? (submitResponse as ApiResponseFailed).errorMessage : "ya"}");
+
         notifyListeners();
-      });
+      } else {
+        debugPrint("no Error ga jalan bro");
+        submitResponse = ApiResponseFailed();
+        notifyListeners();
+      }
     }
   }
-  Future<ApiResponse> _submitDataProcess(String namaTambak) async {
-    textFieldError = emptyValidator.validate(namaTambak, fieldName: "Nama tambak");
-    if (textFieldError == null){
-      return await _repository.buatTambak(namaTambak);
-    }
-    else {
-      return ApiResponseFailed();
-    }
+
+  bool get _noError => textFieldError == null;
+
+  void dispose() {
+    textEditingController.dispose();
+    super.dispose();
   }
 }

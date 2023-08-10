@@ -48,8 +48,8 @@ class _PilihTambakPageState extends State<PilihTambakPage> {
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            final isCreatingTambakSuccess = await Navigator.pushNamed(
-              context,
+            final isCreatingTambakSuccess =
+                await Navigator.of(context).pushNamed(
               Routes.buatTambakRoute,
             );
 
