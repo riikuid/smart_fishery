@@ -77,11 +77,42 @@ class _BuatTambakPageState extends State<BuatTambakPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  NormalTextField(
-                    controller: provider.textEditingController,
-                    errorMessage: provider.textFieldError,
-                    label: "Nama Tambak",
-                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      RichText(
+                          text: TextSpan(
+                              text: "Nama Tambak",
+                              style: inputFieldLabelHeaderStyle,
+                              children: [
+                            TextSpan(
+                                text: " *",
+                                style: primaryTextStyle.copyWith(
+                                  color: alertColor,
+                                  fontSize: 12,
+                                  fontWeight: semibold,
+                                ))
+                          ])),
+                      const SizedBox(
+                        height: labelAndFormSpacing,
+                      ),
+                      TextField(
+                        style: primaryTextStyle.copyWith(
+                          fontWeight: medium,
+                        ),
+                        controller: provider.textEditingController,
+                        keyboardType: TextInputType.name,
+                        decoration: InputDecoration(
+                          errorText: provider.textFieldError,
+                          errorBorder: errorInputFieldBorder,
+                          focusedErrorBorder: errorInputFieldBorder,
+                          enabledBorder: enabledInputFieldBorder,
+                          focusedBorder: focusedInputFieldBorder,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
